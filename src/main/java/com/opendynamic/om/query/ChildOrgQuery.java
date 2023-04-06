@@ -1,0 +1,222 @@
+package com.opendynamic.om.query;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
+import com.opendynamic.om.service.OmOrgService;
+import com.opendynamic.om.vo.Org;
+
+@Service
+public class ChildOrgQuery {
+    private OmOrgService omOrgService;
+
+    private String orgnSetId;
+    private String orgnSetCode;
+    private String orgId;
+    private String orgCode;
+    private String orgName;
+    private List<String> orgTypeList;
+    private List<String> categoryList;
+    private String orgTag;
+    private String extAttr1;
+    private String extAttr2;
+    private String extAttr3;
+    private String extAttr4;
+    private String extAttr5;
+    private String extAttr6;
+    private String extAttr7;
+    private String extAttr8;
+    private List<String> orgStatusList;
+    private Boolean tagUnion;
+    private String withinOrgId;
+    private Boolean includeSelf;
+    private Boolean recursive;
+    private String operatorId;
+    private String operatorName;
+
+    public ChildOrgQuery(OmOrgService omOrgService) {
+        super();
+        this.omOrgService = omOrgService;
+    }
+
+    public ChildOrgQuery setOrgnSetId(String orgnSetId) {
+        this.orgnSetId = orgnSetId;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgnSetCode(String orgnSetCode) {
+        this.orgnSetCode = orgnSetCode;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgId(String orgId) {
+        this.orgId = orgId;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgName(String orgName) {
+        this.orgName = orgName;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgType(String orgType) {
+        if (StringUtils.isNotEmpty(orgType)) {
+            this.orgTypeList = new ArrayList<>();
+            this.orgTypeList.add(orgType);
+        }
+        return this;
+    }
+
+    public ChildOrgQuery setOrgTypeList(List<String> orgTypeList) {
+        this.orgTypeList = orgTypeList;
+        return this;
+    }
+
+    public ChildOrgQuery setCategory(String category) {
+        if (StringUtils.isNotEmpty(category)) {
+            this.categoryList = new ArrayList<>();
+            this.categoryList.add(category);
+        }
+        return this;
+    }
+
+    public ChildOrgQuery setCategoryList(List<String> categoryList) {
+        this.categoryList = categoryList;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgTag(String orgTag) {
+        this.orgTag = orgTag;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr1(String extAttr1) {
+        this.extAttr1 = extAttr1;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr2(String extAttr2) {
+        this.extAttr2 = extAttr2;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr3(String extAttr3) {
+        this.extAttr3 = extAttr3;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr4(String extAttr4) {
+        this.extAttr4 = extAttr4;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr5(String extAttr5) {
+        this.extAttr5 = extAttr5;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr6(String extAttr6) {
+        this.extAttr6 = extAttr6;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr7(String extAttr7) {
+        this.extAttr7 = extAttr7;
+        return this;
+    }
+
+    public ChildOrgQuery setExtAttr8(String extAttr8) {
+        this.extAttr8 = extAttr8;
+        return this;
+    }
+
+    public ChildOrgQuery setOrgStatus(String orgStatus) {
+        if (StringUtils.isNotEmpty(orgStatus)) {
+            this.orgStatusList = new ArrayList<>();
+            this.orgStatusList.add(orgStatus);
+        }
+        return this;
+    }
+
+    public ChildOrgQuery setOrgStatusList(List<String> orgStatusList) {
+        this.orgStatusList = orgStatusList;
+        return this;
+    }
+
+    public ChildOrgQuery setTagUnion(Boolean tagUnion) {
+        this.tagUnion = tagUnion;
+        return this;
+    }
+
+    public ChildOrgQuery setWithinOrgId(String withinOrgId) {
+        this.withinOrgId = withinOrgId;
+        return this;
+    }
+
+    public ChildOrgQuery setIncludeSelf(Boolean includeSelf) {
+        this.includeSelf = includeSelf;
+        return this;
+    }
+
+    public ChildOrgQuery setRecursive(Boolean recursive) {
+        this.recursive = recursive;
+        return this;
+    }
+
+    public ChildOrgQuery setOperatorId(String operatorId) {
+        this.operatorId = operatorId;
+        return this;
+    }
+
+    public ChildOrgQuery setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
+        return this;
+    }
+
+    public List<Map<String, Object>> queryForMapList() {
+        return omOrgService.selectChildOrg(orgnSetId, orgnSetCode, orgId, orgCode, orgName, orgTypeList, categoryList, orgTag, extAttr1, extAttr2, extAttr3, extAttr4, extAttr5, extAttr6, extAttr7, extAttr8, orgStatusList, tagUnion, withinOrgId, includeSelf, recursive, operatorId, operatorName);
+    }
+
+    public Map<String, Object> queryForMap() {
+        List<Map<String, Object>> result = queryForMapList();
+        if (result.size() == 1) {
+            return result.get(0);
+        }
+        else {
+            return null;
+        }
+    }
+
+    public List<Org> queryForObjectList() {
+        List<Map<String, Object>> result = queryForMapList();
+        List<Org> orgList = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++) {
+            orgList.add(new Org(result.get(i)));
+        }
+
+        return orgList;
+    }
+
+    public Org queryForObject() {
+        List<Map<String, Object>> result = queryForMapList();
+        if (result.size() == 1) {
+            return new Org(result.get(0));
+        }
+        else {
+            return null;
+        }
+    }
+
+    public int count() {
+        return queryForMapList().size();
+    }
+}
