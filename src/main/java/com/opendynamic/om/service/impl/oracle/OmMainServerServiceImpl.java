@@ -89,7 +89,7 @@ public class OmMainServerServiceImpl implements OmMainServerService {
         }
 
         if (!count) {
-            sql += " order by ORDER_";
+            sql += " order by ORDER_, MAIN_SERVER_ID_";
         }
 
         return new OdSqlCriteria(sql, paramMap);

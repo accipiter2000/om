@@ -101,7 +101,7 @@ public class OmServerServiceImpl implements OmServerService {
             }
 
             final List<Map<String, Object>> orgList = omJdbcTemplate.queryForList("select * from OM_ORG where ORGN_SET_ID_ = ?", ORGN_SET_ID_);
-            sql = "insert into OM_ORG (ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, CATEGORY_, MEMO_, ORG_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_ORG (ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, ORG_CATEGORY_, MEMO_, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_2_, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> org = orgList.get(i);
@@ -112,17 +112,17 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(5, org.get("ORG_NAME_"));
                     ps.setObject(6, org.get("ORG_ABBR_NAME_"));
                     ps.setObject(7, org.get("ORG_TYPE_"));
-                    ps.setObject(8, org.get("CATEGORY_"));
+                    ps.setObject(8, org.get("ORG_CATEGORY_"));
                     ps.setObject(9, org.get("MEMO_"));
                     ps.setObject(10, org.get("ORG_TAG_"));
-                    ps.setObject(11, org.get("EXT_ATTR_1_"));
-                    ps.setObject(12, org.get("EXT_ATTR_2_"));
-                    ps.setObject(13, org.get("EXT_ATTR_3_"));
-                    ps.setObject(14, org.get("EXT_ATTR_4_"));
-                    ps.setObject(15, org.get("EXT_ATTR_5_"));
-                    ps.setObject(16, org.get("EXT_ATTR_6_"));
-                    ps.setObject(17, org.get("EXT_ATTR_7_"));
-                    ps.setObject(18, org.get("EXT_ATTR_8_"));
+                    ps.setObject(11, org.get("ORG_EXT_ATTR_1_"));
+                    ps.setObject(12, org.get("ORG_EXT_ATTR_2_"));
+                    ps.setObject(13, org.get("ORG_EXT_ATTR_3_"));
+                    ps.setObject(14, org.get("ORG_EXT_ATTR_4_"));
+                    ps.setObject(15, org.get("ORG_EXT_ATTR_5_"));
+                    ps.setObject(16, org.get("ORG_EXT_ATTR_6_"));
+                    ps.setObject(17, org.get("ORG_EXT_ATTR_7_"));
+                    ps.setObject(18, org.get("ORG_EXT_ATTR_8_"));
                     ps.setObject(19, org.get("ORDER_"));
                     ps.setObject(20, org.get("ORG_STATUS_"));
                     ps.setObject(21, org.get("CREATION_DATE_"));
@@ -138,7 +138,7 @@ public class OmServerServiceImpl implements OmServerService {
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
 
             final List<Map<String, Object>> dutyList = omJdbcTemplate.queryForList("select * from OM_DUTY where ORGN_SET_ID_ = ?", ORGN_SET_ID_);
-            sql = "insert into OM_DUTY (ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, CATEGORY_, MEMO_, DUTY_TAG_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_DUTY (ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, DUTY_CATEGORY_, MEMO_, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_8_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> duty = dutyList.get(i);
@@ -146,15 +146,23 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(2, duty.get("DUTY_ID_"));
                     ps.setObject(3, duty.get("DUTY_CODE_"));
                     ps.setObject(4, duty.get("DUTY_NAME_"));
-                    ps.setObject(5, duty.get("CATEGORY_"));
+                    ps.setObject(5, duty.get("DUTY_CATEGORY_"));
                     ps.setObject(6, duty.get("MEMO_"));
                     ps.setObject(7, duty.get("DUTY_TAG_"));
-                    ps.setObject(8, duty.get("ORDER_"));
-                    ps.setObject(9, duty.get("DUTY_STATUS_"));
-                    ps.setObject(10, duty.get("CREATION_DATE_"));
-                    ps.setObject(11, duty.get("UPDATE_DATE_"));
-                    ps.setObject(12, duty.get("OPERATOR_ID_"));
-                    ps.setObject(13, duty.get("OPERATOR_NAME_"));
+                    ps.setObject(8, duty.get("DUTY_EXT_ATTR_1_"));
+                    ps.setObject(9, duty.get("DUTY_EXT_ATTR_2_"));
+                    ps.setObject(10, duty.get("DUTY_EXT_ATTR_3_"));
+                    ps.setObject(11, duty.get("DUTY_EXT_ATTR_4_"));
+                    ps.setObject(12, duty.get("DUTY_EXT_ATTR_5_"));
+                    ps.setObject(13, duty.get("DUTY_EXT_ATTR_6_"));
+                    ps.setObject(14, duty.get("DUTY_EXT_ATTR_7_"));
+                    ps.setObject(15, duty.get("DUTY_EXT_ATTR_8_"));
+                    ps.setObject(16, duty.get("ORDER_"));
+                    ps.setObject(17, duty.get("DUTY_STATUS_"));
+                    ps.setObject(18, duty.get("CREATION_DATE_"));
+                    ps.setObject(19, duty.get("UPDATE_DATE_"));
+                    ps.setObject(20, duty.get("OPERATOR_ID_"));
+                    ps.setObject(21, duty.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -164,7 +172,7 @@ public class OmServerServiceImpl implements OmServerService {
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
 
             final List<Map<String, Object>> posiList = omJdbcTemplate.queryForList("select * from OM_POSI where ORGN_SET_ID_ = ?", ORGN_SET_ID_);
-            sql = "insert into OM_POSI (ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, DUTY_LEVEL_, CATEGORY_, MEMO_, POSI_TAG_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_POSI (ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, ORG_LEADER_TYPE_, POSI_CATEGORY_, MEMO_, POSI_TAG_, POSI_EXT_ATTR_1_, POSI_EXT_ATTR_2_, POSI_EXT_ATTR_3_, POSI_EXT_ATTR_4_, POSI_EXT_ATTR_5_, POSI_EXT_ATTR_6_, POSI_EXT_ATTR_7_, POSI_EXT_ATTR_8_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> posi = posiList.get(i);
@@ -174,16 +182,24 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(4, posi.get("DUTY_ID_"));
                     ps.setObject(5, posi.get("POSI_CODE_"));
                     ps.setObject(6, posi.get("POSI_NAME_"));
-                    ps.setObject(7, posi.get("DUTY_LEVEL_"));
-                    ps.setObject(8, posi.get("CATEGORY_"));
+                    ps.setObject(7, posi.get("ORG_LEADER_TYPE_"));
+                    ps.setObject(8, posi.get("POSI_CATEGORY_"));
                     ps.setObject(9, posi.get("MEMO_"));
                     ps.setObject(10, posi.get("POSI_TAG_"));
-                    ps.setObject(11, posi.get("ORDER_"));
-                    ps.setObject(12, posi.get("POSI_STATUS_"));
-                    ps.setObject(13, posi.get("CREATION_DATE_"));
-                    ps.setObject(14, posi.get("UPDATE_DATE_"));
-                    ps.setObject(15, posi.get("OPERATOR_ID_"));
-                    ps.setObject(16, posi.get("OPERATOR_NAME_"));
+                    ps.setObject(11, posi.get("POSI_EXT_ATTR_1_"));
+                    ps.setObject(12, posi.get("POSI_EXT_ATTR_2_"));
+                    ps.setObject(13, posi.get("POSI_EXT_ATTR_3_"));
+                    ps.setObject(14, posi.get("POSI_EXT_ATTR_4_"));
+                    ps.setObject(15, posi.get("POSI_EXT_ATTR_5_"));
+                    ps.setObject(16, posi.get("POSI_EXT_ATTR_6_"));
+                    ps.setObject(17, posi.get("POSI_EXT_ATTR_7_"));
+                    ps.setObject(18, posi.get("POSI_EXT_ATTR_8_"));
+                    ps.setObject(19, posi.get("ORDER_"));
+                    ps.setObject(20, posi.get("POSI_STATUS_"));
+                    ps.setObject(21, posi.get("CREATION_DATE_"));
+                    ps.setObject(22, posi.get("UPDATE_DATE_"));
+                    ps.setObject(23, posi.get("OPERATOR_ID_"));
+                    ps.setObject(24, posi.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -193,7 +209,7 @@ public class OmServerServiceImpl implements OmServerService {
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
 
             final List<Map<String, Object>> empList = omJdbcTemplate.queryForList("select * from OM_EMP where ORGN_SET_ID_ = ?", ORGN_SET_ID_);
-            sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, CATEGORY_, MEMO_, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> emp = empList.get(i);
@@ -212,17 +228,17 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(13, emp.get("EMAIL_"));
                     ps.setObject(14, emp.get("IN_DATE_"));
                     ps.setObject(15, emp.get("OUT_DATE_"));
-                    ps.setObject(16, emp.get("CATEGORY_"));
+                    ps.setObject(16, emp.get("EMP_CATEGORY_"));
                     ps.setObject(17, emp.get("MEMO_"));
                     ps.setObject(18, emp.get("EMP_TAG_"));
-                    ps.setObject(19, emp.get("EXT_ATTR_1_"));
-                    ps.setObject(20, emp.get("EXT_ATTR_2_"));
-                    ps.setObject(21, emp.get("EXT_ATTR_3_"));
-                    ps.setObject(22, emp.get("EXT_ATTR_4_"));
-                    ps.setObject(23, emp.get("EXT_ATTR_5_"));
-                    ps.setObject(24, emp.get("EXT_ATTR_6_"));
-                    ps.setObject(25, emp.get("EXT_ATTR_7_"));
-                    ps.setObject(26, emp.get("EXT_ATTR_8_"));
+                    ps.setObject(19, emp.get("EMP_EXT_ATTR_1_"));
+                    ps.setObject(20, emp.get("EMP_EXT_ATTR_2_"));
+                    ps.setObject(21, emp.get("EMP_EXT_ATTR_3_"));
+                    ps.setObject(22, emp.get("EMP_EXT_ATTR_4_"));
+                    ps.setObject(23, emp.get("EMP_EXT_ATTR_5_"));
+                    ps.setObject(24, emp.get("EMP_EXT_ATTR_6_"));
+                    ps.setObject(25, emp.get("EMP_EXT_ATTR_7_"));
+                    ps.setObject(26, emp.get("EMP_EXT_ATTR_8_"));
                     ps.setObject(27, emp.get("ORDER_"));
                     ps.setObject(28, emp.get("EMP_STATUS_"));
                     ps.setObject(29, emp.get("CREATION_DATE_"));
@@ -238,7 +254,7 @@ public class OmServerServiceImpl implements OmServerService {
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
 
             final List<Map<String, Object>> posiEmpList = omJdbcTemplate.queryForList("select * from OM_POSI_EMP where ORGN_SET_ID_ = ?", ORGN_SET_ID_);
-            sql = "insert into OM_POSI_EMP (ORGN_SET_ID_, POSI_EMP_ID_, POSI_ID_, EMP_ID_, MAIN_, POSI_EMP_TAG_, POSI_EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_POSI_EMP (ORGN_SET_ID_, POSI_EMP_ID_, POSI_ID_, EMP_ID_, MAIN_, POSI_EMP_CATEGORY_, MEMO_, POSI_EMP_TAG_, POSI_EMP_EXT_ATTR_1_, POSI_EMP_EXT_ATTR_2_, POSI_EMP_EXT_ATTR_3_, POSI_EMP_EXT_ATTR_4_, POSI_EMP_EXT_ATTR_5_, POSI_EMP_EXT_ATTR_6_, POSI_EMP_EXT_ATTR_7_, POSI_EMP_EXT_ATTR_8_, ORDER_, POSI_EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> posiEmp = posiEmpList.get(i);
@@ -247,12 +263,23 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(3, posiEmp.get("POSI_ID_"));
                     ps.setObject(4, posiEmp.get("EMP_ID_"));
                     ps.setObject(5, posiEmp.get("MAIN_"));
-                    ps.setObject(6, posiEmp.get("POSI_EMP_TAG_"));
-                    ps.setObject(7, posiEmp.get("POSI_EMP_STATUS_"));
-                    ps.setObject(8, posiEmp.get("CREATION_DATE_"));
-                    ps.setObject(9, posiEmp.get("UPDATE_DATE_"));
-                    ps.setObject(10, posiEmp.get("OPERATOR_ID_"));
-                    ps.setObject(11, posiEmp.get("OPERATOR_NAME_"));
+                    ps.setObject(6, posiEmp.get("POSI_EMP_CATEGORY_"));
+                    ps.setObject(7, posiEmp.get("MEMO_"));
+                    ps.setObject(8, posiEmp.get("POSI_EMP_TAG_"));
+                    ps.setObject(9, posiEmp.get("POSI_EMP_EXT_ATTR_1_"));
+                    ps.setObject(10, posiEmp.get("POSI_EMP_EXT_ATTR_2_"));
+                    ps.setObject(11, posiEmp.get("POSI_EMP_EXT_ATTR_3_"));
+                    ps.setObject(12, posiEmp.get("POSI_EMP_EXT_ATTR_4_"));
+                    ps.setObject(13, posiEmp.get("POSI_EMP_EXT_ATTR_5_"));
+                    ps.setObject(14, posiEmp.get("POSI_EMP_EXT_ATTR_6_"));
+                    ps.setObject(15, posiEmp.get("POSI_EMP_EXT_ATTR_7_"));
+                    ps.setObject(16, posiEmp.get("POSI_EMP_EXT_ATTR_8_"));
+                    ps.setObject(17, posiEmp.get("ORDER_"));
+                    ps.setObject(18, posiEmp.get("POSI_EMP_STATUS_"));
+                    ps.setObject(19, posiEmp.get("CREATION_DATE_"));
+                    ps.setObject(20, posiEmp.get("UPDATE_DATE_"));
+                    ps.setObject(21, posiEmp.get("OPERATOR_ID_"));
+                    ps.setObject(22, posiEmp.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -262,7 +289,7 @@ public class OmServerServiceImpl implements OmServerService {
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
 
             final List<Map<String, Object>> empRelationList = omJdbcTemplate.queryForList("select * from OM_EMP_RELATION where ORGN_SET_ID_ = ?", ORGN_SET_ID_);
-            sql = "insert into OM_EMP_RELATION (ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_TAG_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_EMP_RELATION (ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_CATEGORY_, MEMO_, EMP_RELATION_TAG_, EMP_RELATION_EXT_ATTR_1_, EMP_RELATION_EXT_ATTR_2_, EMP_RELATION_EXT_ATTR_3_, EMP_RELATION_EXT_ATTR_4_, EMP_RELATION_EXT_ATTR_5_, EMP_RELATION_EXT_ATTR_6_, EMP_RELATION_EXT_ATTR_7_, EMP_RELATION_EXT_ATTR_8_, ORDER_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> empRelation = empRelationList.get(i);
@@ -271,12 +298,23 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(3, empRelation.get("UPPER_EMP_ID_"));
                     ps.setObject(4, empRelation.get("LOWER_EMP_ID_"));
                     ps.setObject(5, empRelation.get("EMP_RELATION_"));
-                    ps.setObject(6, empRelation.get("EMP_RELATION_TAG_"));
-                    ps.setObject(7, empRelation.get("EMP_RELATION_STATUS_"));
-                    ps.setObject(8, empRelation.get("CREATION_DATE_"));
-                    ps.setObject(9, empRelation.get("UPDATE_DATE_"));
-                    ps.setObject(10, empRelation.get("OPERATOR_ID_"));
-                    ps.setObject(11, empRelation.get("OPERATOR_NAME_"));
+                    ps.setObject(6, empRelation.get("EMP_RELATION_CATEGORY_"));
+                    ps.setObject(7, empRelation.get("MEMO_"));
+                    ps.setObject(8, empRelation.get("EMP_RELATION_TAG_"));
+                    ps.setObject(9, empRelation.get("EMP_RELATION_EXT_ATTR_1_"));
+                    ps.setObject(10, empRelation.get("EMP_RELATION_EXT_ATTR_2_"));
+                    ps.setObject(11, empRelation.get("EMP_RELATION_EXT_ATTR_3_"));
+                    ps.setObject(12, empRelation.get("EMP_RELATION_EXT_ATTR_4_"));
+                    ps.setObject(13, empRelation.get("EMP_RELATION_EXT_ATTR_5_"));
+                    ps.setObject(14, empRelation.get("EMP_RELATION_EXT_ATTR_6_"));
+                    ps.setObject(15, empRelation.get("EMP_RELATION_EXT_ATTR_7_"));
+                    ps.setObject(16, empRelation.get("EMP_RELATION_EXT_ATTR_8_"));
+                    ps.setObject(17, empRelation.get("ORDER_"));
+                    ps.setObject(18, empRelation.get("EMP_RELATION_STATUS_"));
+                    ps.setObject(19, empRelation.get("CREATION_DATE_"));
+                    ps.setObject(20, empRelation.get("UPDATE_DATE_"));
+                    ps.setObject(21, empRelation.get("OPERATOR_ID_"));
+                    ps.setObject(22, empRelation.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -340,12 +378,12 @@ public class OmServerServiceImpl implements OmServerService {
                 org = orgList.get(i);
                 mirrorServerOrg = mirrorServerOrgList.get(mirrorServerOrgIdList.indexOf(orgIdList.get(i)));
                 if ((org.get("ORG_ID_") == null && mirrorServerOrg.get("ORG_ID_") != null) || (org.get("ORG_ID_") != null && !org.get("ORG_ID_").equals(mirrorServerOrg.get("ORG_ID_"))) || (org.get("ORGN_SET_ID_") == null && mirrorServerOrg.get("ORGN_SET_ID_") != null) || (org.get("ORGN_SET_ID_") != null && !org.get("ORGN_SET_ID_").equals(mirrorServerOrg.get("ORGN_SET_ID_"))) || (org.get("PARENT_ORG_ID_") == null && mirrorServerOrg.get("PARENT_ORG_ID_") != null) || (org.get("PARENT_ORG_ID_") != null && !org.get("PARENT_ORG_ID_").equals(mirrorServerOrg.get("PARENT_ORG_ID_"))) || (org.get("ORG_CODE_") == null && mirrorServerOrg.get("ORG_CODE_") != null) || (org.get("ORG_CODE_") != null && !org.get("ORG_CODE_").equals(mirrorServerOrg.get("ORG_CODE_")))
-                        || (org.get("ORG_NAME_") == null && mirrorServerOrg.get("ORG_NAME_") != null) || (org.get("ORG_NAME_") != null && !org.get("ORG_NAME_").equals(mirrorServerOrg.get("ORG_NAME_"))) || (org.get("ORG_ABBR_NAME_") == null && mirrorServerOrg.get("ORG_ABBR_NAME_") != null) || (org.get("ORG_ABBR_NAME_") != null && !org.get("ORG_ABBR_NAME_").equals(mirrorServerOrg.get("ORG_ABBR_NAME_"))) || (org.get("ORG_TYPE_") == null && mirrorServerOrg.get("ORG_TYPE_") != null) || (org.get("ORG_TYPE_") != null && !org.get("ORG_TYPE_").equals(mirrorServerOrg.get("ORG_TYPE_"))) || (org.get("CATEGORY_") == null && mirrorServerOrg.get("CATEGORY_") != null) || (org.get("CATEGORY_") != null && !org.get("CATEGORY_").equals(mirrorServerOrg.get("CATEGORY_")))
-                        || (org.get("MEMO_") == null && mirrorServerOrg.get("MEMO_") != null) || (org.get("MEMO_") != null && !org.get("MEMO_").equals(mirrorServerOrg.get("MEMO_"))) || (org.get("ORG_TAG_") == null && mirrorServerOrg.get("ORG_TAG_") != null) || (org.get("ORG_TAG_") != null && !org.get("ORG_TAG_").equals(mirrorServerOrg.get("ORG_TAG_"))) || (org.get("EXT_ATTR_1_") == null && mirrorServerOrg.get("EXT_ATTR_1_") != null) || (org.get("EXT_ATTR_1_") != null && !org.get("EXT_ATTR_1_").equals(mirrorServerOrg.get("EXT_ATTR_1_"))) || (org.get("EXT_ATTR_2_") == null && mirrorServerOrg.get("EXT_ATTR_2_") != null) || (org.get("EXT_ATTR_2_") != null && !org.get("EXT_ATTR_2_").equals(mirrorServerOrg.get("EXT_ATTR_2_")))
-                        || (org.get("EXT_ATTR_3_") == null && mirrorServerOrg.get("EXT_ATTR_3_") != null) || (org.get("EXT_ATTR_3_") != null && !org.get("EXT_ATTR_3_").equals(mirrorServerOrg.get("EXT_ATTR_3_"))) || (org.get("EXT_ATTR_4_") == null && mirrorServerOrg.get("EXT_ATTR_4_") != null) || (org.get("EXT_ATTR_4_") != null && !org.get("EXT_ATTR_4_").equals(mirrorServerOrg.get("EXT_ATTR_4_"))) || (org.get("EXT_ATTR_5_") == null && mirrorServerOrg.get("EXT_ATTR_5_") != null) || (org.get("EXT_ATTR_5_") != null && !org.get("EXT_ATTR_5_").equals(mirrorServerOrg.get("EXT_ATTR_5_"))) || (org.get("EXT_ATTR_6_") == null && mirrorServerOrg.get("EXT_ATTR_6_") != null) || (org.get("EXT_ATTR_6_") != null && !org.get("EXT_ATTR_6_").equals(mirrorServerOrg.get("EXT_ATTR_6_")))
-                        || (org.get("EXT_ATTR_7_") == null && mirrorServerOrg.get("EXT_ATTR_7_") != null) || (org.get("EXT_ATTR_7_") != null && !org.get("EXT_ATTR_7_").equals(mirrorServerOrg.get("EXT_ATTR_7_"))) || (org.get("EXT_ATTR_8_") == null && mirrorServerOrg.get("EXT_ATTR_8_") != null) || (org.get("EXT_ATTR_8_") != null && !org.get("EXT_ATTR_8_").equals(mirrorServerOrg.get("EXT_ATTR_8_"))) || (org.get("ORDER_") == null && mirrorServerOrg.get("ORDER_") != null) || (org.get("ORDER_") != null && !org.get("ORDER_").equals(mirrorServerOrg.get("ORDER_"))) || (org.get("ORG_STATUS_") == null && mirrorServerOrg.get("ORG_STATUS_") != null) || (org.get("ORG_STATUS_") != null && !org.get("ORG_STATUS_").equals(mirrorServerOrg.get("ORG_STATUS_")))
-                        || (org.get("CREATION_DATE_") == null && mirrorServerOrg.get("CREATION_DATE_") != null) || (org.get("CREATION_DATE_") != null && !org.get("CREATION_DATE_").equals(mirrorServerOrg.get("CREATION_DATE_"))) || (org.get("UPDATE_DATE_") == null && mirrorServerOrg.get("UPDATE_DATE_") != null) || (org.get("UPDATE_DATE_") != null && !org.get("UPDATE_DATE_").equals(mirrorServerOrg.get("UPDATE_DATE_"))) || (org.get("OPERATOR_ID_") == null && mirrorServerOrg.get("OPERATOR_ID_") != null) || (org.get("OPERATOR_ID_") != null && !org.get("OPERATOR_ID_").equals(mirrorServerOrg.get("OPERATOR_ID_"))) || (org.get("OPERATOR_NAME_") == null && mirrorServerOrg.get("OPERATOR_NAME_") != null)
-                        || (org.get("OPERATOR_NAME_") != null && !org.get("OPERATOR_NAME_").equals(mirrorServerOrg.get("OPERATOR_NAME_")))) {
+                        || (org.get("ORG_NAME_") == null && mirrorServerOrg.get("ORG_NAME_") != null) || (org.get("ORG_NAME_") != null && !org.get("ORG_NAME_").equals(mirrorServerOrg.get("ORG_NAME_"))) || (org.get("ORG_ABBR_NAME_") == null && mirrorServerOrg.get("ORG_ABBR_NAME_") != null) || (org.get("ORG_ABBR_NAME_") != null && !org.get("ORG_ABBR_NAME_").equals(mirrorServerOrg.get("ORG_ABBR_NAME_"))) || (org.get("ORG_TYPE_") == null && mirrorServerOrg.get("ORG_TYPE_") != null) || (org.get("ORG_TYPE_") != null && !org.get("ORG_TYPE_").equals(mirrorServerOrg.get("ORG_TYPE_"))) || (org.get("ORG_CATEGORY_") == null && mirrorServerOrg.get("ORG_CATEGORY_") != null) || (org.get("ORG_CATEGORY_") != null && !org.get("ORG_CATEGORY_").equals(mirrorServerOrg.get("ORG_CATEGORY_")))
+                        || (org.get("MEMO_") == null && mirrorServerOrg.get("MEMO_") != null) || (org.get("MEMO_") != null && !org.get("MEMO_").equals(mirrorServerOrg.get("MEMO_"))) || (org.get("ORG_TAG_") == null && mirrorServerOrg.get("ORG_TAG_") != null) || (org.get("ORG_TAG_") != null && !org.get("ORG_TAG_").equals(mirrorServerOrg.get("ORG_TAG_"))) || (org.get("ORG_EXT_ATTR_1_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_1_") != null) || (org.get("ORG_EXT_ATTR_1_") != null && !org.get("ORG_EXT_ATTR_1_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_1_"))) || (org.get("ORG_EXT_ATTR_2_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_2_") != null) || (org.get("ORG_EXT_ATTR_2_") != null && !org.get("ORG_EXT_ATTR_2_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_2_")))
+                        || (org.get("ORG_EXT_ATTR_3_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_3_") != null) || (org.get("ORG_EXT_ATTR_3_") != null && !org.get("ORG_EXT_ATTR_3_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_3_"))) || (org.get("ORG_EXT_ATTR_4_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_4_") != null) || (org.get("ORG_EXT_ATTR_4_") != null && !org.get("ORG_EXT_ATTR_4_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_4_"))) || (org.get("ORG_EXT_ATTR_5_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_5_") != null) || (org.get("ORG_EXT_ATTR_5_") != null && !org.get("ORG_EXT_ATTR_5_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_5_"))) || (org.get("ORG_EXT_ATTR_6_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_6_") != null)
+                        || (org.get("ORG_EXT_ATTR_6_") != null && !org.get("ORG_EXT_ATTR_6_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_6_"))) || (org.get("ORG_EXT_ATTR_7_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_7_") != null) || (org.get("ORG_EXT_ATTR_7_") != null && !org.get("ORG_EXT_ATTR_7_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_7_"))) || (org.get("ORG_EXT_ATTR_8_") == null && mirrorServerOrg.get("ORG_EXT_ATTR_8_") != null) || (org.get("ORG_EXT_ATTR_8_") != null && !org.get("ORG_EXT_ATTR_8_").equals(mirrorServerOrg.get("ORG_EXT_ATTR_8_"))) || (org.get("ORDER_") == null && mirrorServerOrg.get("ORDER_") != null) || (org.get("ORDER_") != null && !org.get("ORDER_").equals(mirrorServerOrg.get("ORDER_")))
+                        || (org.get("ORG_STATUS_") == null && mirrorServerOrg.get("ORG_STATUS_") != null) || (org.get("ORG_STATUS_") != null && !org.get("ORG_STATUS_").equals(mirrorServerOrg.get("ORG_STATUS_"))) || (org.get("CREATION_DATE_") == null && mirrorServerOrg.get("CREATION_DATE_") != null) || (org.get("CREATION_DATE_") != null && !org.get("CREATION_DATE_").equals(mirrorServerOrg.get("CREATION_DATE_"))) || (org.get("UPDATE_DATE_") == null && mirrorServerOrg.get("UPDATE_DATE_") != null) || (org.get("UPDATE_DATE_") != null && !org.get("UPDATE_DATE_").equals(mirrorServerOrg.get("UPDATE_DATE_"))) || (org.get("OPERATOR_ID_") == null && mirrorServerOrg.get("OPERATOR_ID_") != null) || (org.get("OPERATOR_ID_") != null && !org.get("OPERATOR_ID_").equals(mirrorServerOrg.get("OPERATOR_ID_")))
+                        || (org.get("OPERATOR_NAME_") == null && mirrorServerOrg.get("OPERATOR_NAME_") != null) || (org.get("OPERATOR_NAME_") != null && !org.get("OPERATOR_NAME_").equals(mirrorServerOrg.get("OPERATOR_NAME_")))) {
                     updateOrgList.add(orgList.get(i));
                 }
             }
@@ -377,9 +415,11 @@ public class OmServerServiceImpl implements OmServerService {
                 duty = dutyList.get(i);
                 mirrorServerDuty = mirrorServerDutyList.get(mirrorServerDutyIdList.indexOf(dutyIdList.get(i)));
                 if ((duty.get("DUTY_ID_") == null && mirrorServerDuty.get("DUTY_ID_") != null) || (duty.get("DUTY_ID_") != null && !duty.get("DUTY_ID_").equals(mirrorServerDuty.get("DUTY_ID_"))) || (duty.get("ORGN_SET_ID_") == null && mirrorServerDuty.get("ORGN_SET_ID_") != null) || (duty.get("ORGN_SET_ID_") != null && !duty.get("ORGN_SET_ID_").equals(mirrorServerDuty.get("ORGN_SET_ID_"))) || (duty.get("DUTY_CODE_") == null && mirrorServerDuty.get("DUTY_CODE_") != null) || (duty.get("DUTY_CODE_") != null && !duty.get("DUTY_CODE_").equals(mirrorServerDuty.get("DUTY_CODE_"))) || (duty.get("DUTY_NAME_") == null && mirrorServerDuty.get("DUTY_NAME_") != null) || (duty.get("DUTY_NAME_") != null && !duty.get("DUTY_NAME_").equals(mirrorServerDuty.get("DUTY_NAME_")))
-                        || (duty.get("CATEGORY_") == null && mirrorServerDuty.get("CATEGORY_") != null) || (duty.get("CATEGORY_") != null && !duty.get("CATEGORY_").equals(mirrorServerDuty.get("CATEGORY_"))) || (duty.get("MEMO_") == null && mirrorServerDuty.get("MEMO_") != null) || (duty.get("MEMO_") != null && !duty.get("MEMO_").equals(mirrorServerDuty.get("MEMO_"))) || (duty.get("DUTY_TAG_") == null && mirrorServerDuty.get("DUTY_TAG_") != null) || (duty.get("DUTY_TAG_") != null && !duty.get("DUTY_TAG_").equals(mirrorServerDuty.get("DUTY_TAG_"))) || (duty.get("ORDER_") == null && mirrorServerDuty.get("ORDER_") != null) || (duty.get("ORDER_") != null && !duty.get("ORDER_").equals(mirrorServerDuty.get("ORDER_")))
-                        || (duty.get("DUTY_STATUS_") == null && mirrorServerDuty.get("DUTY_STATUS_") != null) || (duty.get("DUTY_STATUS_") != null && !duty.get("DUTY_STATUS_").equals(mirrorServerDuty.get("DUTY_STATUS_"))) || (duty.get("CREATION_DATE_") == null && mirrorServerDuty.get("CREATION_DATE_") != null) || (duty.get("CREATION_DATE_") != null && !duty.get("CREATION_DATE_").equals(mirrorServerDuty.get("CREATION_DATE_"))) || (duty.get("UPDATE_DATE_") == null && mirrorServerDuty.get("UPDATE_DATE_") != null) || (duty.get("UPDATE_DATE_") != null && !duty.get("UPDATE_DATE_").equals(mirrorServerDuty.get("UPDATE_DATE_"))) || (duty.get("OPERATOR_ID_") == null && mirrorServerDuty.get("OPERATOR_ID_") != null)
-                        || (duty.get("OPERATOR_ID_") != null && !duty.get("OPERATOR_ID_").equals(mirrorServerDuty.get("OPERATOR_ID_"))) || (duty.get("OPERATOR_NAME_") == null && mirrorServerDuty.get("OPERATOR_NAME_") != null) || (duty.get("OPERATOR_NAME_") != null && !duty.get("OPERATOR_NAME_").equals(mirrorServerDuty.get("OPERATOR_NAME_")))) {
+                        || (duty.get("DUTY_CATEGORY_") == null && mirrorServerDuty.get("DUTY_CATEGORY_") != null) || (duty.get("DUTY_CATEGORY_") != null && !duty.get("DUTY_CATEGORY_").equals(mirrorServerDuty.get("DUTY_CATEGORY_"))) || (duty.get("MEMO_") == null && mirrorServerDuty.get("MEMO_") != null) || (duty.get("MEMO_") != null && !duty.get("MEMO_").equals(mirrorServerDuty.get("MEMO_"))) || (duty.get("DUTY_TAG_") == null && mirrorServerDuty.get("DUTY_TAG_") != null) || (duty.get("DUTY_TAG_") != null && !duty.get("DUTY_TAG_").equals(mirrorServerDuty.get("DUTY_TAG_"))) || (duty.get("DUTY_EXT_ATTR_1_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_1_") != null) || (duty.get("DUTY_EXT_ATTR_1_") != null && !duty.get("DUTY_EXT_ATTR_1_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_1_")))
+                        || (duty.get("DUTY_EXT_ATTR_2_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_2_") != null) || (duty.get("DUTY_EXT_ATTR_2_") != null && !duty.get("DUTY_EXT_ATTR_2_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_2_"))) || (duty.get("DUTY_EXT_ATTR_3_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_3_") != null) || (duty.get("DUTY_EXT_ATTR_3_") != null && !duty.get("DUTY_EXT_ATTR_3_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_3_"))) || (duty.get("DUTY_EXT_ATTR_4_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_4_") != null) || (duty.get("DUTY_EXT_ATTR_4_") != null && !duty.get("DUTY_EXT_ATTR_4_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_4_"))) || (duty.get("DUTY_EXT_ATTR_5_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_5_") != null)
+                        || (duty.get("DUTY_EXT_ATTR_5_") != null && !duty.get("DUTY_EXT_ATTR_5_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_5_"))) || (duty.get("DUTY_EXT_ATTR_6_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_6_") != null) || (duty.get("DUTY_EXT_ATTR_6_") != null && !duty.get("DUTY_EXT_ATTR_6_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_6_"))) || (duty.get("DUTY_EXT_ATTR_7_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_7_") != null) || (duty.get("DUTY_EXT_ATTR_7_") != null && !duty.get("DUTY_EXT_ATTR_7_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_7_"))) || (duty.get("DUTY_EXT_ATTR_8_") == null && mirrorServerDuty.get("DUTY_EXT_ATTR_8_") != null)
+                        || (duty.get("DUTY_EXT_ATTR_8_") != null && !duty.get("DUTY_EXT_ATTR_8_").equals(mirrorServerDuty.get("DUTY_EXT_ATTR_8_"))) || (duty.get("ORDER_") == null && mirrorServerDuty.get("ORDER_") != null) || (duty.get("ORDER_") != null && !duty.get("ORDER_").equals(mirrorServerDuty.get("ORDER_"))) || (duty.get("DUTY_STATUS_") == null && mirrorServerDuty.get("DUTY_STATUS_") != null) || (duty.get("DUTY_STATUS_") != null && !duty.get("DUTY_STATUS_").equals(mirrorServerDuty.get("DUTY_STATUS_"))) || (duty.get("CREATION_DATE_") == null && mirrorServerDuty.get("CREATION_DATE_") != null) || (duty.get("CREATION_DATE_") != null && !duty.get("CREATION_DATE_").equals(mirrorServerDuty.get("CREATION_DATE_")))
+                        || (duty.get("UPDATE_DATE_") == null && mirrorServerDuty.get("UPDATE_DATE_") != null) || (duty.get("UPDATE_DATE_") != null && !duty.get("UPDATE_DATE_").equals(mirrorServerDuty.get("UPDATE_DATE_"))) || (duty.get("OPERATOR_ID_") == null && mirrorServerDuty.get("OPERATOR_ID_") != null) || (duty.get("OPERATOR_ID_") != null && !duty.get("OPERATOR_ID_").equals(mirrorServerDuty.get("OPERATOR_ID_"))) || (duty.get("OPERATOR_NAME_") == null && mirrorServerDuty.get("OPERATOR_NAME_") != null) || (duty.get("OPERATOR_NAME_") != null && !duty.get("OPERATOR_NAME_").equals(mirrorServerDuty.get("OPERATOR_NAME_")))) {
                     updateDutyList.add(dutyList.get(i));
                 }
             }
@@ -411,10 +451,12 @@ public class OmServerServiceImpl implements OmServerService {
                 posi = posiList.get(i);
                 mirrorServerPosi = mirrorServerPosiList.get(mirrorServerPosiIdList.indexOf(posiIdList.get(i)));
                 if ((posi.get("POSI_ID_") == null && mirrorServerPosi.get("POSI_ID_") != null) || (posi.get("POSI_ID_") != null && !posi.get("POSI_ID_").equals(mirrorServerPosi.get("POSI_ID_"))) || (posi.get("ORGN_SET_ID_") == null && mirrorServerPosi.get("ORGN_SET_ID_") != null) || (posi.get("ORGN_SET_ID_") != null && !posi.get("ORGN_SET_ID_").equals(mirrorServerPosi.get("ORGN_SET_ID_"))) || (posi.get("ORG_ID_") == null && mirrorServerPosi.get("ORG_ID_") != null) || (posi.get("ORG_ID_") != null && !posi.get("ORG_ID_").equals(mirrorServerPosi.get("ORG_ID_"))) || (posi.get("DUTY_ID_") == null && mirrorServerPosi.get("DUTY_ID_") != null) || (posi.get("DUTY_ID_") != null && !posi.get("DUTY_ID_").equals(mirrorServerPosi.get("DUTY_ID_")))
-                        || (posi.get("POSI_CODE_") == null && mirrorServerPosi.get("POSI_CODE_") != null) || (posi.get("POSI_CODE_") != null && !posi.get("POSI_CODE_").equals(mirrorServerPosi.get("POSI_CODE_"))) || (posi.get("POSI_NAME_") == null && mirrorServerPosi.get("POSI_NAME_") != null) || (posi.get("POSI_NAME_") != null && !posi.get("POSI_NAME_").equals(mirrorServerPosi.get("POSI_NAME_"))) || (posi.get("DUTY_LEVEL_") == null && mirrorServerPosi.get("DUTY_LEVEL_") != null) || (posi.get("DUTY_LEVEL_") != null && !posi.get("DUTY_LEVEL_").equals(mirrorServerPosi.get("DUTY_LEVEL_"))) || (posi.get("CATEGORY_") == null && mirrorServerPosi.get("CATEGORY_") != null) || (posi.get("CATEGORY_") != null && !posi.get("CATEGORY_").equals(mirrorServerPosi.get("CATEGORY_")))
-                        || (posi.get("MEMO_") == null && mirrorServerPosi.get("MEMO_") != null) || (posi.get("MEMO_") != null && !posi.get("MEMO_").equals(mirrorServerPosi.get("MEMO_"))) || (posi.get("POSI_TAG_") == null && mirrorServerPosi.get("POSI_TAG_") != null) || (posi.get("POSI_TAG_") != null && !posi.get("POSI_TAG_").equals(mirrorServerPosi.get("POSI_TAG_"))) || (posi.get("ORDER_") == null && mirrorServerPosi.get("ORDER_") != null) || (posi.get("ORDER_") != null && !posi.get("ORDER_").equals(mirrorServerPosi.get("ORDER_"))) || (posi.get("POSI_STATUS_") == null && mirrorServerPosi.get("POSI_STATUS_") != null) || (posi.get("POSI_STATUS_") != null && !posi.get("POSI_STATUS_").equals(mirrorServerPosi.get("POSI_STATUS_")))
-                        || (posi.get("CREATION_DATE_") == null && mirrorServerPosi.get("CREATION_DATE_") != null) || (posi.get("CREATION_DATE_") != null && !posi.get("CREATION_DATE_").equals(mirrorServerPosi.get("CREATION_DATE_"))) || (posi.get("UPDATE_DATE_") == null && mirrorServerPosi.get("UPDATE_DATE_") != null) || (posi.get("UPDATE_DATE_") != null && !posi.get("UPDATE_DATE_").equals(mirrorServerPosi.get("UPDATE_DATE_"))) || (posi.get("OPERATOR_ID_") == null && mirrorServerPosi.get("OPERATOR_ID_") != null) || (posi.get("OPERATOR_ID_") != null && !posi.get("OPERATOR_ID_").equals(mirrorServerPosi.get("OPERATOR_ID_"))) || (posi.get("OPERATOR_NAME_") == null && mirrorServerPosi.get("OPERATOR_NAME_") != null)
-                        || (posi.get("OPERATOR_NAME_") != null && !posi.get("OPERATOR_NAME_").equals(mirrorServerPosi.get("OPERATOR_NAME_")))) {
+                        || (posi.get("POSI_CODE_") == null && mirrorServerPosi.get("POSI_CODE_") != null) || (posi.get("POSI_CODE_") != null && !posi.get("POSI_CODE_").equals(mirrorServerPosi.get("POSI_CODE_"))) || (posi.get("POSI_NAME_") == null && mirrorServerPosi.get("POSI_NAME_") != null) || (posi.get("POSI_NAME_") != null && !posi.get("POSI_NAME_").equals(mirrorServerPosi.get("POSI_NAME_"))) || (posi.get("ORG_LEADER_TYPE_") == null && mirrorServerPosi.get("ORG_LEADER_TYPE_") != null) || (posi.get("ORG_LEADER_TYPE_") != null && !posi.get("ORG_LEADER_TYPE_").equals(mirrorServerPosi.get("ORG_LEADER_TYPE_"))) || (posi.get("POSI_CATEGORY_") == null && mirrorServerPosi.get("POSI_CATEGORY_") != null)
+                        || (posi.get("POSI_CATEGORY_") != null && !posi.get("POSI_CATEGORY_").equals(mirrorServerPosi.get("POSI_CATEGORY_"))) || (posi.get("MEMO_") == null && mirrorServerPosi.get("MEMO_") != null) || (posi.get("MEMO_") != null && !posi.get("MEMO_").equals(mirrorServerPosi.get("MEMO_"))) || (posi.get("POSI_TAG_") == null && mirrorServerPosi.get("POSI_TAG_") != null) || (posi.get("POSI_TAG_") != null && !posi.get("POSI_TAG_").equals(mirrorServerPosi.get("POSI_TAG_"))) || (posi.get("POSI_EXT_ATTR_1_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_1_") != null) || (posi.get("POSI_EXT_ATTR_1_") != null && !posi.get("POSI_EXT_ATTR_1_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_1_"))) || (posi.get("POSI_EXT_ATTR_2_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_2_") != null)
+                        || (posi.get("POSI_EXT_ATTR_2_") != null && !posi.get("POSI_EXT_ATTR_2_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_2_"))) || (posi.get("POSI_EXT_ATTR_3_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_3_") != null) || (posi.get("POSI_EXT_ATTR_3_") != null && !posi.get("POSI_EXT_ATTR_3_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_3_"))) || (posi.get("POSI_EXT_ATTR_4_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_4_") != null) || (posi.get("POSI_EXT_ATTR_4_") != null && !posi.get("POSI_EXT_ATTR_4_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_4_"))) || (posi.get("POSI_EXT_ATTR_5_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_5_") != null)
+                        || (posi.get("POSI_EXT_ATTR_5_") != null && !posi.get("POSI_EXT_ATTR_5_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_5_"))) || (posi.get("POSI_EXT_ATTR_6_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_6_") != null) || (posi.get("POSI_EXT_ATTR_6_") != null && !posi.get("POSI_EXT_ATTR_6_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_6_"))) || (posi.get("POSI_EXT_ATTR_7_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_7_") != null) || (posi.get("POSI_EXT_ATTR_7_") != null && !posi.get("POSI_EXT_ATTR_7_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_7_"))) || (posi.get("POSI_EXT_ATTR_8_") == null && mirrorServerPosi.get("POSI_EXT_ATTR_8_") != null)
+                        || (posi.get("POSI_EXT_ATTR_8_") != null && !posi.get("POSI_EXT_ATTR_8_").equals(mirrorServerPosi.get("POSI_EXT_ATTR_8_"))) || (posi.get("ORDER_") == null && mirrorServerPosi.get("ORDER_") != null) || (posi.get("ORDER_") != null && !posi.get("ORDER_").equals(mirrorServerPosi.get("ORDER_"))) || (posi.get("POSI_STATUS_") == null && mirrorServerPosi.get("POSI_STATUS_") != null) || (posi.get("POSI_STATUS_") != null && !posi.get("POSI_STATUS_").equals(mirrorServerPosi.get("POSI_STATUS_"))) || (posi.get("CREATION_DATE_") == null && mirrorServerPosi.get("CREATION_DATE_") != null) || (posi.get("CREATION_DATE_") != null && !posi.get("CREATION_DATE_").equals(mirrorServerPosi.get("CREATION_DATE_")))
+                        || (posi.get("UPDATE_DATE_") == null && mirrorServerPosi.get("UPDATE_DATE_") != null) || (posi.get("UPDATE_DATE_") != null && !posi.get("UPDATE_DATE_").equals(mirrorServerPosi.get("UPDATE_DATE_"))) || (posi.get("OPERATOR_ID_") == null && mirrorServerPosi.get("OPERATOR_ID_") != null) || (posi.get("OPERATOR_ID_") != null && !posi.get("OPERATOR_ID_").equals(mirrorServerPosi.get("OPERATOR_ID_"))) || (posi.get("OPERATOR_NAME_") == null && mirrorServerPosi.get("OPERATOR_NAME_") != null) || (posi.get("OPERATOR_NAME_") != null && !posi.get("OPERATOR_NAME_").equals(mirrorServerPosi.get("OPERATOR_NAME_")))) {
                     updatePosiList.add(posiList.get(i));
                 }
             }
@@ -448,11 +490,12 @@ public class OmServerServiceImpl implements OmServerService {
                 if ((emp.get("EMP_ID_") == null && mirrorServerEmp.get("EMP_ID_") != null) || (emp.get("EMP_ID_") != null && !emp.get("EMP_ID_").equals(mirrorServerEmp.get("EMP_ID_"))) || (emp.get("ORGN_SET_ID_") == null && mirrorServerEmp.get("ORGN_SET_ID_") != null) || (emp.get("ORGN_SET_ID_") != null && !emp.get("ORGN_SET_ID_").equals(mirrorServerEmp.get("ORGN_SET_ID_"))) || (emp.get("ORG_ID_") == null && mirrorServerEmp.get("ORG_ID_") != null) || (emp.get("ORG_ID_") != null && !emp.get("ORG_ID_").equals(mirrorServerEmp.get("ORG_ID_"))) || (emp.get("EMP_CODE_") == null && mirrorServerEmp.get("EMP_CODE_") != null) || (emp.get("EMP_CODE_") != null && !emp.get("EMP_CODE_").equals(mirrorServerEmp.get("EMP_CODE_")))
                         || (emp.get("EMP_NAME_") == null && mirrorServerEmp.get("EMP_NAME_") != null) || (emp.get("EMP_NAME_") != null && !emp.get("EMP_NAME_").equals(mirrorServerEmp.get("EMP_NAME_"))) || (emp.get("PASSWORD_") == null && mirrorServerEmp.get("PASSWORD_") != null) || (emp.get("PASSWORD_") != null && !emp.get("PASSWORD_").equals(mirrorServerEmp.get("PASSWORD_"))) || (emp.get("PASSWORD_RESET_REQ_") == null && mirrorServerEmp.get("PASSWORD_RESET_REQ_") != null) || (emp.get("PASSWORD_RESET_REQ_") != null && !emp.get("PASSWORD_RESET_REQ_").equals(mirrorServerEmp.get("PASSWORD_RESET_REQ_"))) || (emp.get("PARTY_") == null && mirrorServerEmp.get("PARTY_") != null) || (emp.get("PARTY_") != null && !emp.get("PARTY_").equals(mirrorServerEmp.get("PARTY_")))
                         || (emp.get("EMP_LEVEL_") == null && mirrorServerEmp.get("EMP_LEVEL_") != null) || (emp.get("EMP_LEVEL_") != null && !emp.get("EMP_LEVEL_").equals(mirrorServerEmp.get("EMP_LEVEL_"))) || (emp.get("GENDER_") == null && mirrorServerEmp.get("GENDER_") != null) || (emp.get("GENDER_") != null && !emp.get("GENDER_").equals(mirrorServerEmp.get("GENDER_"))) || (emp.get("BIRTH_DATE_") == null && mirrorServerEmp.get("BIRTH_DATE_") != null) || (emp.get("BIRTH_DATE_") != null && !emp.get("BIRTH_DATE_").equals(mirrorServerEmp.get("BIRTH_DATE_"))) || (emp.get("TEL_") == null && mirrorServerEmp.get("TEL_") != null) || (emp.get("TEL_") != null && !emp.get("TEL_").equals(mirrorServerEmp.get("TEL_"))) || (emp.get("EMAIL_") == null && mirrorServerEmp.get("EMAIL_") != null)
-                        || (emp.get("EMAIL_") != null && !emp.get("EMAIL_").equals(mirrorServerEmp.get("EMAIL_"))) || (emp.get("IN_DATE_") == null && mirrorServerEmp.get("IN_DATE_") != null) || (emp.get("IN_DATE_") != null && !emp.get("IN_DATE_").equals(mirrorServerEmp.get("IN_DATE_"))) || (emp.get("OUT_DATE_") == null && mirrorServerEmp.get("OUT_DATE_") != null) || (emp.get("OUT_DATE_") != null && !emp.get("OUT_DATE_").equals(mirrorServerEmp.get("OUT_DATE_"))) || (emp.get("CATEGORY_") == null && mirrorServerEmp.get("CATEGORY_") != null) || (emp.get("CATEGORY_") != null && !emp.get("CATEGORY_").equals(mirrorServerEmp.get("CATEGORY_"))) || (emp.get("MEMO_") == null && mirrorServerEmp.get("MEMO_") != null)
-                        || (emp.get("MEMO_") != null && !emp.get("MEMO_").equals(mirrorServerEmp.get("MEMO_"))) || (emp.get("EMP_TAG_") == null && mirrorServerEmp.get("EMP_TAG_") != null) || (emp.get("EMP_TAG_") != null && !emp.get("EMP_TAG_").equals(mirrorServerEmp.get("EMP_TAG_"))) || (emp.get("EXT_ATTR_1_") == null && mirrorServerEmp.get("EXT_ATTR_1_") != null) || (emp.get("EXT_ATTR_1_") != null && !emp.get("EXT_ATTR_1_").equals(mirrorServerEmp.get("EXT_ATTR_1_"))) || (emp.get("EXT_ATTR_2_") == null && mirrorServerEmp.get("EXT_ATTR_2_") != null) || (emp.get("EXT_ATTR_2_") != null && !emp.get("EXT_ATTR_2_").equals(mirrorServerEmp.get("EXT_ATTR_2_"))) || (emp.get("EXT_ATTR_3_") == null && mirrorServerEmp.get("EXT_ATTR_3_") != null)
-                        || (emp.get("EXT_ATTR_3_") != null && !emp.get("EXT_ATTR_3_").equals(mirrorServerEmp.get("EXT_ATTR_3_"))) || (emp.get("EXT_ATTR_4_") == null && mirrorServerEmp.get("EXT_ATTR_4_") != null) || (emp.get("EXT_ATTR_4_") != null && !emp.get("EXT_ATTR_4_").equals(mirrorServerEmp.get("EXT_ATTR_4_"))) || (emp.get("EXT_ATTR_5_") == null && mirrorServerEmp.get("EXT_ATTR_5_") != null) || (emp.get("EXT_ATTR_5_") != null && !emp.get("EXT_ATTR_5_").equals(mirrorServerEmp.get("EXT_ATTR_5_"))) || (emp.get("EXT_ATTR_6_") == null && mirrorServerEmp.get("EXT_ATTR_6_") != null) || (emp.get("EXT_ATTR_6_") != null && !emp.get("EXT_ATTR_6_").equals(mirrorServerEmp.get("EXT_ATTR_6_"))) || (emp.get("EXT_ATTR_7_") == null && mirrorServerEmp.get("EXT_ATTR_7_") != null)
-                        || (emp.get("EXT_ATTR_7_") != null && !emp.get("EXT_ATTR_7_").equals(mirrorServerEmp.get("EXT_ATTR_7_"))) || (emp.get("EXT_ATTR_8_") == null && mirrorServerEmp.get("EXT_ATTR_8_") != null) || (emp.get("EXT_ATTR_8_") != null && !emp.get("EXT_ATTR_8_").equals(mirrorServerEmp.get("EXT_ATTR_8_"))) || (emp.get("ORDER_") == null && mirrorServerEmp.get("ORDER_") != null) || (emp.get("ORDER_") != null && !emp.get("ORDER_").equals(mirrorServerEmp.get("ORDER_"))) || (emp.get("EMP_STATUS_") == null && mirrorServerEmp.get("EMP_STATUS_") != null) || (emp.get("EMP_STATUS_") != null && !emp.get("EMP_STATUS_").equals(mirrorServerEmp.get("EMP_STATUS_"))) || (emp.get("CREATION_DATE_") == null && mirrorServerEmp.get("CREATION_DATE_") != null)
-                        || (emp.get("CREATION_DATE_") != null && !emp.get("CREATION_DATE_").equals(mirrorServerEmp.get("CREATION_DATE_"))) || (emp.get("UPDATE_DATE_") == null && mirrorServerEmp.get("UPDATE_DATE_") != null) || (emp.get("UPDATE_DATE_") != null && !emp.get("UPDATE_DATE_").equals(mirrorServerEmp.get("UPDATE_DATE_"))) || (emp.get("OPERATOR_ID_") == null && mirrorServerEmp.get("OPERATOR_ID_") != null) || (emp.get("OPERATOR_ID_") != null && !emp.get("OPERATOR_ID_").equals(mirrorServerEmp.get("OPERATOR_ID_"))) || (emp.get("OPERATOR_NAME_") == null && mirrorServerEmp.get("OPERATOR_NAME_") != null) || (emp.get("OPERATOR_NAME_") != null && !emp.get("OPERATOR_NAME_").equals(mirrorServerEmp.get("OPERATOR_NAME_")))) {
+                        || (emp.get("EMAIL_") != null && !emp.get("EMAIL_").equals(mirrorServerEmp.get("EMAIL_"))) || (emp.get("IN_DATE_") == null && mirrorServerEmp.get("IN_DATE_") != null) || (emp.get("IN_DATE_") != null && !emp.get("IN_DATE_").equals(mirrorServerEmp.get("IN_DATE_"))) || (emp.get("OUT_DATE_") == null && mirrorServerEmp.get("OUT_DATE_") != null) || (emp.get("OUT_DATE_") != null && !emp.get("OUT_DATE_").equals(mirrorServerEmp.get("OUT_DATE_"))) || (emp.get("EMP_CATEGORY_") == null && mirrorServerEmp.get("EMP_CATEGORY_") != null) || (emp.get("EMP_CATEGORY_") != null && !emp.get("EMP_CATEGORY_").equals(mirrorServerEmp.get("EMP_CATEGORY_"))) || (emp.get("MEMO_") == null && mirrorServerEmp.get("MEMO_") != null)
+                        || (emp.get("MEMO_") != null && !emp.get("MEMO_").equals(mirrorServerEmp.get("MEMO_"))) || (emp.get("EMP_TAG_") == null && mirrorServerEmp.get("EMP_TAG_") != null) || (emp.get("EMP_TAG_") != null && !emp.get("EMP_TAG_").equals(mirrorServerEmp.get("EMP_TAG_"))) || (emp.get("EMP_EXT_ATTR_1_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_1_") != null) || (emp.get("EMP_EXT_ATTR_1_") != null && !emp.get("EMP_EXT_ATTR_1_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_1_"))) || (emp.get("EMP_EXT_ATTR_2_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_2_") != null) || (emp.get("EMP_EXT_ATTR_2_") != null && !emp.get("EMP_EXT_ATTR_2_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_2_"))) || (emp.get("EMP_EXT_ATTR_3_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_3_") != null)
+                        || (emp.get("EMP_EXT_ATTR_3_") != null && !emp.get("EMP_EXT_ATTR_3_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_3_"))) || (emp.get("EMP_EXT_ATTR_4_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_4_") != null) || (emp.get("EMP_EXT_ATTR_4_") != null && !emp.get("EMP_EXT_ATTR_4_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_4_"))) || (emp.get("EMP_EXT_ATTR_5_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_5_") != null) || (emp.get("EMP_EXT_ATTR_5_") != null && !emp.get("EMP_EXT_ATTR_5_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_5_"))) || (emp.get("EMP_EXT_ATTR_6_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_6_") != null) || (emp.get("EMP_EXT_ATTR_6_") != null && !emp.get("EMP_EXT_ATTR_6_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_6_")))
+                        || (emp.get("EMP_EXT_ATTR_7_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_7_") != null) || (emp.get("EMP_EXT_ATTR_7_") != null && !emp.get("EMP_EXT_ATTR_7_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_7_"))) || (emp.get("EMP_EXT_ATTR_8_") == null && mirrorServerEmp.get("EMP_EXT_ATTR_8_") != null) || (emp.get("EMP_EXT_ATTR_8_") != null && !emp.get("EMP_EXT_ATTR_8_").equals(mirrorServerEmp.get("EMP_EXT_ATTR_8_"))) || (emp.get("ORDER_") == null && mirrorServerEmp.get("ORDER_") != null) || (emp.get("ORDER_") != null && !emp.get("ORDER_").equals(mirrorServerEmp.get("ORDER_"))) || (emp.get("EMP_STATUS_") == null && mirrorServerEmp.get("EMP_STATUS_") != null) || (emp.get("EMP_STATUS_") != null && !emp.get("EMP_STATUS_").equals(mirrorServerEmp.get("EMP_STATUS_")))
+                        || (emp.get("CREATION_DATE_") == null && mirrorServerEmp.get("CREATION_DATE_") != null) || (emp.get("CREATION_DATE_") != null && !emp.get("CREATION_DATE_").equals(mirrorServerEmp.get("CREATION_DATE_"))) || (emp.get("UPDATE_DATE_") == null && mirrorServerEmp.get("UPDATE_DATE_") != null) || (emp.get("UPDATE_DATE_") != null && !emp.get("UPDATE_DATE_").equals(mirrorServerEmp.get("UPDATE_DATE_"))) || (emp.get("OPERATOR_ID_") == null && mirrorServerEmp.get("OPERATOR_ID_") != null) || (emp.get("OPERATOR_ID_") != null && !emp.get("OPERATOR_ID_").equals(mirrorServerEmp.get("OPERATOR_ID_"))) || (emp.get("OPERATOR_NAME_") == null && mirrorServerEmp.get("OPERATOR_NAME_") != null)
+                        || (emp.get("OPERATOR_NAME_") != null && !emp.get("OPERATOR_NAME_").equals(mirrorServerEmp.get("OPERATOR_NAME_")))) {
                     updateEmpList.add(empList.get(i));
                 }
             }
@@ -466,7 +509,7 @@ public class OmServerServiceImpl implements OmServerService {
         orgnChange.setUpdateEmpList(updateEmpList);
         orgnChange.setDeleteEmpList(deleteEmpList);
 
-        sql = "select * from OM_POSI_EMP where ORGN_SET_ID_ = ?";
+        sql = "select PE.*, E.EMP_NAME_, P.POSI_NAME_ from OM_POSI_EMP PE inner join OM_EMP E on E.ORGN_SET_ID_ = PE.ORGN_SET_ID_ and E.EMP_ID_ = PE.EMP_ID_ inner join OM_POSI P on P.ORGN_SET_ID_ = PE.ORGN_SET_ID_ and P.POSI_ID_ = PE.POSI_ID_ where PE.ORGN_SET_ID_ = ?";
         List<Map<String, Object>> insertPosiEmpList = new ArrayList<>();
         List<Map<String, Object>> updatePosiEmpList = new ArrayList<>();
         List<Map<String, Object>> deletePosiEmpList = new ArrayList<>();
@@ -484,9 +527,12 @@ public class OmServerServiceImpl implements OmServerService {
                 posiEmp = posiEmpList.get(i);
                 mirrorServerPosiEmp = mirrorServerPosiEmpList.get(mirrorServerPosiEmpIdList.indexOf(posiEmpIdList.get(i)));
                 if ((posiEmp.get("POSI_EMP_ID_") == null && mirrorServerPosiEmp.get("POSI_EMP_ID_") != null) || (posiEmp.get("POSI_EMP_ID_") != null && !posiEmp.get("POSI_EMP_ID_").equals(mirrorServerPosiEmp.get("POSI_EMP_ID_"))) || (posiEmp.get("ORGN_SET_ID_") == null && mirrorServerPosiEmp.get("ORGN_SET_ID_") != null) || (posiEmp.get("ORGN_SET_ID_") != null && !posiEmp.get("ORGN_SET_ID_").equals(mirrorServerPosiEmp.get("ORGN_SET_ID_"))) || (posiEmp.get("POSI_ID_") == null && mirrorServerPosiEmp.get("POSI_ID_") != null) || (posiEmp.get("POSI_ID_") != null && !posiEmp.get("POSI_ID_").equals(mirrorServerPosiEmp.get("POSI_ID_"))) || (posiEmp.get("EMP_ID_") == null && mirrorServerPosiEmp.get("EMP_ID_") != null)
-                        || (posiEmp.get("EMP_ID_") != null && !posiEmp.get("EMP_ID_").equals(mirrorServerPosiEmp.get("EMP_ID_"))) || (posiEmp.get("MAIN_") == null && mirrorServerPosiEmp.get("MAIN_") != null) || (posiEmp.get("MAIN_") != null && !posiEmp.get("MAIN_").equals(mirrorServerPosiEmp.get("MAIN_"))) || (posiEmp.get("POSI_EMP_TAG_") == null && mirrorServerPosiEmp.get("POSI_EMP_TAG_") != null) || (posiEmp.get("POSI_EMP_TAG_") != null && !posiEmp.get("POSI_EMP_TAG_").equals(mirrorServerPosiEmp.get("POSI_EMP_TAG_"))) || (posiEmp.get("POSI_EMP_STATUS_") == null && mirrorServerPosiEmp.get("POSI_EMP_STATUS_") != null) || (posiEmp.get("POSI_EMP_STATUS_") != null && !posiEmp.get("POSI_EMP_STATUS_").equals(mirrorServerPosiEmp.get("POSI_EMP_STATUS_")))
-                        || (posiEmp.get("CREATION_DATE_") == null && mirrorServerPosiEmp.get("CREATION_DATE_") != null) || (posiEmp.get("CREATION_DATE_") != null && !posiEmp.get("CREATION_DATE_").equals(mirrorServerPosiEmp.get("CREATION_DATE_"))) || (posiEmp.get("UPDATE_DATE_") == null && mirrorServerPosiEmp.get("UPDATE_DATE_") != null) || (posiEmp.get("UPDATE_DATE_") != null && !posiEmp.get("UPDATE_DATE_").equals(mirrorServerPosiEmp.get("UPDATE_DATE_"))) || (posiEmp.get("OPERATOR_ID_") == null && mirrorServerPosiEmp.get("OPERATOR_ID_") != null) || (posiEmp.get("OPERATOR_ID_") != null && !posiEmp.get("OPERATOR_ID_").equals(mirrorServerPosiEmp.get("OPERATOR_ID_"))) || (posiEmp.get("OPERATOR_NAME_") == null && mirrorServerPosiEmp.get("OPERATOR_NAME_") != null)
-                        || (posiEmp.get("OPERATOR_NAME_") != null && !posiEmp.get("OPERATOR_NAME_").equals(mirrorServerPosiEmp.get("OPERATOR_NAME_")))) {
+                        || (posiEmp.get("EMP_ID_") != null && !posiEmp.get("EMP_ID_").equals(mirrorServerPosiEmp.get("EMP_ID_"))) || (posiEmp.get("MAIN_") == null && mirrorServerPosiEmp.get("MAIN_") != null) || (posiEmp.get("MAIN_") != null && !posiEmp.get("MAIN_").equals(mirrorServerPosiEmp.get("MAIN_"))) || (posiEmp.get("POSI_EMP_CATEGORY_") == null && mirrorServerPosiEmp.get("POSI_EMP_CATEGORY_") != null) || (posiEmp.get("POSI_EMP_CATEGORY_") != null && !posiEmp.get("POSI_EMP_CATEGORY_").equals(mirrorServerPosiEmp.get("POSI_EMP_CATEGORY_"))) || (posiEmp.get("MEMO_") == null && mirrorServerPosiEmp.get("MEMO_") != null) || (posiEmp.get("MEMO_") != null && !posiEmp.get("MEMO_").equals(mirrorServerPosiEmp.get("MEMO_")))
+                        || (posiEmp.get("POSI_EMP_TAG_") == null && mirrorServerPosiEmp.get("POSI_EMP_TAG_") != null) || (posiEmp.get("POSI_EMP_TAG_") != null && !posiEmp.get("POSI_EMP_TAG_").equals(mirrorServerPosiEmp.get("POSI_EMP_TAG_"))) || (posiEmp.get("POSI_EMP_EXT_ATTR_1_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_1_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_1_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_1_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_1_"))) || (posiEmp.get("POSI_EMP_EXT_ATTR_2_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_2_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_2_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_2_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_2_")))
+                        || (posiEmp.get("POSI_EMP_EXT_ATTR_3_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_3_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_3_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_3_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_3_"))) || (posiEmp.get("POSI_EMP_EXT_ATTR_4_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_4_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_4_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_4_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_4_"))) || (posiEmp.get("POSI_EMP_EXT_ATTR_5_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_5_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_5_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_5_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_5_")))
+                        || (posiEmp.get("POSI_EMP_EXT_ATTR_6_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_6_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_6_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_6_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_6_"))) || (posiEmp.get("POSI_EMP_EXT_ATTR_7_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_7_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_7_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_7_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_7_"))) || (posiEmp.get("POSI_EMP_EXT_ATTR_8_") == null && mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_8_") != null) || (posiEmp.get("POSI_EMP_EXT_ATTR_8_") != null && !posiEmp.get("POSI_EMP_EXT_ATTR_8_").equals(mirrorServerPosiEmp.get("POSI_EMP_EXT_ATTR_8_")))
+                        || (posiEmp.get("ORDER_") == null && mirrorServerPosiEmp.get("ORDER_") != null) || (posiEmp.get("ORDER_") != null && !posiEmp.get("ORDER_").equals(mirrorServerPosiEmp.get("ORDER_"))) || (posiEmp.get("POSI_EMP_STATUS_") == null && mirrorServerPosiEmp.get("POSI_EMP_STATUS_") != null) || (posiEmp.get("POSI_EMP_STATUS_") != null && !posiEmp.get("POSI_EMP_STATUS_").equals(mirrorServerPosiEmp.get("POSI_EMP_STATUS_"))) || (posiEmp.get("CREATION_DATE_") == null && mirrorServerPosiEmp.get("CREATION_DATE_") != null) || (posiEmp.get("CREATION_DATE_") != null && !posiEmp.get("CREATION_DATE_").equals(mirrorServerPosiEmp.get("CREATION_DATE_"))) || (posiEmp.get("UPDATE_DATE_") == null && mirrorServerPosiEmp.get("UPDATE_DATE_") != null)
+                        || (posiEmp.get("UPDATE_DATE_") != null && !posiEmp.get("UPDATE_DATE_").equals(mirrorServerPosiEmp.get("UPDATE_DATE_"))) || (posiEmp.get("OPERATOR_ID_") == null && mirrorServerPosiEmp.get("OPERATOR_ID_") != null) || (posiEmp.get("OPERATOR_ID_") != null && !posiEmp.get("OPERATOR_ID_").equals(mirrorServerPosiEmp.get("OPERATOR_ID_"))) || (posiEmp.get("OPERATOR_NAME_") == null && mirrorServerPosiEmp.get("OPERATOR_NAME_") != null) || (posiEmp.get("OPERATOR_NAME_") != null && !posiEmp.get("OPERATOR_NAME_").equals(mirrorServerPosiEmp.get("OPERATOR_NAME_")))) {
                     updatePosiEmpList.add(posiEmpList.get(i));
                 }
             }
@@ -500,7 +546,7 @@ public class OmServerServiceImpl implements OmServerService {
         orgnChange.setUpdatePosiEmpList(updatePosiEmpList);
         orgnChange.setDeletePosiEmpList(deletePosiEmpList);
 
-        sql = "select * from OM_EMP_RELATION where ORGN_SET_ID_ = ?";
+        sql = "select ER.*, E1.EMP_NAME_ as UPPER_EMP_NAME_, E2.EMP_NAME_ as LOWER_EMP_NAME_ from OM_EMP_RELATION ER inner join OM_EMP E1 on E1.ORGN_SET_ID_ = ER.ORGN_SET_ID_ and E1.EMP_ID_ = ER.UPPER_EMP_ID_ inner join OM_EMP E2 on E2.ORGN_SET_ID_ = ER.ORGN_SET_ID_ and E2.EMP_ID_ = ER.LOWER_EMP_ID_ where ER.ORGN_SET_ID_ = ?";
         List<Map<String, Object>> insertEmpRelationList = new ArrayList<>();
         List<Map<String, Object>> updateEmpRelationList = new ArrayList<>();
         List<Map<String, Object>> deleteEmpRelationList = new ArrayList<>();
@@ -518,10 +564,13 @@ public class OmServerServiceImpl implements OmServerService {
                 empRelation = empRelationList.get(i);
                 mirrorServerEmpRelation = mirrorServerEmpRelationList.get(mirrorServerEmpRelationIdList.indexOf(empRelationIdList.get(i)));
                 if ((empRelation.get("EMP_RELATION_ID_") == null && mirrorServerEmpRelation.get("EMP_RELATION_ID_") != null) || (empRelation.get("EMP_RELATION_ID_") != null && !empRelation.get("EMP_RELATION_ID_").equals(mirrorServerEmpRelation.get("EMP_RELATION_ID_"))) || (empRelation.get("ORGN_SET_ID_") == null && mirrorServerEmpRelation.get("ORGN_SET_ID_") != null) || (empRelation.get("ORGN_SET_ID_") != null && !empRelation.get("ORGN_SET_ID_").equals(mirrorServerEmpRelation.get("ORGN_SET_ID_"))) || (empRelation.get("UPPER_EMP_ID_") == null && mirrorServerEmpRelation.get("UPPER_EMP_ID_") != null) || (empRelation.get("UPPER_EMP_ID_") != null && !empRelation.get("UPPER_EMP_ID_").equals(mirrorServerEmpRelation.get("UPPER_EMP_ID_")))
-                        || (empRelation.get("LOWER_EMP_ID_") == null && mirrorServerEmpRelation.get("LOWER_EMP_ID_") != null) || (empRelation.get("LOWER_EMP_ID_") != null && !empRelation.get("LOWER_EMP_ID_").equals(mirrorServerEmpRelation.get("LOWER_EMP_ID_"))) || (empRelation.get("EMP_RELATION_") == null && mirrorServerEmpRelation.get("EMP_RELATION_") != null) || (empRelation.get("EMP_RELATION_") != null && !empRelation.get("EMP_RELATION_").equals(mirrorServerEmpRelation.get("EMP_RELATION_"))) || (empRelation.get("MEMO_") == null && mirrorServerEmpRelation.get("MEMO_") != null) || (empRelation.get("MEMO_") != null && !empRelation.get("MEMO_").equals(mirrorServerEmpRelation.get("MEMO_")))
-                        || (empRelation.get("EMP_RELATION_TAG_") == null && mirrorServerEmpRelation.get("EMP_RELATION_TAG_") != null) || (empRelation.get("EMP_RELATION_TAG_") != null && !empRelation.get("EMP_RELATION_TAG_").equals(mirrorServerEmpRelation.get("EMP_RELATION_TAG_"))) || (empRelation.get("ORDER_") == null && mirrorServerEmpRelation.get("ORDER_") != null) || (empRelation.get("ORDER_") != null && !empRelation.get("ORDER_").equals(mirrorServerEmpRelation.get("ORDER_"))) || (empRelation.get("EMP_RELATION_STATUS_") == null && mirrorServerEmpRelation.get("EMP_RELATION_STATUS_") != null) || (empRelation.get("EMP_RELATION_STATUS_") != null && !empRelation.get("EMP_RELATION_STATUS_").equals(mirrorServerEmpRelation.get("EMP_RELATION_STATUS_")))
-                        || (empRelation.get("CREATION_DATE_") == null && mirrorServerEmpRelation.get("CREATION_DATE_") != null) || (empRelation.get("CREATION_DATE_") != null && !empRelation.get("CREATION_DATE_").equals(mirrorServerEmpRelation.get("CREATION_DATE_"))) || (empRelation.get("UPDATE_DATE_") == null && mirrorServerEmpRelation.get("UPDATE_DATE_") != null) || (empRelation.get("UPDATE_DATE_") != null && !empRelation.get("UPDATE_DATE_").equals(mirrorServerEmpRelation.get("UPDATE_DATE_"))) || (empRelation.get("OPERATOR_ID_") == null && mirrorServerEmpRelation.get("OPERATOR_ID_") != null) || (empRelation.get("OPERATOR_ID_") != null && !empRelation.get("OPERATOR_ID_").equals(mirrorServerEmpRelation.get("OPERATOR_ID_")))
-                        || (empRelation.get("OPERATOR_NAME_") == null && mirrorServerEmpRelation.get("OPERATOR_NAME_") != null) || (empRelation.get("OPERATOR_NAME_") != null && !empRelation.get("OPERATOR_NAME_").equals(mirrorServerEmpRelation.get("OPERATOR_NAME_")))) {
+                        || (empRelation.get("LOWER_EMP_ID_") == null && mirrorServerEmpRelation.get("LOWER_EMP_ID_") != null) || (empRelation.get("LOWER_EMP_ID_") != null && !empRelation.get("LOWER_EMP_ID_").equals(mirrorServerEmpRelation.get("LOWER_EMP_ID_"))) || (empRelation.get("EMP_RELATION_") == null && mirrorServerEmpRelation.get("EMP_RELATION_") != null) || (empRelation.get("EMP_RELATION_") != null && !empRelation.get("EMP_RELATION_").equals(mirrorServerEmpRelation.get("EMP_RELATION_"))) || (empRelation.get("EMP_RELATION_CATEGORY_") == null && mirrorServerEmpRelation.get("EMP_RELATION_CATEGORY_") != null) || (empRelation.get("EMP_RELATION_CATEGORY_") != null && !empRelation.get("EMP_RELATION_CATEGORY_").equals(mirrorServerEmpRelation.get("EMP_RELATION_CATEGORY_")))
+                        || (empRelation.get("MEMO_") == null && mirrorServerEmpRelation.get("MEMO_") != null) || (empRelation.get("MEMO_") != null && !empRelation.get("MEMO_").equals(mirrorServerEmpRelation.get("MEMO_"))) || (empRelation.get("EMP_RELATION_TAG_") == null && mirrorServerEmpRelation.get("EMP_RELATION_TAG_") != null) || (empRelation.get("EMP_RELATION_TAG_") != null && !empRelation.get("EMP_RELATION_TAG_").equals(mirrorServerEmpRelation.get("EMP_RELATION_TAG_"))) || (empRelation.get("EMP_RELATION_EXT_ATTR_1_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_1_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_1_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_1_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_1_")))
+                        || (empRelation.get("EMP_RELATION_EXT_ATTR_2_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_2_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_2_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_2_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_2_"))) || (empRelation.get("EMP_RELATION_EXT_ATTR_3_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_3_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_3_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_3_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_3_"))) || (empRelation.get("EMP_RELATION_EXT_ATTR_4_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_4_") != null)
+                        || (empRelation.get("EMP_RELATION_EXT_ATTR_4_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_4_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_4_"))) || (empRelation.get("EMP_RELATION_EXT_ATTR_5_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_5_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_5_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_5_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_5_"))) || (empRelation.get("EMP_RELATION_EXT_ATTR_6_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_6_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_6_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_6_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_6_")))
+                        || (empRelation.get("EMP_RELATION_EXT_ATTR_7_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_7_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_7_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_7_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_7_"))) || (empRelation.get("EMP_RELATION_EXT_ATTR_8_") == null && mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_8_") != null) || (empRelation.get("EMP_RELATION_EXT_ATTR_8_") != null && !empRelation.get("EMP_RELATION_EXT_ATTR_8_").equals(mirrorServerEmpRelation.get("EMP_RELATION_EXT_ATTR_8_"))) || (empRelation.get("ORDER_") == null && mirrorServerEmpRelation.get("ORDER_") != null)
+                        || (empRelation.get("ORDER_") != null && !empRelation.get("ORDER_").equals(mirrorServerEmpRelation.get("ORDER_"))) || (empRelation.get("EMP_RELATION_STATUS_") == null && mirrorServerEmpRelation.get("EMP_RELATION_STATUS_") != null) || (empRelation.get("EMP_RELATION_STATUS_") != null && !empRelation.get("EMP_RELATION_STATUS_").equals(mirrorServerEmpRelation.get("EMP_RELATION_STATUS_"))) || (empRelation.get("CREATION_DATE_") == null && mirrorServerEmpRelation.get("CREATION_DATE_") != null) || (empRelation.get("CREATION_DATE_") != null && !empRelation.get("CREATION_DATE_").equals(mirrorServerEmpRelation.get("CREATION_DATE_"))) || (empRelation.get("UPDATE_DATE_") == null && mirrorServerEmpRelation.get("UPDATE_DATE_") != null)
+                        || (empRelation.get("UPDATE_DATE_") != null && !empRelation.get("UPDATE_DATE_").equals(mirrorServerEmpRelation.get("UPDATE_DATE_"))) || (empRelation.get("OPERATOR_ID_") == null && mirrorServerEmpRelation.get("OPERATOR_ID_") != null) || (empRelation.get("OPERATOR_ID_") != null && !empRelation.get("OPERATOR_ID_").equals(mirrorServerEmpRelation.get("OPERATOR_ID_"))) || (empRelation.get("OPERATOR_NAME_") == null && mirrorServerEmpRelation.get("OPERATOR_NAME_") != null) || (empRelation.get("OPERATOR_NAME_") != null && !empRelation.get("OPERATOR_NAME_").equals(mirrorServerEmpRelation.get("OPERATOR_NAME_")))) {
                     updateEmpRelationList.add(empRelationList.get(i));
                 }
             }
@@ -619,7 +668,7 @@ public class OmServerServiceImpl implements OmServerService {
 
             // 新增
             final List<Map<String, Object>> insertOrgList = omOrgService.selectProtoOrgByIdList(ORGN_SET_ID_, INSERT_ORG_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "insert into OM_ORG (ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, CATEGORY_, MEMO_, ORG_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_ORG (ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, ORG_CATEGORY_, MEMO_, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_2_, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> org = insertOrgList.get(i);
@@ -630,17 +679,17 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(5, org.get("ORG_NAME_"));
                     ps.setObject(6, org.get("ORG_ABBR_NAME_"));
                     ps.setObject(7, org.get("ORG_TYPE_"));
-                    ps.setObject(8, org.get("CATEGORY_"));
+                    ps.setObject(8, org.get("ORG_CATEGORY_"));
                     ps.setObject(9, org.get("MEMO_"));
                     ps.setObject(10, org.get("ORG_TAG_"));
-                    ps.setObject(11, org.get("EXT_ATTR_1_"));
-                    ps.setObject(12, org.get("EXT_ATTR_2_"));
-                    ps.setObject(13, org.get("EXT_ATTR_3_"));
-                    ps.setObject(14, org.get("EXT_ATTR_4_"));
-                    ps.setObject(15, org.get("EXT_ATTR_5_"));
-                    ps.setObject(16, org.get("EXT_ATTR_6_"));
-                    ps.setObject(17, org.get("EXT_ATTR_7_"));
-                    ps.setObject(18, org.get("EXT_ATTR_8_"));
+                    ps.setObject(11, org.get("ORG_EXT_ATTR_1_"));
+                    ps.setObject(12, org.get("ORG_EXT_ATTR_2_"));
+                    ps.setObject(13, org.get("ORG_EXT_ATTR_3_"));
+                    ps.setObject(14, org.get("ORG_EXT_ATTR_4_"));
+                    ps.setObject(15, org.get("ORG_EXT_ATTR_5_"));
+                    ps.setObject(16, org.get("ORG_EXT_ATTR_6_"));
+                    ps.setObject(17, org.get("ORG_EXT_ATTR_7_"));
+                    ps.setObject(18, org.get("ORG_EXT_ATTR_8_"));
                     ps.setObject(19, org.get("ORDER_"));
                     ps.setObject(20, org.get("ORG_STATUS_"));
                     ps.setObject(21, org.get("CREATION_DATE_"));
@@ -655,7 +704,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> insertDutyList = omDutyService.selectProtoDutyByIdList(ORGN_SET_ID_, INSERT_DUTY_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "insert into OM_DUTY (ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, CATEGORY_, MEMO_, DUTY_TAG_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_DUTY (ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, DUTY_CATEGORY_, MEMO_, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_8_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> duty = insertDutyList.get(i);
@@ -663,15 +712,23 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(2, duty.get("DUTY_ID_"));
                     ps.setObject(3, duty.get("DUTY_CODE_"));
                     ps.setObject(4, duty.get("DUTY_NAME_"));
-                    ps.setObject(5, duty.get("CATEGORY_"));
+                    ps.setObject(5, duty.get("DUTY_CATEGORY_"));
                     ps.setObject(6, duty.get("MEMO_"));
                     ps.setObject(7, duty.get("DUTY_TAG_"));
-                    ps.setObject(8, duty.get("ORDER_"));
-                    ps.setObject(9, duty.get("DUTY_STATUS_"));
-                    ps.setObject(10, duty.get("CREATION_DATE_"));
-                    ps.setObject(11, duty.get("UPDATE_DATE_"));
-                    ps.setObject(12, duty.get("OPERATOR_ID_"));
-                    ps.setObject(13, duty.get("OPERATOR_NAME_"));
+                    ps.setObject(8, duty.get("DUTY_EXT_ATTR_1_"));
+                    ps.setObject(9, duty.get("DUTY_EXT_ATTR_2_"));
+                    ps.setObject(10, duty.get("DUTY_EXT_ATTR_3_"));
+                    ps.setObject(11, duty.get("DUTY_EXT_ATTR_4_"));
+                    ps.setObject(12, duty.get("DUTY_EXT_ATTR_5_"));
+                    ps.setObject(13, duty.get("DUTY_EXT_ATTR_6_"));
+                    ps.setObject(14, duty.get("DUTY_EXT_ATTR_7_"));
+                    ps.setObject(15, duty.get("DUTY_EXT_ATTR_8_"));
+                    ps.setObject(16, duty.get("ORDER_"));
+                    ps.setObject(17, duty.get("DUTY_STATUS_"));
+                    ps.setObject(18, duty.get("CREATION_DATE_"));
+                    ps.setObject(19, duty.get("UPDATE_DATE_"));
+                    ps.setObject(20, duty.get("OPERATOR_ID_"));
+                    ps.setObject(21, duty.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -680,7 +737,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> insertPosiList = omPosiService.selectProtoPosiByIdList(ORGN_SET_ID_, INSERT_POSI_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "insert into OM_POSI (ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, DUTY_LEVEL_, CATEGORY_, MEMO_, POSI_TAG_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_POSI (ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, ORG_LEADER_TYPE_, POSI_CATEGORY_, MEMO_, POSI_TAG_, POSI_EXT_ATTR_1_, POSI_EXT_ATTR_2_, POSI_EXT_ATTR_3_, POSI_EXT_ATTR_4_, POSI_EXT_ATTR_5_, POSI_EXT_ATTR_6_, POSI_EXT_ATTR_7_, POSI_EXT_ATTR_8_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> posi = insertPosiList.get(i);
@@ -690,16 +747,24 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(4, posi.get("DUTY_ID_"));
                     ps.setObject(5, posi.get("POSI_CODE_"));
                     ps.setObject(6, posi.get("POSI_NAME_"));
-                    ps.setObject(7, posi.get("DUTY_LEVEL_"));
-                    ps.setObject(8, posi.get("CATEGORY_"));
+                    ps.setObject(7, posi.get("ORG_LEADER_TYPE_"));
+                    ps.setObject(8, posi.get("POSI_CATEGORY_"));
                     ps.setObject(9, posi.get("MEMO_"));
                     ps.setObject(10, posi.get("POSI_TAG_"));
-                    ps.setObject(11, posi.get("ORDER_"));
-                    ps.setObject(12, posi.get("POSI_STATUS_"));
-                    ps.setObject(13, posi.get("CREATION_DATE_"));
-                    ps.setObject(14, posi.get("UPDATE_DATE_"));
-                    ps.setObject(15, posi.get("OPERATOR_ID_"));
-                    ps.setObject(16, posi.get("OPERATOR_NAME_"));
+                    ps.setObject(11, posi.get("POSI_EXT_ATTR_1_"));
+                    ps.setObject(12, posi.get("POSI_EXT_ATTR_2_"));
+                    ps.setObject(13, posi.get("POSI_EXT_ATTR_3_"));
+                    ps.setObject(14, posi.get("POSI_EXT_ATTR_4_"));
+                    ps.setObject(15, posi.get("POSI_EXT_ATTR_5_"));
+                    ps.setObject(16, posi.get("POSI_EXT_ATTR_6_"));
+                    ps.setObject(17, posi.get("POSI_EXT_ATTR_7_"));
+                    ps.setObject(18, posi.get("POSI_EXT_ATTR_8_"));
+                    ps.setObject(19, posi.get("ORDER_"));
+                    ps.setObject(20, posi.get("POSI_STATUS_"));
+                    ps.setObject(21, posi.get("CREATION_DATE_"));
+                    ps.setObject(22, posi.get("UPDATE_DATE_"));
+                    ps.setObject(23, posi.get("OPERATOR_ID_"));
+                    ps.setObject(24, posi.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -708,7 +773,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> insertEmpList = omEmpService.selectProtoEmpByIdList(ORGN_SET_ID_, INSERT_EMP_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, CATEGORY_, MEMO_, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> emp = insertEmpList.get(i);
@@ -727,17 +792,17 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(13, emp.get("EMAIL_"));
                     ps.setObject(14, emp.get("IN_DATE_"));
                     ps.setObject(15, emp.get("OUT_DATE_"));
-                    ps.setObject(16, emp.get("CATEGORY_"));
+                    ps.setObject(16, emp.get("EMP_CATEGORY_"));
                     ps.setObject(17, emp.get("MEMO_"));
                     ps.setObject(18, emp.get("EMP_TAG_"));
-                    ps.setObject(19, emp.get("EXT_ATTR_1_"));
-                    ps.setObject(20, emp.get("EXT_ATTR_2_"));
-                    ps.setObject(21, emp.get("EXT_ATTR_3_"));
-                    ps.setObject(22, emp.get("EXT_ATTR_4_"));
-                    ps.setObject(23, emp.get("EXT_ATTR_5_"));
-                    ps.setObject(24, emp.get("EXT_ATTR_6_"));
-                    ps.setObject(25, emp.get("EXT_ATTR_7_"));
-                    ps.setObject(26, emp.get("EXT_ATTR_8_"));
+                    ps.setObject(19, emp.get("EMP_EXT_ATTR_1_"));
+                    ps.setObject(20, emp.get("EMP_EXT_ATTR_2_"));
+                    ps.setObject(21, emp.get("EMP_EXT_ATTR_3_"));
+                    ps.setObject(22, emp.get("EMP_EXT_ATTR_4_"));
+                    ps.setObject(23, emp.get("EMP_EXT_ATTR_5_"));
+                    ps.setObject(24, emp.get("EMP_EXT_ATTR_6_"));
+                    ps.setObject(25, emp.get("EMP_EXT_ATTR_7_"));
+                    ps.setObject(26, emp.get("EMP_EXT_ATTR_8_"));
                     ps.setObject(27, emp.get("ORDER_"));
                     ps.setObject(28, emp.get("EMP_STATUS_"));
                     ps.setObject(29, emp.get("CREATION_DATE_"));
@@ -752,7 +817,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> insertPosiEmpList = omPosiEmpService.selectProtoPosiEmpByIdList(ORGN_SET_ID_, INSERT_POSI_EMP_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "insert into OM_POSI_EMP (ORGN_SET_ID_, POSI_EMP_ID_, POSI_ID_, EMP_ID_, MAIN_, POSI_EMP_TAG_, POSI_EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_POSI_EMP (ORGN_SET_ID_, POSI_EMP_ID_, POSI_ID_, EMP_ID_, MAIN_, POSI_EMP_CATEGORY_, MEMO_, POSI_EMP_TAG_, POSI_EMP_EXT_ATTR_1_, POSI_EMP_EXT_ATTR_2_, POSI_EMP_EXT_ATTR_3_, POSI_EMP_EXT_ATTR_4_, POSI_EMP_EXT_ATTR_5_, POSI_EMP_EXT_ATTR_6_, POSI_EMP_EXT_ATTR_7_, POSI_EMP_EXT_ATTR_8_, ORDER_, POSI_EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> posiEmp = insertPosiEmpList.get(i);
@@ -761,12 +826,23 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(3, posiEmp.get("POSI_ID_"));
                     ps.setObject(4, posiEmp.get("EMP_ID_"));
                     ps.setObject(5, posiEmp.get("MAIN_"));
-                    ps.setObject(6, posiEmp.get("POSI_EMP_TAG_"));
-                    ps.setObject(7, posiEmp.get("POSI_EMP_STATUS_"));
-                    ps.setObject(8, posiEmp.get("CREATION_DATE_"));
-                    ps.setObject(9, posiEmp.get("UPDATE_DATE_"));
-                    ps.setObject(10, posiEmp.get("OPERATOR_ID_"));
-                    ps.setObject(11, posiEmp.get("OPERATOR_NAME_"));
+                    ps.setObject(6, posiEmp.get("POSI_EMP_CATEGORY_"));
+                    ps.setObject(7, posiEmp.get("MEMO_"));
+                    ps.setObject(8, posiEmp.get("POSI_EMP_TAG_"));
+                    ps.setObject(9, posiEmp.get("POSI_EMP_EXT_ATTR_1_"));
+                    ps.setObject(10, posiEmp.get("POSI_EMP_EXT_ATTR_2_"));
+                    ps.setObject(11, posiEmp.get("POSI_EMP_EXT_ATTR_3_"));
+                    ps.setObject(12, posiEmp.get("POSI_EMP_EXT_ATTR_4_"));
+                    ps.setObject(13, posiEmp.get("POSI_EMP_EXT_ATTR_5_"));
+                    ps.setObject(14, posiEmp.get("POSI_EMP_EXT_ATTR_6_"));
+                    ps.setObject(15, posiEmp.get("POSI_EMP_EXT_ATTR_7_"));
+                    ps.setObject(16, posiEmp.get("POSI_EMP_EXT_ATTR_8_"));
+                    ps.setObject(17, posiEmp.get("ORDER_"));
+                    ps.setObject(18, posiEmp.get("POSI_EMP_STATUS_"));
+                    ps.setObject(19, posiEmp.get("CREATION_DATE_"));
+                    ps.setObject(20, posiEmp.get("UPDATE_DATE_"));
+                    ps.setObject(21, posiEmp.get("OPERATOR_ID_"));
+                    ps.setObject(22, posiEmp.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -775,7 +851,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> insertEmpRelationList = omEmpRelationService.selectProtoEmpRelationByIdList(ORGN_SET_ID_, INSERT_EMP_RELATION_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "insert into OM_EMP_RELATION (ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_TAG_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into OM_EMP_RELATION (ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_CATEGORY_, MEMO_, EMP_RELATION_TAG_, EMP_RELATION_EXT_ATTR_1_, EMP_RELATION_EXT_ATTR_2_, EMP_RELATION_EXT_ATTR_3_, EMP_RELATION_EXT_ATTR_4_, EMP_RELATION_EXT_ATTR_5_, EMP_RELATION_EXT_ATTR_6_, EMP_RELATION_EXT_ATTR_7_, EMP_RELATION_EXT_ATTR_8_, ORDER_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> empRelation = insertEmpRelationList.get(i);
@@ -784,12 +860,23 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(3, empRelation.get("UPPER_EMP_ID_"));
                     ps.setObject(4, empRelation.get("LOWER_EMP_ID_"));
                     ps.setObject(5, empRelation.get("EMP_RELATION_"));
-                    ps.setObject(6, empRelation.get("EMP_RELATION_TAG_"));
-                    ps.setObject(7, empRelation.get("EMP_RELATION_STATUS_"));
-                    ps.setObject(8, empRelation.get("CREATION_DATE_"));
-                    ps.setObject(9, empRelation.get("UPDATE_DATE_"));
-                    ps.setObject(10, empRelation.get("OPERATOR_ID_"));
-                    ps.setObject(11, empRelation.get("OPERATOR_NAME_"));
+                    ps.setObject(6, empRelation.get("EMP_RELATION_CATEGORY_"));
+                    ps.setObject(7, empRelation.get("MEMO_"));
+                    ps.setObject(8, empRelation.get("EMP_RELATION_TAG_"));
+                    ps.setObject(9, empRelation.get("EMP_RELATION_EXT_ATTR_1_"));
+                    ps.setObject(10, empRelation.get("EMP_RELATION_EXT_ATTR_2_"));
+                    ps.setObject(11, empRelation.get("EMP_RELATION_EXT_ATTR_3_"));
+                    ps.setObject(12, empRelation.get("EMP_RELATION_EXT_ATTR_4_"));
+                    ps.setObject(13, empRelation.get("EMP_RELATION_EXT_ATTR_5_"));
+                    ps.setObject(14, empRelation.get("EMP_RELATION_EXT_ATTR_6_"));
+                    ps.setObject(15, empRelation.get("EMP_RELATION_EXT_ATTR_7_"));
+                    ps.setObject(16, empRelation.get("EMP_RELATION_EXT_ATTR_8_"));
+                    ps.setObject(17, empRelation.get("ORDER_"));
+                    ps.setObject(18, empRelation.get("EMP_RELATION_STATUS_"));
+                    ps.setObject(19, empRelation.get("CREATION_DATE_"));
+                    ps.setObject(20, empRelation.get("UPDATE_DATE_"));
+                    ps.setObject(21, empRelation.get("OPERATOR_ID_"));
+                    ps.setObject(22, empRelation.get("OPERATOR_NAME_"));
                 }
 
                 public int getBatchSize() {
@@ -800,7 +887,7 @@ public class OmServerServiceImpl implements OmServerService {
 
             // 修改
             final List<Map<String, Object>> updateOrgList = omOrgService.selectProtoOrgByIdList(ORGN_SET_ID_, UPDATE_ORG_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "update OM_ORG set PARENT_ORG_ID_ = ?, ORG_CODE_ = ?, ORG_NAME_ = ?, ORG_ABBR_NAME_ = ?, ORG_TYPE_ = ?, CATEGORY_ = ?, MEMO_ = ?, ORG_TAG_ = ?, EXT_ATTR_1_ = ?, EXT_ATTR_2_ = ?, EXT_ATTR_3_ = ?, EXT_ATTR_4_ = ?, EXT_ATTR_5_ = ?, EXT_ATTR_6_ = ?, EXT_ATTR_7_ = ?, EXT_ATTR_8_ = ?, ORDER_ = ?, ORG_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and ORG_ID_ = ?";
+            sql = "update OM_ORG set PARENT_ORG_ID_ = ?, ORG_CODE_ = ?, ORG_NAME_ = ?, ORG_ABBR_NAME_ = ?, ORG_TYPE_ = ?, ORG_CATEGORY_ = ?, MEMO_ = ?, ORG_TAG_ = ?, ORG_EXT_ATTR_1_ = ?, ORG_EXT_ATTR_2_ = ?, ORG_EXT_ATTR_3_ = ?, ORG_EXT_ATTR_4_ = ?, ORG_EXT_ATTR_5_ = ?, ORG_EXT_ATTR_6_ = ?, ORG_EXT_ATTR_7_ = ?, ORG_EXT_ATTR_8_ = ?, ORDER_ = ?, ORG_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and ORG_ID_ = ?";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> org = updateOrgList.get(i);
@@ -809,17 +896,17 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(3, org.get("ORG_NAME_"));
                     ps.setObject(4, org.get("ORG_ABBR_NAME_"));
                     ps.setObject(5, org.get("ORG_TYPE_"));
-                    ps.setObject(6, org.get("CATEGORY_"));
+                    ps.setObject(6, org.get("ORG_CATEGORY_"));
                     ps.setObject(7, org.get("MEMO_"));
                     ps.setObject(8, org.get("ORG_TAG_"));
-                    ps.setObject(9, org.get("EXT_ATTR_1_"));
-                    ps.setObject(10, org.get("EXT_ATTR_2_"));
-                    ps.setObject(11, org.get("EXT_ATTR_3_"));
-                    ps.setObject(12, org.get("EXT_ATTR_4_"));
-                    ps.setObject(13, org.get("EXT_ATTR_5_"));
-                    ps.setObject(14, org.get("EXT_ATTR_6_"));
-                    ps.setObject(15, org.get("EXT_ATTR_7_"));
-                    ps.setObject(16, org.get("EXT_ATTR_8_"));
+                    ps.setObject(9, org.get("ORG_EXT_ATTR_1_"));
+                    ps.setObject(10, org.get("ORG_EXT_ATTR_2_"));
+                    ps.setObject(11, org.get("ORG_EXT_ATTR_3_"));
+                    ps.setObject(12, org.get("ORG_EXT_ATTR_4_"));
+                    ps.setObject(13, org.get("ORG_EXT_ATTR_5_"));
+                    ps.setObject(14, org.get("ORG_EXT_ATTR_6_"));
+                    ps.setObject(15, org.get("ORG_EXT_ATTR_7_"));
+                    ps.setObject(16, org.get("ORG_EXT_ATTR_8_"));
                     ps.setObject(17, org.get("ORDER_"));
                     ps.setObject(18, org.get("ORG_STATUS_"));
                     ps.setObject(19, org.get("CREATION_DATE_"));
@@ -836,23 +923,31 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> updateDutyList = omDutyService.selectProtoDutyByIdList(ORGN_SET_ID_, UPDATE_DUTY_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "update OM_DUTY set DUTY_CODE_ = ?, DUTY_NAME_ = ?, CATEGORY_ = ?, MEMO_ = ?, DUTY_TAG_ = ?, ORDER_ = ?, DUTY_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and DUTY_ID_ = ?";
+            sql = "update OM_DUTY set DUTY_CODE_ = ?, DUTY_NAME_ = ?, DUTY_CATEGORY_ = ?, MEMO_ = ?, DUTY_TAG_ = ?, DUTY_EXT_ATTR_1_ = ?, DUTY_EXT_ATTR_2_ = ?, DUTY_EXT_ATTR_3_ = ?, DUTY_EXT_ATTR_4_ = ?, DUTY_EXT_ATTR_5_ = ?, DUTY_EXT_ATTR_6_ = ?, DUTY_EXT_ATTR_7_ = ?, DUTY_EXT_ATTR_8_ = ?, ORDER_ = ?, DUTY_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and DUTY_ID_ = ?";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> duty = updateDutyList.get(i);
                     ps.setObject(1, duty.get("DUTY_CODE_"));
                     ps.setObject(2, duty.get("DUTY_NAME_"));
-                    ps.setObject(3, duty.get("CATEGORY_"));
+                    ps.setObject(3, duty.get("DUTY_CATEGORY_"));
                     ps.setObject(4, duty.get("MEMO_"));
                     ps.setObject(5, duty.get("DUTY_TAG_"));
-                    ps.setObject(6, duty.get("ORDER_"));
-                    ps.setObject(7, duty.get("DUTY_STATUS_"));
-                    ps.setObject(8, duty.get("CREATION_DATE_"));
-                    ps.setObject(9, duty.get("UPDATE_DATE_"));
-                    ps.setObject(10, duty.get("OPERATOR_ID_"));
-                    ps.setObject(11, duty.get("OPERATOR_NAME_"));
-                    ps.setObject(12, duty.get("ORGN_SET_ID_"));
-                    ps.setObject(13, duty.get("DUTY_ID_"));
+                    ps.setObject(6, duty.get("DUTY_EXT_ATTR_1_"));
+                    ps.setObject(7, duty.get("DUTY_EXT_ATTR_2_"));
+                    ps.setObject(8, duty.get("DUTY_EXT_ATTR_3_"));
+                    ps.setObject(9, duty.get("DUTY_EXT_ATTR_4_"));
+                    ps.setObject(10, duty.get("DUTY_EXT_ATTR_5_"));
+                    ps.setObject(11, duty.get("DUTY_EXT_ATTR_6_"));
+                    ps.setObject(12, duty.get("DUTY_EXT_ATTR_7_"));
+                    ps.setObject(13, duty.get("DUTY_EXT_ATTR_8_"));
+                    ps.setObject(14, duty.get("ORDER_"));
+                    ps.setObject(15, duty.get("DUTY_STATUS_"));
+                    ps.setObject(16, duty.get("CREATION_DATE_"));
+                    ps.setObject(17, duty.get("UPDATE_DATE_"));
+                    ps.setObject(18, duty.get("OPERATOR_ID_"));
+                    ps.setObject(19, duty.get("OPERATOR_NAME_"));
+                    ps.setObject(20, duty.get("ORGN_SET_ID_"));
+                    ps.setObject(21, duty.get("DUTY_ID_"));
                 }
 
                 public int getBatchSize() {
@@ -861,7 +956,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> updatePosiList = omPosiService.selectProtoPosiByIdList(ORGN_SET_ID_, UPDATE_POSI_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "update OM_POSI set ORG_ID_ = ?, DUTY_ID_ = ?, POSI_CODE_ = ?, POSI_NAME_ = ?, DUTY_LEVEL_ = ?, CATEGORY_ = ?, MEMO_ = ?, POSI_TAG_ = ?, ORDER_ = ?, POSI_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and POSI_ID_ = ?";
+            sql = "update OM_POSI set ORG_ID_ = ?, DUTY_ID_ = ?, POSI_CODE_ = ?, POSI_NAME_ = ?, ORG_LEADER_TYPE_ = ?, POSI_CATEGORY_ = ?, MEMO_ = ?, POSI_TAG_ = ?, POSI_EXT_ATTR_1_ = ?, POSI_EXT_ATTR_2_ = ?, POSI_EXT_ATTR_3_ = ?, POSI_EXT_ATTR_4_ = ?, POSI_EXT_ATTR_5_ = ?, POSI_EXT_ATTR_6_ = ?, POSI_EXT_ATTR_7_ = ?, POSI_EXT_ATTR_8_ = ?, ORDER_ = ?, POSI_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and POSI_ID_ = ?";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> posi = updatePosiList.get(i);
@@ -869,18 +964,26 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(2, posi.get("DUTY_ID_"));
                     ps.setObject(3, posi.get("POSI_CODE_"));
                     ps.setObject(4, posi.get("POSI_NAME_"));
-                    ps.setObject(5, posi.get("DUTY_LEVEL_"));
-                    ps.setObject(6, posi.get("CATEGORY_"));
+                    ps.setObject(5, posi.get("ORG_LEADER_TYPE_"));
+                    ps.setObject(6, posi.get("POSI_CATEGORY_"));
                     ps.setObject(7, posi.get("MEMO_"));
                     ps.setObject(8, posi.get("POSI_TAG_"));
-                    ps.setObject(9, posi.get("ORDER_"));
-                    ps.setObject(10, posi.get("POSI_STATUS_"));
-                    ps.setObject(11, posi.get("CREATION_DATE_"));
-                    ps.setObject(12, posi.get("UPDATE_DATE_"));
-                    ps.setObject(13, posi.get("OPERATOR_ID_"));
-                    ps.setObject(14, posi.get("OPERATOR_NAME_"));
-                    ps.setObject(15, posi.get("ORGN_SET_ID_"));
-                    ps.setObject(16, posi.get("POSI_ID_"));
+                    ps.setObject(9, posi.get("POSI_EXT_ATTR_1_"));
+                    ps.setObject(10, posi.get("POSI_EXT_ATTR_2_"));
+                    ps.setObject(11, posi.get("POSI_EXT_ATTR_3_"));
+                    ps.setObject(12, posi.get("POSI_EXT_ATTR_4_"));
+                    ps.setObject(13, posi.get("POSI_EXT_ATTR_5_"));
+                    ps.setObject(14, posi.get("POSI_EXT_ATTR_6_"));
+                    ps.setObject(15, posi.get("POSI_EXT_ATTR_7_"));
+                    ps.setObject(16, posi.get("POSI_EXT_ATTR_8_"));
+                    ps.setObject(17, posi.get("ORDER_"));
+                    ps.setObject(18, posi.get("POSI_STATUS_"));
+                    ps.setObject(19, posi.get("CREATION_DATE_"));
+                    ps.setObject(20, posi.get("UPDATE_DATE_"));
+                    ps.setObject(21, posi.get("OPERATOR_ID_"));
+                    ps.setObject(22, posi.get("OPERATOR_NAME_"));
+                    ps.setObject(23, posi.get("ORGN_SET_ID_"));
+                    ps.setObject(24, posi.get("POSI_ID_"));
                 }
 
                 public int getBatchSize() {
@@ -889,7 +992,7 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> updateEmpList = omEmpService.selectProtoEmpByIdList(ORGN_SET_ID_, UPDATE_EMP_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "update OM_EMP set ORG_ID_ = ?, EMP_CODE_ = ?, EMP_NAME_ = ?, PASSWORD_ = ?, PASSWORD_RESET_REQ_ = ?, PARTY_ = ?, EMP_LEVEL_ = ?, GENDER_ = ?, BIRTH_DATE_ = ?, TEL_ = ?, EMAIL_ = ?, IN_DATE_ = ?, OUT_DATE_ = ?, CATEGORY_ = ?, MEMO_ = ?, EMP_TAG_ = ?, EXT_ATTR_1_ = ?, EXT_ATTR_2_ = ?, EXT_ATTR_3_ = ?, EXT_ATTR_4_ = ?, EXT_ATTR_5_ = ?, EXT_ATTR_6_ = ?, EXT_ATTR_7_ = ?, EXT_ATTR_8_ = ?, ORDER_ = ?, EMP_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_ID_ = ?";
+            sql = "update OM_EMP set ORG_ID_ = ?, EMP_CODE_ = ?, EMP_NAME_ = ?, PASSWORD_ = ?, PASSWORD_RESET_REQ_ = ?, PARTY_ = ?, EMP_LEVEL_ = ?, GENDER_ = ?, BIRTH_DATE_ = ?, TEL_ = ?, EMAIL_ = ?, IN_DATE_ = ?, OUT_DATE_ = ?, EMP_CATEGORY_ = ?, MEMO_ = ?, EMP_TAG_ = ?, EMP_EXT_ATTR_1_ = ?, EMP_EXT_ATTR_2_ = ?, EMP_EXT_ATTR_3_ = ?, EMP_EXT_ATTR_4_ = ?, EMP_EXT_ATTR_5_ = ?, EMP_EXT_ATTR_6_ = ?, EMP_EXT_ATTR_7_ = ?, EMP_EXT_ATTR_8_ = ?, ORDER_ = ?, EMP_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_ID_ = ?";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> emp = updateEmpList.get(i);
@@ -906,17 +1009,17 @@ public class OmServerServiceImpl implements OmServerService {
                     ps.setObject(11, emp.get("EMAIL_"));
                     ps.setObject(12, emp.get("IN_DATE_"));
                     ps.setObject(13, emp.get("OUT_DATE_"));
-                    ps.setObject(14, emp.get("CATEGORY_"));
+                    ps.setObject(14, emp.get("EMP_CATEGORY_"));
                     ps.setObject(15, emp.get("MEMO_"));
                     ps.setObject(16, emp.get("EMP_TAG_"));
-                    ps.setObject(17, emp.get("EXT_ATTR_1_"));
-                    ps.setObject(18, emp.get("EXT_ATTR_2_"));
-                    ps.setObject(19, emp.get("EXT_ATTR_3_"));
-                    ps.setObject(20, emp.get("EXT_ATTR_4_"));
-                    ps.setObject(21, emp.get("EXT_ATTR_5_"));
-                    ps.setObject(22, emp.get("EXT_ATTR_6_"));
-                    ps.setObject(23, emp.get("EXT_ATTR_7_"));
-                    ps.setObject(24, emp.get("EXT_ATTR_8_"));
+                    ps.setObject(17, emp.get("EMP_EXT_ATTR_1_"));
+                    ps.setObject(18, emp.get("EMP_EXT_ATTR_2_"));
+                    ps.setObject(19, emp.get("EMP_EXT_ATTR_3_"));
+                    ps.setObject(20, emp.get("EMP_EXT_ATTR_4_"));
+                    ps.setObject(21, emp.get("EMP_EXT_ATTR_5_"));
+                    ps.setObject(22, emp.get("EMP_EXT_ATTR_6_"));
+                    ps.setObject(23, emp.get("EMP_EXT_ATTR_7_"));
+                    ps.setObject(24, emp.get("EMP_EXT_ATTR_8_"));
                     ps.setObject(25, emp.get("ORDER_"));
                     ps.setObject(26, emp.get("EMP_STATUS_"));
                     ps.setObject(27, emp.get("CREATION_DATE_"));
@@ -933,21 +1036,32 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> updatePosiEmpList = omPosiEmpService.selectProtoPosiEmpByIdList(ORGN_SET_ID_, UPDATE_POSI_EMP_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "update OM_POSI_EMP set POSI_ID_ = ?, EMP_ID_ = ?, MAIN_ = ?, POSI_EMP_TAG_ = ?, POSI_EMP_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and POSI_EMP_ID_ = ?";
+            sql = "update OM_POSI_EMP set POSI_ID_ = ?, EMP_ID_ = ?, MAIN_ = ?, POSI_EMP_CATEGORY_ = ?, MEMO_ = ?, POSI_EMP_TAG_ = ?, POSI_EMP_EXT_ATTR_1_ = ?, POSI_EMP_EXT_ATTR_2_ = ?, POSI_EMP_EXT_ATTR_3_ = ?, POSI_EMP_EXT_ATTR_4_ = ?, POSI_EMP_EXT_ATTR_5_ = ?, POSI_EMP_EXT_ATTR_6_ = ?, POSI_EMP_EXT_ATTR_7_ = ?, POSI_EMP_EXT_ATTR_8_ = ?, ORDER_ = ?, POSI_EMP_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and POSI_EMP_ID_ = ?";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> posiEmp = updatePosiEmpList.get(i);
                     ps.setObject(1, posiEmp.get("POSI_ID_"));
                     ps.setObject(2, posiEmp.get("EMP_ID_"));
                     ps.setObject(3, posiEmp.get("MAIN_"));
-                    ps.setObject(4, posiEmp.get("POSI_EMP_TAG_"));
-                    ps.setObject(5, posiEmp.get("POSI_EMP_STATUS_"));
-                    ps.setObject(6, posiEmp.get("CREATION_DATE_"));
-                    ps.setObject(7, posiEmp.get("UPDATE_DATE_"));
-                    ps.setObject(8, posiEmp.get("OPERATOR_ID_"));
-                    ps.setObject(9, posiEmp.get("OPERATOR_NAME_"));
-                    ps.setObject(10, posiEmp.get("ORGN_SET_ID_"));
-                    ps.setObject(11, posiEmp.get("POSI_EMP_ID_"));
+                    ps.setObject(4, posiEmp.get("POSI_EMP_CATEGORY_"));
+                    ps.setObject(5, posiEmp.get("MEMO_"));
+                    ps.setObject(6, posiEmp.get("POSI_EMP_TAG_"));
+                    ps.setObject(7, posiEmp.get("POSI_EMP_EXT_ATTR_1_"));
+                    ps.setObject(8, posiEmp.get("POSI_EMP_EXT_ATTR_2_"));
+                    ps.setObject(9, posiEmp.get("POSI_EMP_EXT_ATTR_3_"));
+                    ps.setObject(10, posiEmp.get("POSI_EMP_EXT_ATTR_4_"));
+                    ps.setObject(11, posiEmp.get("POSI_EMP_EXT_ATTR_5_"));
+                    ps.setObject(12, posiEmp.get("POSI_EMP_EXT_ATTR_6_"));
+                    ps.setObject(13, posiEmp.get("POSI_EMP_EXT_ATTR_7_"));
+                    ps.setObject(14, posiEmp.get("POSI_EMP_EXT_ATTR_8_"));
+                    ps.setObject(15, posiEmp.get("ORDER_"));
+                    ps.setObject(16, posiEmp.get("POSI_EMP_STATUS_"));
+                    ps.setObject(17, posiEmp.get("CREATION_DATE_"));
+                    ps.setObject(18, posiEmp.get("UPDATE_DATE_"));
+                    ps.setObject(19, posiEmp.get("OPERATOR_ID_"));
+                    ps.setObject(20, posiEmp.get("OPERATOR_NAME_"));
+                    ps.setObject(21, posiEmp.get("ORGN_SET_ID_"));
+                    ps.setObject(22, posiEmp.get("POSI_EMP_ID_"));
                 }
 
                 public int getBatchSize() {
@@ -956,21 +1070,32 @@ public class OmServerServiceImpl implements OmServerService {
             };
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
             final List<Map<String, Object>> updateEmpRelationList = omEmpRelationService.selectProtoEmpRelationByIdList(ORGN_SET_ID_, UPDATE_EMP_RELATION_ID_LIST, OPERATOR_ID_, OPERATOR_NAME_);
-            sql = "update OM_EMP_RELATION set UPPER_EMP_ID_ = ?, LOWER_EMP_ID_ = ?, EMP_RELATION_ = ?, EMP_RELATION_TAG_ = ?, EMP_RELATION_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_RELATION_ID_ = ?";
+            sql = "update OM_EMP_RELATION set UPPER_EMP_ID_ = ?, LOWER_EMP_ID_ = ?, EMP_RELATION_ = ?, EMP_RELATION_CATEGORY_ = ?, MEMO_ = ?, EMP_RELATION_TAG_ = ?, EMP_RELATION_EXT_ATTR_1_ = ?, EMP_RELATION_EXT_ATTR_2_ = ?, EMP_RELATION_EXT_ATTR_3_ = ?, EMP_RELATION_EXT_ATTR_4_ = ?, EMP_RELATION_EXT_ATTR_5_ = ?, EMP_RELATION_EXT_ATTR_6_ = ?, EMP_RELATION_EXT_ATTR_7_ = ?, EMP_RELATION_EXT_ATTR_8_ = ?, ORDER_ = ?, EMP_RELATION_STATUS_ = ?, CREATION_DATE_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_RELATION_ID_ = ?";
             batch = new BatchPreparedStatementSetter() {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Map<String, Object> empRelation = updateEmpRelationList.get(i);
                     ps.setObject(1, empRelation.get("UPPER_EMP_ID_"));
                     ps.setObject(2, empRelation.get("LOWER_EMP_ID_"));
                     ps.setObject(3, empRelation.get("EMP_RELATION_"));
-                    ps.setObject(4, empRelation.get("EMP_RELATION_TAG_"));
-                    ps.setObject(5, empRelation.get("EMP_RELATION_STATUS_"));
-                    ps.setObject(6, empRelation.get("CREATION_DATE_"));
-                    ps.setObject(7, empRelation.get("UPDATE_DATE_"));
-                    ps.setObject(8, empRelation.get("OPERATOR_ID_"));
-                    ps.setObject(9, empRelation.get("OPERATOR_NAME_"));
-                    ps.setObject(10, empRelation.get("ORGN_SET_ID_"));
-                    ps.setObject(11, empRelation.get("EMP_RELATION_ID_"));
+                    ps.setObject(4, empRelation.get("EMP_RELATION_CATEGORY_"));
+                    ps.setObject(5, empRelation.get("MEMO_"));
+                    ps.setObject(6, empRelation.get("EMP_RELATION_TAG_"));
+                    ps.setObject(7, empRelation.get("EMP_RELATION_EXT_ATTR_1_"));
+                    ps.setObject(8, empRelation.get("EMP_RELATION_EXT_ATTR_2_"));
+                    ps.setObject(9, empRelation.get("EMP_RELATION_EXT_ATTR_3_"));
+                    ps.setObject(10, empRelation.get("EMP_RELATION_EXT_ATTR_4_"));
+                    ps.setObject(11, empRelation.get("EMP_RELATION_EXT_ATTR_5_"));
+                    ps.setObject(12, empRelation.get("EMP_RELATION_EXT_ATTR_6_"));
+                    ps.setObject(13, empRelation.get("EMP_RELATION_EXT_ATTR_7_"));
+                    ps.setObject(14, empRelation.get("EMP_RELATION_EXT_ATTR_8_"));
+                    ps.setObject(15, empRelation.get("ORDER_"));
+                    ps.setObject(16, empRelation.get("EMP_RELATION_STATUS_"));
+                    ps.setObject(17, empRelation.get("CREATION_DATE_"));
+                    ps.setObject(18, empRelation.get("UPDATE_DATE_"));
+                    ps.setObject(19, empRelation.get("OPERATOR_ID_"));
+                    ps.setObject(20, empRelation.get("OPERATOR_NAME_"));
+                    ps.setObject(21, empRelation.get("ORGN_SET_ID_"));
+                    ps.setObject(22, empRelation.get("EMP_RELATION_ID_"));
                 }
 
                 public int getBatchSize() {

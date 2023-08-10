@@ -89,7 +89,7 @@ public class OmMirrorServerServiceImpl implements OmMirrorServerService {
         }
 
         if (!count) {
-            sql += " order by ORDER_";
+            sql += " order by ORDER_, MIRROR_SERVER_ID_";
         }
 
         return new OdSqlCriteria(sql, paramMap);

@@ -97,8 +97,9 @@ public class OmDutyServiceImpl implements OmDutyService {
     }
 
     @Override
-    public List<Map<String, Object>> selectDuty(String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, List<String> CATEGORY_LIST, String DUTY_TAG_, List<String> DUTY_STATUS_LIST, Boolean tagUnion, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaDuty(false, ORGN_SET_ID_, ORGN_SET_CODE_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, CATEGORY_LIST, DUTY_TAG_, DUTY_STATUS_LIST, tagUnion, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
+    public List<Map<String, Object>> selectDuty(String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, List<String> DUTY_ID_LIST, String DUTY_CODE_, List<String> DUTY_CODE_LIST, String DUTY_NAME_, List<String> DUTY_NAME_LIST, String DUTY_CATEGORY_, List<String> DUTY_CATEGORY_LIST, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, List<String> DUTY_EXT_ATTR_1_LIST, String DUTY_EXT_ATTR_2_, List<String> DUTY_EXT_ATTR_2_LIST, String DUTY_EXT_ATTR_3_, List<String> DUTY_EXT_ATTR_3_LIST, String DUTY_EXT_ATTR_4_, List<String> DUTY_EXT_ATTR_4_LIST, String DUTY_EXT_ATTR_5_, List<String> DUTY_EXT_ATTR_5_LIST, String DUTY_EXT_ATTR_6_, List<String> DUTY_EXT_ATTR_6_LIST, String DUTY_EXT_ATTR_7_, List<String> DUTY_EXT_ATTR_7_LIST, String DUTY_EXT_ATTR_8_, List<String> DUTY_EXT_ATTR_8_LIST,
+            String DUTY_STATUS_, List<String> DUTY_STATUS_LIST, Boolean dutyTagUnion, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaDuty(false, ORGN_SET_ID_, ORGN_SET_CODE_, DUTY_ID_, DUTY_ID_LIST, DUTY_CODE_, DUTY_CODE_LIST, DUTY_NAME_, DUTY_NAME_LIST, DUTY_CATEGORY_, DUTY_CATEGORY_LIST, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_1_LIST, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_2_LIST, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_3_LIST, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_4_LIST, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_5_LIST, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_6_LIST, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_7_LIST, DUTY_EXT_ATTR_8_, DUTY_EXT_ATTR_8_LIST, DUTY_STATUS_, DUTY_STATUS_LIST, dutyTagUnion, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -113,8 +114,9 @@ public class OmDutyServiceImpl implements OmDutyService {
     }
 
     @Override
-    public int countDuty(String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, List<String> CATEGORY_LIST, String DUTY_TAG_, List<String> DUTY_STATUS_LIST, Boolean tagUnion, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaDuty(true, ORGN_SET_ID_, ORGN_SET_CODE_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, CATEGORY_LIST, DUTY_TAG_, DUTY_STATUS_LIST, tagUnion, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
+    public int countDuty(String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, List<String> DUTY_ID_LIST, String DUTY_CODE_, List<String> DUTY_CODE_LIST, String DUTY_NAME_, List<String> DUTY_NAME_LIST, String DUTY_CATEGORY_, List<String> DUTY_CATEGORY_LIST, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, List<String> DUTY_EXT_ATTR_1_LIST, String DUTY_EXT_ATTR_2_, List<String> DUTY_EXT_ATTR_2_LIST, String DUTY_EXT_ATTR_3_, List<String> DUTY_EXT_ATTR_3_LIST, String DUTY_EXT_ATTR_4_, List<String> DUTY_EXT_ATTR_4_LIST, String DUTY_EXT_ATTR_5_, List<String> DUTY_EXT_ATTR_5_LIST, String DUTY_EXT_ATTR_6_, List<String> DUTY_EXT_ATTR_6_LIST, String DUTY_EXT_ATTR_7_, List<String> DUTY_EXT_ATTR_7_LIST, String DUTY_EXT_ATTR_8_, List<String> DUTY_EXT_ATTR_8_LIST, String DUTY_STATUS_,
+            List<String> DUTY_STATUS_LIST, Boolean dutyTagUnion, String OPERATOR_ID_, String OPERATOR_NAME_) {
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaDuty(true, ORGN_SET_ID_, ORGN_SET_CODE_, DUTY_ID_, DUTY_ID_LIST, DUTY_CODE_, DUTY_CODE_LIST, DUTY_NAME_, DUTY_NAME_LIST, DUTY_CATEGORY_, DUTY_CATEGORY_LIST, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_1_LIST, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_2_LIST, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_3_LIST, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_4_LIST, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_5_LIST, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_6_LIST, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_7_LIST, DUTY_EXT_ATTR_8_, DUTY_EXT_ATTR_8_LIST, DUTY_STATUS_, DUTY_STATUS_LIST, dutyTagUnion, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -122,7 +124,8 @@ public class OmDutyServiceImpl implements OmDutyService {
         return namedParameterJdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
-    private OdSqlCriteria buildSqlCriteriaDuty(boolean count, String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, List<String> CATEGORY_LIST, String DUTY_TAG_, List<String> DUTY_STATUS_LIST, Boolean tagUnion, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
+    private OdSqlCriteria buildSqlCriteriaDuty(boolean count, String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, List<String> DUTY_ID_LIST, String DUTY_CODE_, List<String> DUTY_CODE_LIST, String DUTY_NAME_, List<String> DUTY_NAME_LIST, String DUTY_CATEGORY_, List<String> DUTY_CATEGORY_LIST, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, List<String> DUTY_EXT_ATTR_1_LIST, String DUTY_EXT_ATTR_2_, List<String> DUTY_EXT_ATTR_2_LIST, String DUTY_EXT_ATTR_3_, List<String> DUTY_EXT_ATTR_3_LIST, String DUTY_EXT_ATTR_4_, List<String> DUTY_EXT_ATTR_4_LIST, String DUTY_EXT_ATTR_5_, List<String> DUTY_EXT_ATTR_5_LIST, String DUTY_EXT_ATTR_6_, List<String> DUTY_EXT_ATTR_6_LIST, String DUTY_EXT_ATTR_7_, List<String> DUTY_EXT_ATTR_7_LIST, String DUTY_EXT_ATTR_8_, List<String> DUTY_EXT_ATTR_8_LIST,
+            String DUTY_STATUS_, List<String> DUTY_STATUS_LIST, Boolean dutyTagUnion, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
         if (StringUtils.isEmpty(ORGN_SET_ID_) && StringUtils.isEmpty(ORGN_SET_CODE_)) {
             throw new RuntimeException("errors.orgnSetRequired");
         }
@@ -154,31 +157,115 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_ID_ = :DUTY_ID_";
             paramMap.put("DUTY_ID_", DUTY_ID_);
         }
+        if (DUTY_ID_LIST != null && DUTY_ID_LIST.size() > 0) {
+            sql += " and DUTY_ID_ in (:DUTY_ID_LIST)";
+            paramMap.put("DUTY_ID_LIST", DUTY_ID_LIST);
+        }
         if (StringUtils.isNotEmpty(DUTY_CODE_)) {
             sql += " and DUTY_CODE_ = :DUTY_CODE_";
             paramMap.put("DUTY_CODE_", DUTY_CODE_);
+        }
+        if (DUTY_CODE_LIST != null && DUTY_CODE_LIST.size() > 0) {
+            sql += " and DUTY_CODE_ in (:DUTY_CODE_LIST)";
+            paramMap.put("DUTY_CODE_LIST", DUTY_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(DUTY_NAME_)) {
             sql += " and DUTY_NAME_ like '%' || :DUTY_NAME_ || '%'";
             paramMap.put("DUTY_NAME_", DUTY_NAME_);
         }
-        if (CATEGORY_LIST != null && CATEGORY_LIST.size() > 0) {
-            sql += " and CATEGORY_ in (:CATEGORY_LIST)";
-            paramMap.put("CATEGORY_LIST", CATEGORY_LIST);
+        if (DUTY_NAME_LIST != null && DUTY_NAME_LIST.size() > 0) {
+            sql += " and DUTY_NAME_ in (:DUTY_NAME_LIST)";
+            paramMap.put("DUTY_NAME_LIST", DUTY_NAME_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_CATEGORY_)) {
+            sql += " and DUTY_CATEGORY_ = :DUTY_CATEGORY_";
+            paramMap.put("DUTY_CATEGORY_", DUTY_CATEGORY_);
+        }
+        if (DUTY_CATEGORY_LIST != null && DUTY_CATEGORY_LIST.size() > 0) {
+            sql += " and DUTY_CATEGORY_ in (:DUTY_CATEGORY_LIST)";
+            paramMap.put("DUTY_CATEGORY_LIST", DUTY_CATEGORY_LIST);
         }
         if (StringUtils.isNotEmpty(DUTY_TAG_)) {
             List<String> tagList = omTagService.splitTag(DUTY_TAG_);
             if (tagList.size() > 0) {
-                if (tagUnion != null && tagUnion.equals(false)) {
+                if (dutyTagUnion != null && dutyTagUnion.equals(false)) {
                     sql += " and DUTY_ID_ in (select DUTY_ID_ from (select OBJ_ID_ as DUTY_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'DUTY' and TAG_ in (:DUTY_TAG_LIST)) T group by DUTY_ID_ having count(*) >= 1)";
                     paramMap.put("DUTY_TAG_LIST", tagList);
                 }
                 else {
-                    sql += " and DUTY_ID_ in (select DUTY_ID_ from (select OBJ_ID_ as DUTY_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'DUTY' and TAG_ in (:DUTY_TAG_LIST)) T group by DUTY_ID_ having count(*) >= :tagCount)";
+                    sql += " and DUTY_ID_ in (select DUTY_ID_ from (select OBJ_ID_ as DUTY_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'DUTY' and TAG_ in (:DUTY_TAG_LIST)) T group by DUTY_ID_ having count(*) >= :dutyTagCount)";
                     paramMap.put("DUTY_TAG_LIST", tagList);
-                    paramMap.put("tagCount", tagList.size());
+                    paramMap.put("dutyTagCount", tagList.size());
                 }
             }
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_1_)) {
+            sql += " and DUTY_EXT_ATTR_1_ = :DUTY_EXT_ATTR_1_";
+            paramMap.put("DUTY_EXT_ATTR_1_", DUTY_EXT_ATTR_1_);
+        }
+        if (DUTY_EXT_ATTR_1_LIST != null && DUTY_EXT_ATTR_1_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_1_ in (:DUTY_EXT_ATTR_1_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_1_LIST", DUTY_EXT_ATTR_1_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_2_)) {
+            sql += " and DUTY_EXT_ATTR_2_ = :DUTY_EXT_ATTR_2_";
+            paramMap.put("DUTY_EXT_ATTR_2_", DUTY_EXT_ATTR_2_);
+        }
+        if (DUTY_EXT_ATTR_2_LIST != null && DUTY_EXT_ATTR_2_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_2_ in (:DUTY_EXT_ATTR_2_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_2_LIST", DUTY_EXT_ATTR_2_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_3_)) {
+            sql += " and DUTY_EXT_ATTR_3_ = :DUTY_EXT_ATTR_3_";
+            paramMap.put("DUTY_EXT_ATTR_3_", DUTY_EXT_ATTR_3_);
+        }
+        if (DUTY_EXT_ATTR_3_LIST != null && DUTY_EXT_ATTR_3_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_3_ in (:DUTY_EXT_ATTR_3_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_3_LIST", DUTY_EXT_ATTR_3_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_4_)) {
+            sql += " and DUTY_EXT_ATTR_4_ = :DUTY_EXT_ATTR_4_";
+            paramMap.put("DUTY_EXT_ATTR_4_", DUTY_EXT_ATTR_4_);
+        }
+        if (DUTY_EXT_ATTR_4_LIST != null && DUTY_EXT_ATTR_4_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_4_ in (:DUTY_EXT_ATTR_4_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_4_LIST", DUTY_EXT_ATTR_4_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_5_)) {
+            sql += " and DUTY_EXT_ATTR_5_ = :DUTY_EXT_ATTR_5_";
+            paramMap.put("DUTY_EXT_ATTR_5_", DUTY_EXT_ATTR_5_);
+        }
+        if (DUTY_EXT_ATTR_5_LIST != null && DUTY_EXT_ATTR_5_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_5_ in (:DUTY_EXT_ATTR_5_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_5_LIST", DUTY_EXT_ATTR_5_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_6_)) {
+            sql += " and DUTY_EXT_ATTR_6_ = :DUTY_EXT_ATTR_6_";
+            paramMap.put("DUTY_EXT_ATTR_6_", DUTY_EXT_ATTR_6_);
+        }
+        if (DUTY_EXT_ATTR_6_LIST != null && DUTY_EXT_ATTR_6_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_6_ in (:DUTY_EXT_ATTR_6_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_6_LIST", DUTY_EXT_ATTR_6_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_7_)) {
+            sql += " and DUTY_EXT_ATTR_7_ = :DUTY_EXT_ATTR_7_";
+            paramMap.put("DUTY_EXT_ATTR_7_", DUTY_EXT_ATTR_7_);
+        }
+        if (DUTY_EXT_ATTR_7_LIST != null && DUTY_EXT_ATTR_7_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_7_ in (:DUTY_EXT_ATTR_7_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_7_LIST", DUTY_EXT_ATTR_7_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_EXT_ATTR_8_)) {
+            sql += " and DUTY_EXT_ATTR_8_ = :DUTY_EXT_ATTR_8_";
+            paramMap.put("DUTY_EXT_ATTR_8_", DUTY_EXT_ATTR_8_);
+        }
+        if (DUTY_EXT_ATTR_8_LIST != null && DUTY_EXT_ATTR_8_LIST.size() > 0) {
+            sql += " and DUTY_EXT_ATTR_8_ in (:DUTY_EXT_ATTR_8_LIST)";
+            paramMap.put("DUTY_EXT_ATTR_8_LIST", DUTY_EXT_ATTR_8_LIST);
+        }
+        if (StringUtils.isNotEmpty(DUTY_STATUS_)) {
+            sql += " and DUTY_STATUS_ = :DUTY_STATUS_";
+            paramMap.put("DUTY_STATUS_", DUTY_STATUS_);
         }
         if (DUTY_STATUS_LIST != null && DUTY_STATUS_LIST.size() > 0) {
             sql += " and DUTY_STATUS_ in (:DUTY_STATUS_LIST)";
@@ -186,7 +273,7 @@ public class OmDutyServiceImpl implements OmDutyService {
         }
 
         if (!count) {
-            sql += " order by ORDER_";
+            sql += " order by ORDER_, DUTY_ID_";
         }
 
         return new OdSqlCriteria(sql, paramMap);
@@ -255,7 +342,7 @@ public class OmDutyServiceImpl implements OmDutyService {
     }
 
     @Override
-    public int insertDuty(String ORGN_SET_ID_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, String CATEGORY_, String MEMO_, String DUTY_TAG_, Integer ORDER_, String DUTY_STATUS_, Date CREATION_DATE_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
+    public int insertDuty(String ORGN_SET_ID_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, String DUTY_CATEGORY_, String MEMO_, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, String DUTY_EXT_ATTR_2_, String DUTY_EXT_ATTR_3_, String DUTY_EXT_ATTR_4_, String DUTY_EXT_ATTR_5_, String DUTY_EXT_ATTR_6_, String DUTY_EXT_ATTR_7_, String DUTY_EXT_ATTR_8_, Integer ORDER_, String DUTY_STATUS_, Date CREATION_DATE_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
         if (StringUtils.isEmpty(ORGN_SET_ID_)) {
             throw new RuntimeException("errors.orgnSetRequired");
         }
@@ -263,12 +350,12 @@ public class OmDutyServiceImpl implements OmDutyService {
         DUTY_TAG_ = StringUtils.join(omTagService.splitTag(DUTY_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, DUTY_ID_, "DUTY", DUTY_TAG_);
 
-        String sql = "insert into OM_DUTY (ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, CATEGORY_, MEMO_, DUTY_TAG_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        return omJdbcTemplate.update(sql, ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, CATEGORY_, MEMO_, DUTY_TAG_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
+        String sql = "insert into OM_DUTY (ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, DUTY_CATEGORY_, MEMO_, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_8_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return omJdbcTemplate.update(sql, ORGN_SET_ID_, DUTY_ID_, DUTY_CODE_, DUTY_NAME_, DUTY_CATEGORY_, MEMO_, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_8_, ORDER_, DUTY_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
     }
 
     @Override
-    public int updateDuty(String ORGN_SET_ID_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, String CATEGORY_, String MEMO_, String DUTY_TAG_, Integer ORDER_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
+    public int updateDuty(String ORGN_SET_ID_, String DUTY_ID_, String DUTY_CODE_, String DUTY_NAME_, String DUTY_CATEGORY_, String MEMO_, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, String DUTY_EXT_ATTR_2_, String DUTY_EXT_ATTR_3_, String DUTY_EXT_ATTR_4_, String DUTY_EXT_ATTR_5_, String DUTY_EXT_ATTR_6_, String DUTY_EXT_ATTR_7_, String DUTY_EXT_ATTR_8_, Integer ORDER_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
         if (StringUtils.isEmpty(ORGN_SET_ID_)) {
             throw new RuntimeException("errors.orgnSetRequired");
         }
@@ -276,8 +363,8 @@ public class OmDutyServiceImpl implements OmDutyService {
         DUTY_TAG_ = StringUtils.join(omTagService.splitTag(DUTY_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, DUTY_ID_, "DUTY", DUTY_TAG_);
 
-        String sql = "update OM_DUTY set DUTY_CODE_ = ?, DUTY_NAME_ = ?, CATEGORY_ = ?, MEMO_ = ?, DUTY_TAG_ = ?, ORDER_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and DUTY_ID_ = ?";
-        return omJdbcTemplate.update(sql, DUTY_CODE_, DUTY_NAME_, CATEGORY_, MEMO_, DUTY_TAG_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, DUTY_ID_);
+        String sql = "update OM_DUTY set DUTY_CODE_ = ?, DUTY_NAME_ = ?, DUTY_CATEGORY_ = ?, MEMO_ = ?, DUTY_TAG_ = ?, DUTY_EXT_ATTR_1_ = ?, DUTY_EXT_ATTR_2_ = ?, DUTY_EXT_ATTR_3_ = ?, DUTY_EXT_ATTR_4_ = ?, DUTY_EXT_ATTR_5_ = ?, DUTY_EXT_ATTR_6_ = ?, DUTY_EXT_ATTR_7_ = ?, DUTY_EXT_ATTR_8_ = ?, ORDER_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and DUTY_ID_ = ?";
+        return omJdbcTemplate.update(sql, DUTY_CODE_, DUTY_NAME_, DUTY_CATEGORY_, MEMO_, DUTY_TAG_, DUTY_EXT_ATTR_1_, DUTY_EXT_ATTR_2_, DUTY_EXT_ATTR_3_, DUTY_EXT_ATTR_4_, DUTY_EXT_ATTR_5_, DUTY_EXT_ATTR_6_, DUTY_EXT_ATTR_7_, DUTY_EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, DUTY_ID_);
     }
 
     @Override
