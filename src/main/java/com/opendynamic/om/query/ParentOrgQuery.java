@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.opendynamic.om.service.OmOrgService;
@@ -18,23 +17,37 @@ public class ParentOrgQuery {
     private String orgnSetCode;
     private String orgId;
     private String orgCode;
+    private List<String> orgCodeList;
     private String orgName;
+    private List<String> orgNameList;
+    private String orgType;
     private List<String> orgTypeList;
-    private List<String> categoryList;
+    private String orgCategory;
+    private List<String> orgCategoryList;
     private String orgTag;
-    private String extAttr1;
-    private String extAttr2;
-    private String extAttr3;
-    private String extAttr4;
-    private String extAttr5;
-    private String extAttr6;
-    private String extAttr7;
-    private String extAttr8;
+    private String orgExtAttr1;
+    private List<String> orgExtAttr1List;
+    private String orgExtAttr2;
+    private List<String> orgExtAttr2List;
+    private String orgExtAttr3;
+    private List<String> orgExtAttr3List;
+    private String orgExtAttr4;
+    private List<String> orgExtAttr4List;
+    private String orgExtAttr5;
+    private List<String> orgExtAttr5List;
+    private String orgExtAttr6;
+    private List<String> orgExtAttr6List;
+    private String orgExtAttr7;
+    private List<String> orgExtAttr7List;
+    private String orgExtAttr8;
+    private List<String> orgExtAttr8List;
+    private String orgStatus;
     private List<String> orgStatusList;
-    private Boolean tagUnion;
+    private Boolean orgTagUnion;
     private String withinOrgId;
-    private Boolean includeSelf;
+    private Boolean orgRootOnly;
     private Boolean recursive;
+    private Boolean includeSelf;
     private String operatorId;
     private String operatorName;
 
@@ -63,16 +76,23 @@ public class ParentOrgQuery {
         return this;
     }
 
+    public ParentOrgQuery setOrgCodeList(List<String> orgCodeList) {
+        this.orgCodeList = orgCodeList;
+        return this;
+    }
+
     public ParentOrgQuery setOrgName(String orgName) {
         this.orgName = orgName;
         return this;
     }
 
+    public ParentOrgQuery setOrgNameList(List<String> orgNameList) {
+        this.orgNameList = orgNameList;
+        return this;
+    }
+
     public ParentOrgQuery setOrgType(String orgType) {
-        if (StringUtils.isNotEmpty(orgType)) {
-            this.orgTypeList = new ArrayList<>();
-            this.orgTypeList.add(orgType);
-        }
+        this.orgType = orgType;
         return this;
     }
 
@@ -81,16 +101,13 @@ public class ParentOrgQuery {
         return this;
     }
 
-    public ParentOrgQuery setCategory(String category) {
-        if (StringUtils.isNotEmpty(category)) {
-            this.categoryList = new ArrayList<>();
-            this.categoryList.add(category);
-        }
+    public ParentOrgQuery setOrgCategory(String orgCategory) {
+        this.orgCategory = orgCategory;
         return this;
     }
 
-    public ParentOrgQuery setCategoryList(List<String> categoryList) {
-        this.categoryList = categoryList;
+    public ParentOrgQuery setOrgCategoryList(List<String> orgCategoryList) {
+        this.orgCategoryList = orgCategoryList;
         return this;
     }
 
@@ -99,51 +116,88 @@ public class ParentOrgQuery {
         return this;
     }
 
-    public ParentOrgQuery setExtAttr1(String extAttr1) {
-        this.extAttr1 = extAttr1;
+    public ParentOrgQuery setOrgExtAttr1(String orgExtAttr1) {
+        this.orgExtAttr1 = orgExtAttr1;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr2(String extAttr2) {
-        this.extAttr2 = extAttr2;
+    public ParentOrgQuery setOrgExtAttr1List(List<String> orgExtAttr1List) {
+        this.orgExtAttr1List = orgExtAttr1List;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr3(String extAttr3) {
-        this.extAttr3 = extAttr3;
+    public ParentOrgQuery setOrgExtAttr2(String orgExtAttr2) {
+        this.orgExtAttr2 = orgExtAttr2;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr4(String extAttr4) {
-        this.extAttr4 = extAttr4;
+    public ParentOrgQuery setOrgExtAttr2List(List<String> orgExtAttr2List) {
+        this.orgExtAttr2List = orgExtAttr2List;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr5(String extAttr5) {
-        this.extAttr5 = extAttr5;
+    public ParentOrgQuery setOrgExtAttr3(String orgExtAttr3) {
+        this.orgExtAttr3 = orgExtAttr3;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr6(String extAttr6) {
-        this.extAttr6 = extAttr6;
+    public ParentOrgQuery setOrgExtAttr3List(List<String> orgExtAttr3List) {
+        this.orgExtAttr3List = orgExtAttr3List;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr7(String extAttr7) {
-        this.extAttr7 = extAttr7;
+    public ParentOrgQuery setOrgExtAttr4(String orgExtAttr4) {
+        this.orgExtAttr4 = orgExtAttr4;
         return this;
     }
 
-    public ParentOrgQuery setExtAttr8(String extAttr8) {
-        this.extAttr8 = extAttr8;
+    public ParentOrgQuery setOrgExtAttr4List(List<String> orgExtAttr4List) {
+        this.orgExtAttr4List = orgExtAttr4List;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr5(String orgExtAttr5) {
+        this.orgExtAttr5 = orgExtAttr5;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr5List(List<String> orgExtAttr5List) {
+        this.orgExtAttr5List = orgExtAttr5List;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr6(String orgExtAttr6) {
+        this.orgExtAttr6 = orgExtAttr6;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr6List(List<String> orgExtAttr6List) {
+        this.orgExtAttr6List = orgExtAttr6List;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr7(String orgExtAttr7) {
+        this.orgExtAttr7 = orgExtAttr7;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr7List(List<String> orgExtAttr7List) {
+        this.orgExtAttr7List = orgExtAttr7List;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr8(String orgExtAttr8) {
+        this.orgExtAttr8 = orgExtAttr8;
+        return this;
+    }
+
+    public ParentOrgQuery setOrgExtAttr8List(List<String> orgExtAttr8List) {
+        this.orgExtAttr8List = orgExtAttr8List;
         return this;
     }
 
     public ParentOrgQuery setOrgStatus(String orgStatus) {
-        if (StringUtils.isNotEmpty(orgStatus)) {
-            this.orgStatusList = new ArrayList<>();
-            this.orgStatusList.add(orgStatus);
-        }
+        this.orgStatus = orgStatus;
         return this;
     }
 
@@ -152,8 +206,8 @@ public class ParentOrgQuery {
         return this;
     }
 
-    public ParentOrgQuery setTagUnion(Boolean tagUnion) {
-        this.tagUnion = tagUnion;
+    public ParentOrgQuery setOrgTagUnion(Boolean orgTagUnion) {
+        this.orgTagUnion = orgTagUnion;
         return this;
     }
 
@@ -162,13 +216,18 @@ public class ParentOrgQuery {
         return this;
     }
 
-    public ParentOrgQuery setIncludeSelf(Boolean includeSelf) {
-        this.includeSelf = includeSelf;
+    public ParentOrgQuery setOrgRootOnly(Boolean orgRootOnly) {
+        this.orgRootOnly = orgRootOnly;
         return this;
     }
 
     public ParentOrgQuery setRecursive(Boolean recursive) {
         this.recursive = recursive;
+        return this;
+    }
+
+    public ParentOrgQuery setIncludeSelf(Boolean includeSelf) {
+        this.includeSelf = includeSelf;
         return this;
     }
 
@@ -183,7 +242,7 @@ public class ParentOrgQuery {
     }
 
     public List<Map<String, Object>> queryForMapList() {
-        return omOrgService.selectParentOrg(orgnSetId, orgnSetCode, orgId, orgCode, orgName, orgTypeList, categoryList, orgTag, extAttr1, extAttr2, extAttr3, extAttr4, extAttr5, extAttr6, extAttr7, extAttr8, orgStatusList, tagUnion, withinOrgId, includeSelf, recursive, operatorId, operatorName);
+        return omOrgService.selectParentOrg(orgnSetId, orgnSetCode, orgId, orgCode, orgCodeList, orgName, orgNameList, orgType, orgTypeList, orgCategory, orgCategoryList, orgTag, orgExtAttr1, orgExtAttr1List, orgExtAttr2, orgExtAttr2List, orgExtAttr3, orgExtAttr3List, orgExtAttr4, orgExtAttr4List, orgExtAttr5, orgExtAttr5List, orgExtAttr6, orgExtAttr6List, orgExtAttr7, orgExtAttr7List, orgExtAttr8, orgExtAttr8List, orgStatus, orgStatusList, orgTagUnion, withinOrgId, orgRootOnly, recursive, includeSelf, operatorId, operatorName);
     }
 
     public Map<String, Object> queryForMap() {

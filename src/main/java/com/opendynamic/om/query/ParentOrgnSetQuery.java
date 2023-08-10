@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.opendynamic.om.service.OmOrgnSetService;
@@ -16,10 +15,14 @@ public class ParentOrgnSetQuery {
 
     private String orgnSetId;
     private String orgnSetCode;
+    private List<String> orgnSetCodeList;
     private String orgnSetName;
+    private List<String> orgnSetNameList;
+    private String orgnSetStatus;
     private List<String> orgnSetStatusList;
-    private Boolean includeSelf;
+    private Boolean orgnSetRootOnly;
     private Boolean recursive;
+    private Boolean includeSelf;
     private String operatorId;
     private String operatorName;
 
@@ -38,16 +41,23 @@ public class ParentOrgnSetQuery {
         return this;
     }
 
+    public ParentOrgnSetQuery setOrgnSetCodeList(List<String> orgnSetCodeList) {
+        this.orgnSetCodeList = orgnSetCodeList;
+        return this;
+    }
+
     public ParentOrgnSetQuery setOrgnSetName(String orgnSetName) {
         this.orgnSetName = orgnSetName;
         return this;
     }
 
+    public ParentOrgnSetQuery setOrgnSetNameList(List<String> orgnSetNameList) {
+        this.orgnSetNameList = orgnSetNameList;
+        return this;
+    }
+
     public ParentOrgnSetQuery setOrgnSetStatus(String orgnSetStatus) {
-        if (StringUtils.isNotEmpty(orgnSetStatus)) {
-            this.orgnSetStatusList = new ArrayList<>();
-            this.orgnSetStatusList.add(orgnSetStatus);
-        }
+        this.orgnSetStatus = orgnSetStatus;
         return this;
     }
 
@@ -56,13 +66,18 @@ public class ParentOrgnSetQuery {
         return this;
     }
 
-    public ParentOrgnSetQuery setIncludeSelf(Boolean includeSelf) {
-        this.includeSelf = includeSelf;
+    public ParentOrgnSetQuery setOrgnSetRootOnly(Boolean orgnSetRootOnly) {
+        this.orgnSetRootOnly = orgnSetRootOnly;
         return this;
     }
 
     public ParentOrgnSetQuery setRecursive(Boolean recursive) {
         this.recursive = recursive;
+        return this;
+    }
+
+    public ParentOrgnSetQuery setIncludeSelf(Boolean includeSelf) {
+        this.includeSelf = includeSelf;
         return this;
     }
 
@@ -77,7 +92,7 @@ public class ParentOrgnSetQuery {
     }
 
     public List<Map<String, Object>> queryForMapList() {
-        return omOrgnSetService.selectParentOrgnSet(orgnSetId, orgnSetCode, orgnSetName, orgnSetStatusList, includeSelf, recursive, operatorId, operatorName);
+        return omOrgnSetService.selectParentOrgnSet(orgnSetId, orgnSetCode, orgnSetCodeList, orgnSetName, orgnSetNameList, orgnSetStatus, orgnSetStatusList, orgnSetRootOnly, recursive, includeSelf, operatorId, operatorName);
     }
 
     public Map<String, Object> queryForMap() {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.opendynamic.om.service.OmOrgnSetService;
@@ -15,11 +14,16 @@ public class OrgnSetQuery {
     private OmOrgnSetService omOrgnSetService;
 
     private String orgnSetId;
+    private List<String> orgnSetIdList;
     private String parentOrgnSetId;
+    private List<String> parentOrgnSetIdList;
     private String orgnSetCode;
+    private List<String> orgnSetCodeList;
     private String orgnSetName;
+    private List<String> orgnSetNameList;
+    private String orgnSetStatus;
     private List<String> orgnSetStatusList;
-    private Boolean rootOnly;
+    private Boolean orgnSetRootOnly;
     private Integer page;
     private Integer limit;
     private String operatorId;
@@ -35,8 +39,18 @@ public class OrgnSetQuery {
         return this;
     }
 
+    public OrgnSetQuery setOrgnSetIdList(List<String> orgnSetIdList) {
+        this.orgnSetIdList = orgnSetIdList;
+        return this;
+    }
+
     public OrgnSetQuery setParentOrgnSetId(String parentOrgnSetId) {
         this.parentOrgnSetId = parentOrgnSetId;
+        return this;
+    }
+
+    public OrgnSetQuery setParentOrgnSetIdList(List<String> parentOrgnSetIdList) {
+        this.parentOrgnSetIdList = parentOrgnSetIdList;
         return this;
     }
 
@@ -45,16 +59,23 @@ public class OrgnSetQuery {
         return this;
     }
 
+    public OrgnSetQuery setOrgnSetCodeList(List<String> orgnSetCodeList) {
+        this.orgnSetCodeList = orgnSetCodeList;
+        return this;
+    }
+
     public OrgnSetQuery setOrgnSetName(String orgnSetName) {
         this.orgnSetName = orgnSetName;
         return this;
     }
 
+    public OrgnSetQuery setOrgnSetNameList(List<String> orgnSetNameList) {
+        this.orgnSetNameList = orgnSetNameList;
+        return this;
+    }
+
     public OrgnSetQuery setOrgnSetStatus(String orgnSetStatus) {
-        if (StringUtils.isNotEmpty(orgnSetStatus)) {
-            this.orgnSetStatusList = new ArrayList<>();
-            this.orgnSetStatusList.add(orgnSetStatus);
-        }
+        this.orgnSetStatus = orgnSetStatus;
         return this;
     }
 
@@ -63,8 +84,8 @@ public class OrgnSetQuery {
         return this;
     }
 
-    public OrgnSetQuery setRootOnly(Boolean rootOnly) {
-        this.rootOnly = rootOnly;
+    public OrgnSetQuery setOrgnSetRootOnly(Boolean orgnSetRootOnly) {
+        this.orgnSetRootOnly = orgnSetRootOnly;
         return this;
     }
 
@@ -89,7 +110,7 @@ public class OrgnSetQuery {
     }
 
     public List<Map<String, Object>> queryForMapList() {
-        return omOrgnSetService.selectOrgnSet(orgnSetId, parentOrgnSetId, orgnSetCode, orgnSetName, orgnSetStatusList, rootOnly, page, limit, operatorId, operatorName);
+        return omOrgnSetService.selectOrgnSet(orgnSetId, orgnSetIdList, parentOrgnSetId, parentOrgnSetIdList, orgnSetCode, orgnSetCodeList, orgnSetName, orgnSetNameList, orgnSetStatus, orgnSetStatusList, orgnSetRootOnly, page, limit, operatorId, operatorName);
     }
 
     public Map<String, Object> queryForMap() {
@@ -123,6 +144,6 @@ public class OrgnSetQuery {
     }
 
     public int count() {
-        return omOrgnSetService.countOrgnSet(orgnSetId, parentOrgnSetId, orgnSetCode, orgnSetName, orgnSetStatusList, rootOnly, operatorId, operatorName);
+        return omOrgnSetService.countOrgnSet(orgnSetId, orgnSetIdList, parentOrgnSetId, parentOrgnSetIdList, orgnSetCode, orgnSetCodeList, orgnSetName, orgnSetNameList, orgnSetStatus, orgnSetStatusList, orgnSetRootOnly, operatorId, operatorName);
     }
 }

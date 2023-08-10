@@ -15,10 +15,14 @@ public class ChildOrgnSetQuery {
 
     private String orgnSetId;
     private String orgnSetCode;
+    private List<String> orgnSetCodeList;
     private String orgnSetName;
+    private List<String> orgnSetNameList;
+    private String orgnSetStatus;
     private List<String> orgnSetStatusList;
-    private Boolean includeSelf;
+    private Boolean orgnSetRootOnly;
     private Boolean recursive;
+    private Boolean includeSelf;
     private String operatorId;
     private String operatorName;
 
@@ -37,8 +41,23 @@ public class ChildOrgnSetQuery {
         return this;
     }
 
+    public ChildOrgnSetQuery setOrgnSetCodeList(List<String> orgnSetCodeList) {
+        this.orgnSetCodeList = orgnSetCodeList;
+        return this;
+    }
+
     public ChildOrgnSetQuery setOrgnSetName(String orgnSetName) {
         this.orgnSetName = orgnSetName;
+        return this;
+    }
+
+    public ChildOrgnSetQuery setOrgnSetNameList(List<String> orgnSetNameList) {
+        this.orgnSetNameList = orgnSetNameList;
+        return this;
+    }
+
+    public ChildOrgnSetQuery setOrgnSetStatus(String orgnSetStatus) {
+        this.orgnSetStatus = orgnSetStatus;
         return this;
     }
 
@@ -47,13 +66,18 @@ public class ChildOrgnSetQuery {
         return this;
     }
 
-    public ChildOrgnSetQuery setIncludeself(Boolean includeSelf) {
-        this.includeSelf = includeSelf;
+    public ChildOrgnSetQuery setOrgnSetRootOnly(Boolean orgnSetRootOnly) {
+        this.orgnSetRootOnly = orgnSetRootOnly;
         return this;
     }
 
     public ChildOrgnSetQuery setRecursive(Boolean recursive) {
         this.recursive = recursive;
+        return this;
+    }
+
+    public ChildOrgnSetQuery setIncludeSelf(Boolean includeSelf) {
+        this.includeSelf = includeSelf;
         return this;
     }
 
@@ -68,7 +92,7 @@ public class ChildOrgnSetQuery {
     }
 
     public List<Map<String, Object>> queryForMapList() {
-        return omOrgnSetService.selectChildOrgnSet(orgnSetId, orgnSetCode, orgnSetName, orgnSetStatusList, includeSelf, recursive, operatorId, operatorName);
+        return omOrgnSetService.selectChildOrgnSet(orgnSetId, orgnSetCode, orgnSetCodeList, orgnSetName, orgnSetNameList, orgnSetStatus, orgnSetStatusList, orgnSetRootOnly, recursive, includeSelf, operatorId, operatorName);
     }
 
     public Map<String, Object> queryForMap() {
