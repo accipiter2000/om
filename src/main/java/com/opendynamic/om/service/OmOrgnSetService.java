@@ -36,7 +36,7 @@ public interface OmOrgnSetService {
      *        组织架构套名称
      * @param ORGN_SET_STATUS_LIST
      *        组织架构套状态
-     * @param rootOnly
+     * @param orgnSetRootOnly
      *        仅查询根，默认为false
      * @param page
      *        页面 默认为1
@@ -48,32 +48,32 @@ public interface OmOrgnSetService {
      *        操作人员名称
      * @return
      */
-    public List<Map<String, Object>> selectOrgnSet(String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_);
+    public List<Map<String, Object>> selectOrgnSet(String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
      * 总数查询，在分页时与通用查询配套使用。
      */
-    public int countOrgnSet(String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, String OPERATOR_ID_, String OPERATOR_NAME_);
+    public int countOrgnSet(String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
      * 通用父对象查询，返回父对象列表。
      * 
-     * @param includeSelf
-     *        是否包含自己，默认为false。
      * @param recursive
      *        是否递归，默认为false。
+     * @param includeSelf
+     *        是否包含自己，默认为false。
      */
-    public List<Map<String, Object>> selectParentOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean includeSelf, Boolean recursive, String OPERATOR_ID_, String OPERATOR_NAME_);
+    public List<Map<String, Object>> selectParentOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
      * 通用子对象查询，返回子对象列表。
      * 
-     * @param includeSelf
-     *        是否包含自己，默认为false。
      * @param recursive
      *        是否递归，默认为false。
+     * @param includeSelf
+     *        是否包含自己，默认为false。
      */
-    public List<Map<String, Object>> selectChildOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean includeSelf, Boolean recursive, String OPERATOR_ID_, String OPERATOR_NAME_);
+    public List<Map<String, Object>> selectChildOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
      * 按主键列表查询，返回对象列表，按主键列表顺序排序。

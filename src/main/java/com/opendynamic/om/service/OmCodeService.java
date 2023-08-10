@@ -58,22 +58,22 @@ public interface OmCodeService {
     /**
      * 通用父对象查询，返回父对象列表。
      * 
-     * @param includeSelf
-     *        是否包含自己，默认为false。
      * @param recursive
      *        是否递归，默认为false。
+     * @param includeSelf
+     *        是否包含自己，默认为false。
      */
-    public List<Map<String, Object>> selectParentCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean includeSelf, Boolean recursive);
+    public List<Map<String, Object>> selectParentCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean recursive, Boolean includeSelf);
 
     /**
      * 通用子对象查询，返回子对象列表。
      * 
-     * @param includeSelf
-     *        是否包含自己，默认为false。
      * @param recursive
      *        是否递归，默认为false。
+     * @param includeSelf
+     *        是否包含自己，默认为false。
      */
-    public List<Map<String, Object>> selectChildCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean includeSelf, Boolean recursive);
+    public List<Map<String, Object>> selectChildCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean recursive, Boolean includeSelf);
 
     /**
      * 查询分类。
