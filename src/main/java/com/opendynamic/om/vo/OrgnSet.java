@@ -1,6 +1,8 @@
 package com.opendynamic.om.vo;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
@@ -153,5 +155,27 @@ public class OrgnSet implements Serializable {
 
     public void setParentOrgnSetName(String parentOrgnSetName) {
         this.parentOrgnSetName = parentOrgnSetName;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(2000);
+
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            String fieldName = field.getName();
+            try {
+                if (!fieldName.equals("serialVersionUID")) {
+                    Method getter = this.getClass().getMethod("get" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1));
+                    Object value = getter.invoke(this);
+                    stringBuilder.append(fieldName).append("=").append(value).append(",");
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }
