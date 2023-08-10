@@ -19,11 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.opendynamic.OdSqlCriteria;
 import com.opendynamic.om.service.OmEmpService;
+import com.opendynamic.om.service.OmOrgnSetService;
 import com.opendynamic.om.service.OmTagService;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class OmEmpServiceImpl implements OmEmpService {
+    @Autowired
+    private OmOrgnSetService omOrgnSetService;
     @Autowired
     private OmTagService omTagService;
     @Autowired
@@ -117,8 +120,11 @@ public class OmEmpServiceImpl implements OmEmpService {
     }
 
     @Override
-    public List<Map<String, Object>> selectEmp(String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, String ORG_ID_, String EMP_CODE_, String EMP_NAME_, List<String> CATEGORY_LIST, String EMP_TAG_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, String EXT_ATTR_7_, String EXT_ATTR_8_, List<String> EMP_STATUS_LIST, Boolean tagUnion, String withinOrgId, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaEmp(false, ORGN_SET_ID_, ORGN_SET_CODE_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, CATEGORY_LIST, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, EMP_STATUS_LIST, tagUnion, withinOrgId, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
+    public List<Map<String, Object>> selectEmp(String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, List<String> EMP_ID_LIST, String EMP_CODE_, List<String> EMP_CODE_LIST, String EMP_NAME_, List<String> EMP_NAME_LIST, String EMP_CATEGORY_, List<String> EMP_CATEGORY_LIST, String EMP_TAG_, String EMP_EXT_ATTR_1_, List<String> EMP_EXT_ATTR_1_LIST, String EMP_EXT_ATTR_2_, List<String> EMP_EXT_ATTR_2_LIST, String EMP_EXT_ATTR_3_, List<String> EMP_EXT_ATTR_3_LIST, String EMP_EXT_ATTR_4_, List<String> EMP_EXT_ATTR_4_LIST, String EMP_EXT_ATTR_5_, List<String> EMP_EXT_ATTR_5_LIST, String EMP_EXT_ATTR_6_, List<String> EMP_EXT_ATTR_6_LIST, String EMP_EXT_ATTR_7_, List<String> EMP_EXT_ATTR_7_LIST, String EMP_EXT_ATTR_8_, List<String> EMP_EXT_ATTR_8_LIST, String EMP_STATUS_,
+            List<String> EMP_STATUS_LIST, String ORG_ID_, List<String> ORG_ID_LIST, String PARENT_ORG_ID_, List<String> PARENT_ORG_ID_LIST, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_, List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_,
+            List<String> ORG_EXT_ATTR_8_LIST, String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean empTagUnion, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaEmp(false, ORGN_SET_ID_, ORGN_SET_CODE_, EMP_ID_, EMP_ID_LIST, EMP_CODE_, EMP_CODE_LIST, EMP_NAME_, EMP_NAME_LIST, EMP_CATEGORY_, EMP_CATEGORY_LIST, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_1_LIST, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_2_LIST, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_3_LIST, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_4_LIST, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_5_LIST, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_6_LIST, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_7_LIST, EMP_EXT_ATTR_8_, EMP_EXT_ATTR_8_LIST, EMP_STATUS_, EMP_STATUS_LIST, ORG_ID_, ORG_ID_LIST, PARENT_ORG_ID_, PARENT_ORG_ID_LIST, ORG_CODE_, ORG_CODE_LIST, ORG_NAME_, ORG_NAME_LIST, ORG_TYPE_, ORG_TYPE_LIST, ORG_CATEGORY_, ORG_CATEGORY_LIST, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_1_LIST, ORG_EXT_ATTR_2_,
+                ORG_EXT_ATTR_2_LIST, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_3_LIST, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_4_LIST, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_5_LIST, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_6_LIST, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_7_LIST, ORG_EXT_ATTR_8_, ORG_EXT_ATTR_8_LIST, ORG_STATUS_, ORG_STATUS_LIST, empTagUnion, orgTagUnion, withinOrgId, orgRootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -131,8 +137,11 @@ public class OmEmpServiceImpl implements OmEmpService {
     }
 
     @Override
-    public int countEmp(String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, String ORG_ID_, String EMP_CODE_, String EMP_NAME_, List<String> CATEGORY_LIST, String EMP_TAG_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, String EXT_ATTR_7_, String EXT_ATTR_8_, List<String> EMP_STATUS_LIST, Boolean tagUnion, String withinOrgId, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaEmp(true, ORGN_SET_ID_, ORGN_SET_CODE_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, CATEGORY_LIST, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, EMP_STATUS_LIST, tagUnion, withinOrgId, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
+    public int countEmp(String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, List<String> EMP_ID_LIST, String EMP_CODE_, List<String> EMP_CODE_LIST, String EMP_NAME_, List<String> EMP_NAME_LIST, String EMP_CATEGORY_, List<String> EMP_CATEGORY_LIST, String EMP_TAG_, String EMP_EXT_ATTR_1_, List<String> EMP_EXT_ATTR_1_LIST, String EMP_EXT_ATTR_2_, List<String> EMP_EXT_ATTR_2_LIST, String EMP_EXT_ATTR_3_, List<String> EMP_EXT_ATTR_3_LIST, String EMP_EXT_ATTR_4_, List<String> EMP_EXT_ATTR_4_LIST, String EMP_EXT_ATTR_5_, List<String> EMP_EXT_ATTR_5_LIST, String EMP_EXT_ATTR_6_, List<String> EMP_EXT_ATTR_6_LIST, String EMP_EXT_ATTR_7_, List<String> EMP_EXT_ATTR_7_LIST, String EMP_EXT_ATTR_8_, List<String> EMP_EXT_ATTR_8_LIST, String EMP_STATUS_, List<String> EMP_STATUS_LIST,
+            String ORG_ID_, List<String> ORG_ID_LIST, String PARENT_ORG_ID_, List<String> PARENT_ORG_ID_LIST, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_, List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_, List<String> ORG_EXT_ATTR_8_LIST,
+            String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean empTagUnion, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaEmp(true, ORGN_SET_ID_, ORGN_SET_CODE_, EMP_ID_, EMP_ID_LIST, EMP_CODE_, EMP_CODE_LIST, EMP_NAME_, EMP_NAME_LIST, EMP_CATEGORY_, EMP_CATEGORY_LIST, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_1_LIST, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_2_LIST, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_3_LIST, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_4_LIST, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_5_LIST, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_6_LIST, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_7_LIST, EMP_EXT_ATTR_8_, EMP_EXT_ATTR_8_LIST, EMP_STATUS_, EMP_STATUS_LIST, ORG_ID_, ORG_ID_LIST, PARENT_ORG_ID_, PARENT_ORG_ID_LIST, ORG_CODE_, ORG_CODE_LIST, ORG_NAME_, ORG_NAME_LIST, ORG_TYPE_, ORG_TYPE_LIST, ORG_CATEGORY_, ORG_CATEGORY_LIST, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_1_LIST, ORG_EXT_ATTR_2_,
+                ORG_EXT_ATTR_2_LIST, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_3_LIST, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_4_LIST, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_5_LIST, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_6_LIST, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_7_LIST, ORG_EXT_ATTR_8_, ORG_EXT_ATTR_8_LIST, ORG_STATUS_, ORG_STATUS_LIST, empTagUnion, orgTagUnion, withinOrgId, orgRootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -140,9 +149,16 @@ public class OmEmpServiceImpl implements OmEmpService {
         return namedParameterJdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
-    private OdSqlCriteria buildSqlCriteriaEmp(boolean count, String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, String ORG_ID_, String EMP_CODE_, String EMP_NAME_, List<String> CATEGORY_LIST, String EMP_TAG_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, String EXT_ATTR_7_, String EXT_ATTR_8_, List<String> EMP_STATUS_LIST, Boolean tagUnion, String withinOrgId, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
+    private OdSqlCriteria buildSqlCriteriaEmp(boolean count, String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, List<String> EMP_ID_LIST, String EMP_CODE_, List<String> EMP_CODE_LIST, String EMP_NAME_, List<String> EMP_NAME_LIST, String EMP_CATEGORY_, List<String> EMP_CATEGORY_LIST, String EMP_TAG_, String EMP_EXT_ATTR_1_, List<String> EMP_EXT_ATTR_1_LIST, String EMP_EXT_ATTR_2_, List<String> EMP_EXT_ATTR_2_LIST, String EMP_EXT_ATTR_3_, List<String> EMP_EXT_ATTR_3_LIST, String EMP_EXT_ATTR_4_, List<String> EMP_EXT_ATTR_4_LIST, String EMP_EXT_ATTR_5_, List<String> EMP_EXT_ATTR_5_LIST, String EMP_EXT_ATTR_6_, List<String> EMP_EXT_ATTR_6_LIST, String EMP_EXT_ATTR_7_, List<String> EMP_EXT_ATTR_7_LIST, String EMP_EXT_ATTR_8_, List<String> EMP_EXT_ATTR_8_LIST, String EMP_STATUS_,
+            List<String> EMP_STATUS_LIST, String ORG_ID_, List<String> ORG_ID_LIST, String PARENT_ORG_ID_, List<String> PARENT_ORG_ID_LIST, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_, List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_,
+            List<String> ORG_EXT_ATTR_8_LIST, String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean empTagUnion, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
         if (StringUtils.isEmpty(ORGN_SET_ID_) && StringUtils.isEmpty(ORGN_SET_CODE_)) {
             throw new RuntimeException("errors.orgnSetRequired");
+        }
+
+        if (StringUtils.isEmpty(ORGN_SET_ID_)) {
+            Map<String, Object> orgnSet = omOrgnSetService.loadOrgnSetByCode(ORGN_SET_CODE_, OPERATOR_ID_, OPERATOR_NAME_);
+            ORGN_SET_ID_ = (String) orgnSet.get("ORGN_SET_ID_");
         }
 
         String sql;
@@ -167,80 +183,266 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_ID_ = :EMP_ID_";
             paramMap.put("EMP_ID_", EMP_ID_);
         }
-        if (StringUtils.isNotEmpty(ORG_ID_)) {
-            sql += " and ORG_ID_ = :ORG_ID_";
-            paramMap.put("ORG_ID_", ORG_ID_);
+        if (EMP_ID_LIST != null && EMP_ID_LIST.size() > 0) {
+            sql += " and EMP_ID_ in (:EMP_ID_LIST)";
+            paramMap.put("EMP_ID_LIST", EMP_ID_LIST);
         }
         if (StringUtils.isNotEmpty(EMP_CODE_)) {
             sql += " and EMP_CODE_ = :EMP_CODE_";
             paramMap.put("EMP_CODE_", EMP_CODE_);
         }
+        if (EMP_CODE_LIST != null && EMP_CODE_LIST.size() > 0) {
+            sql += " and EMP_CODE_ in (:EMP_CODE_LIST)";
+            paramMap.put("EMP_CODE_LIST", EMP_CODE_LIST);
+        }
         if (StringUtils.isNotEmpty(EMP_NAME_)) {
             sql += " and EMP_NAME_like concat('%',:EMP_NAME_,'%')";
             paramMap.put("EMP_NAME_", EMP_NAME_);
         }
-        if (CATEGORY_LIST != null && CATEGORY_LIST.size() > 0) {
-            sql += " and CATEGORY_ in (:CATEGORY_LIST)";
-            paramMap.put("CATEGORY_LIST", CATEGORY_LIST);
+        if (EMP_NAME_LIST != null && EMP_NAME_LIST.size() > 0) {
+            sql += " and EMP_NAME_ in (:EMP_NAME_LIST)";
+            paramMap.put("EMP_NAME_LIST", EMP_NAME_LIST);
+        }
+        if (StringUtils.isNotEmpty(EMP_CATEGORY_)) {
+            sql += " and EMP_CATEGORY_ = :EMP_CATEGORY_";
+            paramMap.put("EMP_CATEGORY_", EMP_CATEGORY_);
+        }
+        if (EMP_CATEGORY_LIST != null && EMP_CATEGORY_LIST.size() > 0) {
+            sql += " and EMP_CATEGORY_ in (:EMP_CATEGORY_LIST)";
+            paramMap.put("EMP_CATEGORY_LIST", EMP_CATEGORY_LIST);
         }
         if (StringUtils.isNotEmpty(EMP_TAG_)) {
             List<String> tagList = omTagService.splitTag(EMP_TAG_);
             if (tagList.size() > 0) {
-                if (tagUnion != null && tagUnion.equals(false)) {
+                if (empTagUnion != null && empTagUnion.equals(false)) {
                     sql += " and EMP_ID_ in (select EMP_ID_ from (select OBJ_ID_ as EMP_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'EMP' and TAG_ in (:EMP_TAG_LIST)) T group by EMP_ID_ having count(*) >= 1)";
                     paramMap.put("EMP_TAG_LIST", tagList);
                 }
                 else {
-                    sql += " and EMP_ID_ in (select EMP_ID_ from (select OBJ_ID_ as EMP_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'EMP' and TAG_ in (:EMP_TAG_LIST)) T group by EMP_ID_ having count(*) >= :tagCount)";
+                    sql += " and EMP_ID_ in (select EMP_ID_ from (select OBJ_ID_ as EMP_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'EMP' and TAG_ in (:EMP_TAG_LIST)) T group by EMP_ID_ having count(*) >= :empTagCount)";
                     paramMap.put("EMP_TAG_LIST", tagList);
-                    paramMap.put("tagCount", tagList.size());
+                    paramMap.put("empTagCount", tagList.size());
                 }
             }
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_1_)) {
-            sql += " and EXT_ATTR_1_ = :EXT_ATTR_1_";
-            paramMap.put("EXT_ATTR_1_", EXT_ATTR_1_);
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_1_)) {
+            sql += " and EMP_EXT_ATTR_1_ = :EMP_EXT_ATTR_1_";
+            paramMap.put("EMP_EXT_ATTR_1_", EMP_EXT_ATTR_1_);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_2_)) {
-            sql += " and EXT_ATTR_2_ = :EXT_ATTR_2_";
-            paramMap.put("EXT_ATTR_2_", EXT_ATTR_2_);
+        if (EMP_EXT_ATTR_1_LIST != null && EMP_EXT_ATTR_1_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_1_ in (:EMP_EXT_ATTR_1_LIST)";
+            paramMap.put("EMP_EXT_ATTR_1_LIST", EMP_EXT_ATTR_1_LIST);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_3_)) {
-            sql += " and EXT_ATTR_3_ = :EXT_ATTR_3_";
-            paramMap.put("EXT_ATTR_3_", EXT_ATTR_3_);
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_2_)) {
+            sql += " and EMP_EXT_ATTR_2_ = :EMP_EXT_ATTR_2_";
+            paramMap.put("EMP_EXT_ATTR_2_", EMP_EXT_ATTR_2_);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_4_)) {
-            sql += " and EXT_ATTR_4_ = :EXT_ATTR_4_";
-            paramMap.put("EXT_ATTR_4_", EXT_ATTR_4_);
+        if (EMP_EXT_ATTR_2_LIST != null && EMP_EXT_ATTR_2_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_2_ in (:EMP_EXT_ATTR_2_LIST)";
+            paramMap.put("EMP_EXT_ATTR_2_LIST", EMP_EXT_ATTR_2_LIST);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_5_)) {
-            sql += " and EXT_ATTR_5_ = :EXT_ATTR_5_";
-            paramMap.put("EXT_ATTR_5_", EXT_ATTR_5_);
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_3_)) {
+            sql += " and EMP_EXT_ATTR_3_ = :EMP_EXT_ATTR_3_";
+            paramMap.put("EMP_EXT_ATTR_3_", EMP_EXT_ATTR_3_);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_6_)) {
-            sql += " and EXT_ATTR_6_ = :EXT_ATTR_6_";
-            paramMap.put("EXT_ATTR_6_", EXT_ATTR_6_);
+        if (EMP_EXT_ATTR_3_LIST != null && EMP_EXT_ATTR_3_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_3_ in (:EMP_EXT_ATTR_3_LIST)";
+            paramMap.put("EMP_EXT_ATTR_3_LIST", EMP_EXT_ATTR_3_LIST);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_7_)) {
-            sql += " and EXT_ATTR_7_ = :EXT_ATTR_7_";
-            paramMap.put("EXT_ATTR_7_", EXT_ATTR_7_);
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_4_)) {
+            sql += " and EMP_EXT_ATTR_4_ = :EMP_EXT_ATTR_4_";
+            paramMap.put("EMP_EXT_ATTR_4_", EMP_EXT_ATTR_4_);
         }
-        if (StringUtils.isNotEmpty(EXT_ATTR_8_)) {
-            sql += " and EXT_ATTR_8_ = :EXT_ATTR_8_";
-            paramMap.put("EXT_ATTR_8_", EXT_ATTR_8_);
+        if (EMP_EXT_ATTR_4_LIST != null && EMP_EXT_ATTR_4_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_4_ in (:EMP_EXT_ATTR_4_LIST)";
+            paramMap.put("EMP_EXT_ATTR_4_LIST", EMP_EXT_ATTR_4_LIST);
+        }
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_5_)) {
+            sql += " and EMP_EXT_ATTR_5_ = :EMP_EXT_ATTR_5_";
+            paramMap.put("EMP_EXT_ATTR_5_", EMP_EXT_ATTR_5_);
+        }
+        if (EMP_EXT_ATTR_5_LIST != null && EMP_EXT_ATTR_5_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_5_ in (:EMP_EXT_ATTR_5_LIST)";
+            paramMap.put("EMP_EXT_ATTR_5_LIST", EMP_EXT_ATTR_5_LIST);
+        }
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_6_)) {
+            sql += " and EMP_EXT_ATTR_6_ = :EMP_EXT_ATTR_6_";
+            paramMap.put("EMP_EXT_ATTR_6_", EMP_EXT_ATTR_6_);
+        }
+        if (EMP_EXT_ATTR_6_LIST != null && EMP_EXT_ATTR_6_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_6_ in (:EMP_EXT_ATTR_6_LIST)";
+            paramMap.put("EMP_EXT_ATTR_6_LIST", EMP_EXT_ATTR_6_LIST);
+        }
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_7_)) {
+            sql += " and EMP_EXT_ATTR_7_ = :EMP_EXT_ATTR_7_";
+            paramMap.put("EMP_EXT_ATTR_7_", EMP_EXT_ATTR_7_);
+        }
+        if (EMP_EXT_ATTR_7_LIST != null && EMP_EXT_ATTR_7_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_7_ in (:EMP_EXT_ATTR_7_LIST)";
+            paramMap.put("EMP_EXT_ATTR_7_LIST", EMP_EXT_ATTR_7_LIST);
+        }
+        if (StringUtils.isNotEmpty(EMP_EXT_ATTR_8_)) {
+            sql += " and EMP_EXT_ATTR_8_ = :EMP_EXT_ATTR_8_";
+            paramMap.put("EMP_EXT_ATTR_8_", EMP_EXT_ATTR_8_);
+        }
+        if (EMP_EXT_ATTR_8_LIST != null && EMP_EXT_ATTR_8_LIST.size() > 0) {
+            sql += " and EMP_EXT_ATTR_8_ in (:EMP_EXT_ATTR_8_LIST)";
+            paramMap.put("EMP_EXT_ATTR_8_LIST", EMP_EXT_ATTR_8_LIST);
+        }
+        if (StringUtils.isNotEmpty(EMP_STATUS_)) {
+            sql += " and EMP_STATUS_ = :EMP_STATUS_";
+            paramMap.put("EMP_STATUS_", EMP_STATUS_);
         }
         if (EMP_STATUS_LIST != null && EMP_STATUS_LIST.size() > 0) {
             sql += " and EMP_STATUS_ in (:EMP_STATUS_LIST)";
             paramMap.put("EMP_STATUS_LIST", EMP_STATUS_LIST);
         }
 
+        if (StringUtils.isNotEmpty(ORG_ID_)) {
+            sql += " and ORG_ID_ = :ORG_ID_";
+            paramMap.put("ORG_ID_", ORG_ID_);
+        }
+        if (ORG_ID_LIST != null && ORG_ID_LIST.size() > 0) {
+            sql += " and ORG_ID_ in (:ORG_ID_LIST)";
+            paramMap.put("ORG_ID_LIST", ORG_ID_LIST);
+        }
+        if (StringUtils.isNotEmpty(PARENT_ORG_ID_)) {
+            sql += " and PARENT_ORG_ID_ = :PARENT_ORG_ID_";
+            paramMap.put("PARENT_ORG_ID_", PARENT_ORG_ID_);
+        }
+        if (PARENT_ORG_ID_LIST != null && PARENT_ORG_ID_LIST.size() > 0) {
+            sql += " and PARENT_ORG_ID_ in (:PARENT_ORG_ID_LIST)";
+            paramMap.put("PARENT_ORG_ID_LIST", PARENT_ORG_ID_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_CODE_)) {
+            sql += " and ORG_CODE_ = :ORG_CODE_";
+            paramMap.put("ORG_CODE_", ORG_CODE_);
+        }
+        if (ORG_CODE_LIST != null && ORG_CODE_LIST.size() > 0) {
+            sql += " and ORG_CODE_ in (:ORG_CODE_LIST)";
+            paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_NAME_)) {
+            sql += " and ORG_NAME_like concat('%',:ORG_NAME_,'%')";
+            paramMap.put("ORG_NAME_", ORG_NAME_);
+        }
+        if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
+            sql += " and ORG_NAME_ in (:ORG_NAME_LIST)";
+            paramMap.put("ORG_NAME_LIST", ORG_NAME_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_TYPE_)) {
+            sql += " and ORG_TYPE_ = :ORG_TYPE_";
+            paramMap.put("ORG_TYPE_", ORG_TYPE_);
+        }
+        if (ORG_TYPE_LIST != null && ORG_TYPE_LIST.size() > 0) {
+            sql += " and ORG_TYPE_ in (:ORG_TYPE_LIST)";
+            paramMap.put("ORG_TYPE_LIST", ORG_TYPE_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_CATEGORY_)) {
+            sql += " and ORG_CATEGORY_ = :ORG_CATEGORY_";
+            paramMap.put("ORG_CATEGORY_", ORG_CATEGORY_);
+        }
+        if (ORG_CATEGORY_LIST != null && ORG_CATEGORY_LIST.size() > 0) {
+            sql += " and ORG_CATEGORY_ in (:ORG_CATEGORY_LIST)";
+            paramMap.put("ORG_CATEGORY_LIST", ORG_CATEGORY_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_TAG_)) {
+            List<String> tagList = omTagService.splitTag(ORG_TAG_);
+            if (tagList.size() > 0) {
+                if (orgTagUnion != null && orgTagUnion.equals(false)) {
+                    sql += " and ORG_ID_ in (select ORG_ID_ from (select OBJ_ID_ as ORG_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'ORG' and TAG_ in (:ORG_TAG_LIST)) T group by ORG_ID_ having count(*) >= 1)";
+                    paramMap.put("ORG_TAG_LIST", tagList);
+                }
+                else {
+                    sql += " and ORG_ID_ in (select ORG_ID_ from (select OBJ_ID_ as ORG_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'ORG' and TAG_ in (:ORG_TAG_LIST)) T group by ORG_ID_ having count(*) >= :orgTagCount)";
+                    paramMap.put("ORG_TAG_LIST", tagList);
+                    paramMap.put("orgTagCount", tagList.size());
+                }
+            }
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_1_)) {
+            sql += " and ORG_EXT_ATTR_1_ = :ORG_EXT_ATTR_1_";
+            paramMap.put("ORG_EXT_ATTR_1_", ORG_EXT_ATTR_1_);
+        }
+        if (ORG_EXT_ATTR_1_LIST != null && ORG_EXT_ATTR_1_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_1_ in (:ORG_EXT_ATTR_1_LIST)";
+            paramMap.put("ORG_EXT_ATTR_1_LIST", ORG_EXT_ATTR_1_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_2_)) {
+            sql += " and ORG_EXT_ATTR_2_ = :ORG_EXT_ATTR_2_";
+            paramMap.put("ORG_EXT_ATTR_2_", ORG_EXT_ATTR_2_);
+        }
+        if (ORG_EXT_ATTR_2_LIST != null && ORG_EXT_ATTR_2_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_2_ in (:ORG_EXT_ATTR_2_LIST)";
+            paramMap.put("ORG_EXT_ATTR_2_LIST", ORG_EXT_ATTR_2_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_3_)) {
+            sql += " and ORG_EXT_ATTR_3_ = :ORG_EXT_ATTR_3_";
+            paramMap.put("ORG_EXT_ATTR_3_", ORG_EXT_ATTR_3_);
+        }
+        if (ORG_EXT_ATTR_3_LIST != null && ORG_EXT_ATTR_3_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_3_ in (:ORG_EXT_ATTR_3_LIST)";
+            paramMap.put("ORG_EXT_ATTR_3_LIST", ORG_EXT_ATTR_3_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_4_)) {
+            sql += " and ORG_EXT_ATTR_4_ = :ORG_EXT_ATTR_4_";
+            paramMap.put("ORG_EXT_ATTR_4_", ORG_EXT_ATTR_4_);
+        }
+        if (ORG_EXT_ATTR_4_LIST != null && ORG_EXT_ATTR_4_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_4_ in (:ORG_EXT_ATTR_4_LIST)";
+            paramMap.put("ORG_EXT_ATTR_4_LIST", ORG_EXT_ATTR_4_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_5_)) {
+            sql += " and ORG_EXT_ATTR_5_ = :ORG_EXT_ATTR_5_";
+            paramMap.put("ORG_EXT_ATTR_5_", ORG_EXT_ATTR_5_);
+        }
+        if (ORG_EXT_ATTR_5_LIST != null && ORG_EXT_ATTR_5_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_5_ in (:ORG_EXT_ATTR_5_LIST)";
+            paramMap.put("ORG_EXT_ATTR_5_LIST", ORG_EXT_ATTR_5_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_6_)) {
+            sql += " and ORG_EXT_ATTR_6_ = :ORG_EXT_ATTR_6_";
+            paramMap.put("ORG_EXT_ATTR_6_", ORG_EXT_ATTR_6_);
+        }
+        if (ORG_EXT_ATTR_6_LIST != null && ORG_EXT_ATTR_6_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_6_ in (:ORG_EXT_ATTR_6_LIST)";
+            paramMap.put("ORG_EXT_ATTR_6_LIST", ORG_EXT_ATTR_6_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_7_)) {
+            sql += " and ORG_EXT_ATTR_7_ = :ORG_EXT_ATTR_7_";
+            paramMap.put("ORG_EXT_ATTR_7_", ORG_EXT_ATTR_7_);
+        }
+        if (ORG_EXT_ATTR_7_LIST != null && ORG_EXT_ATTR_7_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_7_ in (:ORG_EXT_ATTR_7_LIST)";
+            paramMap.put("ORG_EXT_ATTR_7_LIST", ORG_EXT_ATTR_7_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_EXT_ATTR_8_)) {
+            sql += " and ORG_EXT_ATTR_8_ = :ORG_EXT_ATTR_8_";
+            paramMap.put("ORG_EXT_ATTR_8_", ORG_EXT_ATTR_8_);
+        }
+        if (ORG_EXT_ATTR_8_LIST != null && ORG_EXT_ATTR_8_LIST.size() > 0) {
+            sql += " and ORG_EXT_ATTR_8_ in (:ORG_EXT_ATTR_8_LIST)";
+            paramMap.put("ORG_EXT_ATTR_8_LIST", ORG_EXT_ATTR_8_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORG_STATUS_)) {
+            sql += " and ORG_STATUS_ = :ORG_STATUS_";
+            paramMap.put("ORG_STATUS_", ORG_STATUS_);
+        }
+        if (ORG_STATUS_LIST != null && ORG_STATUS_LIST.size() > 0) {
+            sql += " and ORG_STATUS_ in (:ORG_STATUS_LIST)";
+            paramMap.put("ORG_STATUS_LIST", ORG_STATUS_LIST);
+        }
+
         if (StringUtils.isNotEmpty(withinOrgId)) {
             sql += " and ORG_ID_ in (with recursive CTE as (select ORG_ID_, PARENT_ORG_ID_ from OM_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_ and ORG_ID_ = :withinOrgId union all select OM_ORG.ORG_ID_, OM_ORG.PARENT_ORG_ID_ from OM_ORG inner join CTE on ORGN_SET_ID_ = :ORGN_SET_ID_ and CTE.ORG_ID_ = OM_ORG.PARENT_ORG_ID_) select ORG_ID_ from CTE)";
             paramMap.put("withinOrgId", withinOrgId);
         }
+        if (orgRootOnly != null && orgRootOnly) {
+            sql += " and (PARENT_ORG_ID_ is null or PARENT_ORG_ID_ = '')";
+        }
 
         if (!count) {
-            sql += " order by ORDER_";
+            sql += " order by ORG_ID_, ORDER_, EMP_ID_";
         }
 
         return new OdSqlCriteria(sql, paramMap);
@@ -309,7 +511,7 @@ public class OmEmpServiceImpl implements OmEmpService {
     }
 
     @Override
-    public int insertEmp(String ORGN_SET_ID_, String EMP_ID_, String ORG_ID_, String EMP_CODE_, String EMP_NAME_, String PASSWORD_, String PASSWORD_RESET_REQ_, String PARTY_, String EMP_LEVEL_, String GENDER_, Date BIRTH_DATE_, String TEL_, String EMAIL_, Date IN_DATE_, Date OUT_DATE_, String CATEGORY_, String MEMO_, String EMP_TAG_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, String EXT_ATTR_7_, String EXT_ATTR_8_, Integer ORDER_, String EMP_STATUS_, Date CREATION_DATE_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
+    public int insertEmp(String ORGN_SET_ID_, String EMP_ID_, String ORG_ID_, String EMP_CODE_, String EMP_NAME_, String PASSWORD_, String PASSWORD_RESET_REQ_, String PARTY_, String EMP_LEVEL_, String GENDER_, Date BIRTH_DATE_, String TEL_, String EMAIL_, Date IN_DATE_, Date OUT_DATE_, String EMP_CATEGORY_, String MEMO_, String EMP_TAG_, String EMP_EXT_ATTR_1_, String EMP_EXT_ATTR_2_, String EMP_EXT_ATTR_3_, String EMP_EXT_ATTR_4_, String EMP_EXT_ATTR_5_, String EMP_EXT_ATTR_6_, String EMP_EXT_ATTR_7_, String EMP_EXT_ATTR_8_, Integer ORDER_, String EMP_STATUS_, Date CREATION_DATE_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
         if (StringUtils.isEmpty(ORGN_SET_ID_)) {
             throw new RuntimeException("errors.orgnSetRequired");
         }
@@ -317,12 +519,12 @@ public class OmEmpServiceImpl implements OmEmpService {
         EMP_TAG_ = StringUtils.join(omTagService.splitTag(EMP_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, EMP_ID_, "EMP", EMP_TAG_);
 
-        String sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, CATEGORY_, MEMO_, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
-        return omJdbcTemplate.update(sql, ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, CATEGORY_, MEMO_, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
+        String sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
+        return omJdbcTemplate.update(sql, ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
     }
 
     @Override
-    public int updateEmp(String ORGN_SET_ID_, String EMP_ID_, String EMP_CODE_, String EMP_NAME_, String PARTY_, String EMP_LEVEL_, String GENDER_, Date BIRTH_DATE_, String TEL_, String EMAIL_, Date IN_DATE_, Date OUT_DATE_, String CATEGORY_, String MEMO_, String EMP_TAG_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, String EXT_ATTR_7_, String EXT_ATTR_8_, Integer ORDER_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
+    public int updateEmp(String ORGN_SET_ID_, String EMP_ID_, String EMP_CODE_, String EMP_NAME_, String PARTY_, String EMP_LEVEL_, String GENDER_, Date BIRTH_DATE_, String TEL_, String EMAIL_, Date IN_DATE_, Date OUT_DATE_, String EMP_CATEGORY_, String MEMO_, String EMP_TAG_, String EMP_EXT_ATTR_1_, String EMP_EXT_ATTR_2_, String EMP_EXT_ATTR_3_, String EMP_EXT_ATTR_4_, String EMP_EXT_ATTR_5_, String EMP_EXT_ATTR_6_, String EMP_EXT_ATTR_7_, String EMP_EXT_ATTR_8_, Integer ORDER_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_) {
         if (StringUtils.isEmpty(ORGN_SET_ID_)) {
             throw new RuntimeException("errors.orgnSetRequired");
         }
@@ -330,8 +532,8 @@ public class OmEmpServiceImpl implements OmEmpService {
         EMP_TAG_ = StringUtils.join(omTagService.splitTag(EMP_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, EMP_ID_, "EMP", EMP_TAG_);
 
-        String sql = "update OM_EMP set EMP_CODE_ = NULLIF(?, ''), EMP_NAME_ = NULLIF(?, ''), PARTY_ = NULLIF(?, ''), EMP_LEVEL_ = NULLIF(?, ''), GENDER_ = NULLIF(?, ''), BIRTH_DATE_ = NULLIF(?, ''), TEL_ = NULLIF(?, ''), EMAIL_ = NULLIF(?, ''), IN_DATE_ = NULLIF(?, ''), OUT_DATE_ = NULLIF(?, ''), CATEGORY_ = NULLIF(?, ''), MEMO_ = NULLIF(?, ''), EMP_TAG_ = NULLIF(?, ''), EXT_ATTR_1_ = NULLIF(?, ''), EXT_ATTR_2_ = NULLIF(?, ''), EXT_ATTR_3_ = NULLIF(?, ''), EXT_ATTR_4_ = NULLIF(?, ''), EXT_ATTR_5_ = NULLIF(?, ''), EXT_ATTR_6_ = NULLIF(?, ''), EXT_ATTR_7_ = NULLIF(?, ''), EXT_ATTR_8_ = NULLIF(?, ''), ORDER_ = NULLIF(?, ''), UPDATE_DATE_ = NULLIF(?, ''), OPERATOR_ID_ = NULLIF(?, ''), OPERATOR_NAME_ = NULLIF(?, '') where ORGN_SET_ID_ = ? and EMP_ID_ = ?";
-        return omJdbcTemplate.update(sql, EMP_CODE_, EMP_NAME_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, CATEGORY_, MEMO_, EMP_TAG_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, EXT_ATTR_7_, EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, EMP_ID_);
+        String sql = "update OM_EMP set EMP_CODE_ = NULLIF(?, ''), EMP_NAME_ = NULLIF(?, ''), PARTY_ = NULLIF(?, ''), EMP_LEVEL_ = NULLIF(?, ''), GENDER_ = NULLIF(?, ''), BIRTH_DATE_ = NULLIF(?, ''), TEL_ = NULLIF(?, ''), EMAIL_ = NULLIF(?, ''), IN_DATE_ = NULLIF(?, ''), OUT_DATE_ = NULLIF(?, ''), EMP_CATEGORY_ = NULLIF(?, ''), MEMO_ = NULLIF(?, ''), EMP_TAG_ = NULLIF(?, ''), EMP_EXT_ATTR_1_ = NULLIF(?, ''), EMP_EXT_ATTR_2_ = NULLIF(?, ''), EMP_EXT_ATTR_3_ = NULLIF(?, ''), EMP_EXT_ATTR_4_ = NULLIF(?, ''), EMP_EXT_ATTR_5_ = NULLIF(?, ''), EMP_EXT_ATTR_6_ = NULLIF(?, ''), EMP_EXT_ATTR_7_ = NULLIF(?, ''), EMP_EXT_ATTR_8_ = NULLIF(?, ''), ORDER_ = NULLIF(?, ''), UPDATE_DATE_ = NULLIF(?, ''), OPERATOR_ID_ = NULLIF(?, ''), OPERATOR_NAME_ = NULLIF(?, '') where ORGN_SET_ID_ = ? and EMP_ID_ = ?";
+        return omJdbcTemplate.update(sql, EMP_CODE_, EMP_NAME_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, EMP_ID_);
     }
 
     @Override
@@ -340,7 +542,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        String sql = "update OM_EMP set PASSWORD_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_ID_ = ? and PASSWORD_ = ?";
+        String sql = "update OM_EMP set PASSWORD_ = ?, PASSWORD_RESET_REQ_ = '0', UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_ID_ = ? and PASSWORD_ = ?";
         return omJdbcTemplate.update(sql, NEW_PASSWORD_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, EMP_ID_, OLD_PASSWORD_);
     }
 

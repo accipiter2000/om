@@ -122,14 +122,14 @@ public class OmCodeServiceImpl implements OmCodeService {
         }
 
         if (!count) {
-            sql += " order by CATEGORY_, ORDER_";
+            sql += " order by CATEGORY_, ORDER_, CODE_ID_";
         }
 
         return new OdSqlCriteria(sql, paramMap);
     }
 
     @Override
-    public List<Map<String, Object>> selectParentCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean includeSelf, Boolean recursive) {
+    public List<Map<String, Object>> selectParentCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean recursive, Boolean includeSelf) {
         if (StringUtils.isEmpty(CODE_ID_)) {
             throw new RuntimeException("errors.idRequired");
         }
@@ -190,7 +190,7 @@ public class OmCodeServiceImpl implements OmCodeService {
     }
 
     @Override
-    public List<Map<String, Object>> selectChildCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean includeSelf, Boolean recursive) {
+    public List<Map<String, Object>> selectChildCode(String CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean recursive, Boolean includeSelf) {
         if (StringUtils.isEmpty(CODE_ID_)) {
             throw new RuntimeException("errors.idRequired");
         }

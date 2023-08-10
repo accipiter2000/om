@@ -52,8 +52,8 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
     }
 
     @Override
-    public List<Map<String, Object>> selectOrgnSet(String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaOrgnSet(false, ORGN_SET_ID_, PARENT_ORGN_SET_ID_, ORGN_SET_CODE_, ORGN_SET_NAME_, ORGN_SET_STATUS_LIST, rootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
+    public List<Map<String, Object>> selectOrgnSet(String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaOrgnSet(false, ORGN_SET_ID_, ORGN_SET_ID_LIST, PARENT_ORGN_SET_ID_, PARENT_ORGN_SET_ID_LIST, ORGN_SET_CODE_, ORGN_SET_CODE_LIST, ORGN_SET_NAME_, ORGN_SET_NAME_LIST, ORGN_SET_STATUS_, ORGN_SET_STATUS_LIST, orgnSetRootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -66,8 +66,8 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
     }
 
     @Override
-    public int countOrgnSet(String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaOrgnSet(true, ORGN_SET_ID_, PARENT_ORGN_SET_ID_, ORGN_SET_CODE_, ORGN_SET_NAME_, ORGN_SET_STATUS_LIST, rootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
+    public int countOrgnSet(String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaOrgnSet(true, ORGN_SET_ID_, ORGN_SET_ID_LIST, PARENT_ORGN_SET_ID_, PARENT_ORGN_SET_ID_LIST, ORGN_SET_CODE_, ORGN_SET_CODE_LIST, ORGN_SET_NAME_, ORGN_SET_NAME_LIST, ORGN_SET_STATUS_, ORGN_SET_STATUS_LIST, orgnSetRootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -75,7 +75,7 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
         return namedParameterJdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
-    private OdSqlCriteria buildSqlCriteriaOrgnSet(boolean count, String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
+    private OdSqlCriteria buildSqlCriteriaOrgnSet(boolean count, String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
         String sql;
         Map<String, Object> paramMap = new HashMap<String, Object>();
 
@@ -90,36 +90,56 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
             sql += " and ORGN_SET_ID_ = :ORGN_SET_ID_";
             paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
         }
+        if (ORGN_SET_ID_LIST != null && ORGN_SET_ID_LIST.size() > 0) {
+            sql += " and ORGN_SET_ID_ in (:ORGN_SET_ID_LIST)";
+            paramMap.put("ORGN_SET_ID_LIST", ORGN_SET_ID_LIST);
+        }
         if (StringUtils.isNotEmpty(PARENT_ORGN_SET_ID_)) {
             sql += " and PARENT_ORGN_SET_ID_ = :PARENT_ORGN_SET_ID_";
             paramMap.put("PARENT_ORGN_SET_ID_", PARENT_ORGN_SET_ID_);
+        }
+        if (PARENT_ORGN_SET_ID_LIST != null && PARENT_ORGN_SET_ID_LIST.size() > 0) {
+            sql += " and PARENT_ORGN_SET_ID_ in (:PARENT_ORGN_SET_ID_LIST)";
+            paramMap.put("PARENT_ORGN_SET_ID_LIST", PARENT_ORGN_SET_ID_LIST);
         }
         if (StringUtils.isNotEmpty(ORGN_SET_CODE_)) {
             sql += " and ORGN_SET_CODE_ = :ORGN_SET_CODE_";
             paramMap.put("ORGN_SET_CODE_", ORGN_SET_CODE_);
         }
+        if (ORGN_SET_CODE_LIST != null && ORGN_SET_CODE_LIST.size() > 0) {
+            sql += " and ORGN_SET_CODE_ in (:ORGN_SET_CODE_LIST)";
+            paramMap.put("ORGN_SET_CODE_LIST", ORGN_SET_CODE_LIST);
+        }
         if (StringUtils.isNotEmpty(ORGN_SET_NAME_)) {
             sql += " and ORGN_SET_NAME_like concat('%',:ORGN_SET_NAME_,'%')";
             paramMap.put("ORGN_SET_NAME_", ORGN_SET_NAME_);
+        }
+        if (ORGN_SET_NAME_LIST != null && ORGN_SET_NAME_LIST.size() > 0) {
+            sql += " and ORGN_SET_NAME_ in (:ORGN_SET_NAME_LIST)";
+            paramMap.put("ORGN_SET_NAME_LIST", ORGN_SET_NAME_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORGN_SET_STATUS_)) {
+            sql += " and ORGN_SET_STATUS_ = :ORGN_SET_STATUS_";
+            paramMap.put("ORGN_SET_STATUS_", ORGN_SET_STATUS_);
         }
         if (ORGN_SET_STATUS_LIST != null && ORGN_SET_STATUS_LIST.size() > 0) {
             sql += " and ORGN_SET_STATUS_ in (:ORGN_SET_STATUS_LIST)";
             paramMap.put("ORGN_SET_STATUS_LIST", ORGN_SET_STATUS_LIST);
         }
 
-        if (rootOnly != null && rootOnly) {
+        if (orgnSetRootOnly != null && orgnSetRootOnly) {
             sql += " and (PARENT_ORGN_SET_ID_ is null or PARENT_ORGN_SET_ID_ = '')";
         }
 
         if (!count) {
-            sql += " order by ORDER_";
+            sql += " order by ORDER_, ORGN_SET_ID_";
         }
 
         return new OdSqlCriteria(sql, paramMap);
     }
 
     @Override
-    public List<Map<String, Object>> selectParentOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean includeSelf, Boolean recursive, String OPERATOR_ID_, String OPERATOR_NAME_) {
+    public List<Map<String, Object>> selectParentOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_) {
         if (StringUtils.isEmpty(ORGN_SET_ID_)) {
             throw new RuntimeException("errors.idRequired");
         }
@@ -132,15 +152,30 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
             sql += " and ORGN_SET_CODE_ = :ORGN_SET_CODE_";
             paramMap.put("ORGN_SET_CODE_", ORGN_SET_CODE_);
         }
+        if (ORGN_SET_CODE_LIST != null && ORGN_SET_CODE_LIST.size() > 0) {
+            sql += " and ORGN_SET_CODE_ in (:ORGN_SET_CODE_LIST)";
+            paramMap.put("ORGN_SET_CODE_LIST", ORGN_SET_CODE_LIST);
+        }
         if (StringUtils.isNotEmpty(ORGN_SET_NAME_)) {
             sql += " and ORGN_SET_NAME_like concat('%',:ORGN_SET_NAME_,'%')";
             paramMap.put("ORGN_SET_NAME_", ORGN_SET_NAME_);
+        }
+        if (ORGN_SET_NAME_LIST != null && ORGN_SET_NAME_LIST.size() > 0) {
+            sql += " and ORGN_SET_NAME_ in (:ORGN_SET_NAME_LIST)";
+            paramMap.put("ORGN_SET_NAME_LIST", ORGN_SET_NAME_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORGN_SET_STATUS_)) {
+            sql += " and ORGN_SET_STATUS_ = :ORGN_SET_STATUS_";
+            paramMap.put("ORGN_SET_STATUS_", ORGN_SET_STATUS_);
         }
         if (ORGN_SET_STATUS_LIST != null && ORGN_SET_STATUS_LIST.size() > 0) {
             sql += " and ORGN_SET_STATUS_ in (:ORGN_SET_STATUS_LIST)";
             paramMap.put("ORGN_SET_STATUS_LIST", ORGN_SET_STATUS_LIST);
         }
 
+        if (orgnSetRootOnly != null && orgnSetRootOnly) {
+            sql += " and (PARENT_ORGN_SET_ID_ is null or PARENT_ORGN_SET_ID_ = '')";
+        }
         if (includeSelf == null || includeSelf.equals(false)) {
             sql += " and ORGN_SET_ID_ != :ORGN_SET_ID_";
         }
@@ -156,7 +191,7 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
     }
 
     @Override
-    public List<Map<String, Object>> selectChildOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean includeSelf, Boolean recursive, String OPERATOR_ID_, String OPERATOR_NAME_) {
+    public List<Map<String, Object>> selectChildOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_) {
         if (StringUtils.isEmpty(ORGN_SET_ID_)) {
             throw new RuntimeException("errors.idRequired");
         }
@@ -169,15 +204,30 @@ public class OmOrgnSetServiceImpl implements OmOrgnSetService {
             sql += " and ORGN_SET_CODE_ = :ORGN_SET_CODE_";
             paramMap.put("ORGN_SET_CODE_", ORGN_SET_CODE_);
         }
+        if (ORGN_SET_CODE_LIST != null && ORGN_SET_CODE_LIST.size() > 0) {
+            sql += " and ORGN_SET_CODE_ in (:ORGN_SET_CODE_LIST)";
+            paramMap.put("ORGN_SET_CODE_LIST", ORGN_SET_CODE_LIST);
+        }
         if (StringUtils.isNotEmpty(ORGN_SET_NAME_)) {
             sql += " and ORGN_SET_NAME_like concat('%',:ORGN_SET_NAME_,'%')";
             paramMap.put("ORGN_SET_NAME_", ORGN_SET_NAME_);
+        }
+        if (ORGN_SET_NAME_LIST != null && ORGN_SET_NAME_LIST.size() > 0) {
+            sql += " and ORGN_SET_NAME_ in (:ORGN_SET_NAME_LIST)";
+            paramMap.put("ORGN_SET_NAME_LIST", ORGN_SET_NAME_LIST);
+        }
+        if (StringUtils.isNotEmpty(ORGN_SET_STATUS_)) {
+            sql += " and ORGN_SET_STATUS_ = :ORGN_SET_STATUS_";
+            paramMap.put("ORGN_SET_STATUS_", ORGN_SET_STATUS_);
         }
         if (ORGN_SET_STATUS_LIST != null && ORGN_SET_STATUS_LIST.size() > 0) {
             sql += " and ORGN_SET_STATUS_ in (:ORGN_SET_STATUS_LIST)";
             paramMap.put("ORGN_SET_STATUS_LIST", ORGN_SET_STATUS_LIST);
         }
 
+        if (orgnSetRootOnly != null && orgnSetRootOnly) {
+            sql += " and (PARENT_ORGN_SET_ID_ is null or PARENT_ORGN_SET_ID_ = '')";
+        }
         if (includeSelf == null || includeSelf.equals(false)) {
             sql += " and ORGN_SET_ID_ != :ORGN_SET_ID_";
         }
