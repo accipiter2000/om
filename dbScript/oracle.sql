@@ -1,5 +1,5 @@
-prompt PL/SQL Developer Export User Objects for user OM@OM
-prompt Created by Administrator on 2023年8月10日
+prompt PL/SQL Developer Export User Objects for user CONTRACT@CONTRACT
+prompt Created by Administrator on 2024年3月1日
 set define off
 spool 1.log
 
@@ -1047,3 +1047,117 @@ select T.ORGN_SET_ID_, T.TAG_ID_, T.OBJ_ID_, T.OBJ_TYPE_, T.TAG_, ORGN_SET.ORGN_
 prompt Done
 spool off
 set define on
+
+
+
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('86c1b27aa7454d92aae95f45c2b5d674', null, 'BOOLEAN', '0', '否', null, null, null, null, null, null, 2);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('06c0c73bbfb14509809f362336d29c90', null, 'BOOLEAN', '1', '是', null, null, null, null, null, null, 1);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('0863534f48734ec3aa43fb11ab9e469f', null, 'CATEGORY', '2', '外部', null, null, null, null, null, null, 2);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('5117b02153454202a9243e2e8543a7fa', null, 'CATEGORY', '0', '正常', null, null, null, null, null, null, 0);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('1512f698c21a4e8299f49adb1ea1c831', null, 'CATEGORY', '1', '系统', null, null, null, null, null, null, 1);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('08713f1bf0144a15bcd8a05e235d404d', null, 'EMP_LEVEL', '150', '科级', null, null, null, null, null, null, 150);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('ecac371e0f144ca0a8ebc8c156ffd0b4', null, 'EMP_LEVEL', '130', '处级', null, null, null, null, null, null, 130);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('6b03bb7d991948d5b5eb76a2ce3fd694', null, 'EMP_LEVEL', '120', '副部级', null, null, null, null, null, null, 120);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('6231742f12024d0b9809004b0d294614', null, 'EMP_LEVEL', '140', '副处级', null, null, null, null, null, null, 140);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('f1448051a8b24a80be4ca10d7d36c40a', null, 'EMP_LEVEL', '110', '部级', null, null, null, null, null, null, 110);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('4f59c166a29d449598c020a32d36882c', null, 'EMP_LEVEL', '200', '职工', null, null, null, null, null, null, 200);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('75d7e40a563e486e9fe54bb5891267d1', null, 'EMP_LEVEL', '160', '副科级', null, null, null, null, null, null, 160);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('7783becd619d486b93fc8f0a9b03bdd5', null, 'EMP_LEVEL', '170', '一般干部', null, null, null, null, null, null, 170);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('6785a8f89a7649afb609468fc887da71', null, 'EMP_RELATION', '1.1', '领导-业务领导', null, null, null, null, null, null, 11);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('6e9915a60c994145a596db9baf53e178', null, 'EMP_RELATION', '1.2', '领导-人力资源领导', null, null, null, null, null, null, 12);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('06642c3551454a1a8744e08f56f83ea9', null, 'GENDER', '1', '男', null, null, null, null, null, null, 1);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('bcd737c3ed274758ba3cf252d6b23b84', null, 'GENDER', '0', '女', null, null, null, null, null, null, 2);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('0ae4aace47c2424f85eeb2fbda9d7915', null, 'OPERATION', 'INSERT', '新增', null, null, null, null, null, null, 1);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('c92155483f7e42fab9f8f0dd088a811b', null, 'OPERATION', 'UPDATE', '修改', null, null, null, null, null, null, 2);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('4f6513737d82417183b3922a5f3b4525', null, 'OPERATION', 'DELETE', '删除', null, null, null, null, null, null, 3);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('d879e829e4ca4168b8945e229be25a5e', null, 'ORG_LEADER_TYPE', '1', '正职领导', null, null, null, null, null, null, 1);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('9b91591adfa34685b814bf2af361af6c', null, 'ORG_LEADER_TYPE', '3', '高管', null, null, null, null, null, null, 3);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('f0fd53361f684c80ab359abca2f92641', null, 'ORG_LEADER_TYPE', '9', '职员', null, null, null, null, null, null, 9);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('bb3ae43db64f42ffa93d47f999ef50f6', null, 'ORG_LEADER_TYPE', '2', '副职领导', null, null, null, null, null, null, 2);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('a28b192c845546e3a3197f711b376a2f', null, 'ORG_TYPE', '9', '一般机构', null, null, null, null, null, null, 9);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('123451b2f5334014825c26325d191df5', null, 'ORG_TYPE', '98', '虚拟机构', null, null, null, null, null, null, 98);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('30f80cc593bf4822bd2b9f118324b222', null, 'ORG_TYPE', '5', '工厂', null, null, null, null, null, null, 5);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('9bf936814482430ca02dd842c14d8dfa', null, 'ORG_TYPE', '1', '总公司', null, null, null, null, null, null, 1);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('048651b2f5334014825c26325d191df7', null, 'ORG_TYPE', '99', '相关其它单位', null, null, null, null, null, null, 99);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('86f4d7e51eec498b8903e7e19d5828f1', null, 'ORG_TYPE', '2', '公司直属机构', null, null, null, null, null, null, 2);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('720b7b2b11cf42aa842f845fedf47f7a', null, 'ORG_TYPE', '4', '分公司', null, null, null, null, null, null, 4);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('02f11dbe1f664c08a72c2265b068d49a', null, 'ORG_TYPE', '3', '独立处室', null, null, null, null, null, null, 3);
+
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('51fb2b2afde24460b0ebf100829ab4d1', null, 'STATUS', '0', '失效', null, null, null, null, null, null, 2);
+insert into OM_CODE (CODE_ID_, PARENT_CODE_ID_, CATEGORY_, CODE_, NAME_, EXT_ATTR_1_, EXT_ATTR_2_, EXT_ATTR_3_, EXT_ATTR_4_, EXT_ATTR_5_, EXT_ATTR_6_, ORDER_)
+values ('bffd5233b0a14f0aa0068c191e53a37c', null, 'STATUS', '1', '生效', null, null, null, null, null, null, 1);
+
+commit;
+
+insert into OM_ORGN_SET (orgn_set_id_, parent_orgn_set_id_, orgn_set_code_, orgn_set_name_, allow_sync_, memo_, order_, orgn_set_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', null, 'DEMO', 'DEMO', '1', null, 2, '1', null, null, null, null);
+commit;
+
+insert into OM_DUTY (orgn_set_id_, duty_id_, duty_code_, duty_name_, duty_category_, memo_, duty_tag_, duty_ext_attr_1_, duty_ext_attr_2_, duty_ext_attr_3_, duty_ext_attr_4_, duty_ext_attr_5_, duty_ext_attr_6_, duty_ext_attr_7_, duty_ext_attr_8_, order_, duty_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', '87ba89fae2154cf38aa7a0ece2cff4ee', 'SYSADMIN', '系统管理员', '1', null, null, null, null, null, null, null, null, null, null, 0, '1', to_timestamp('07-04-2022 11:49:07.226000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:49:15.158000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+insert into OM_DUTY (orgn_set_id_, duty_id_, duty_code_, duty_name_, duty_category_, memo_, duty_tag_, duty_ext_attr_1_, duty_ext_attr_2_, duty_ext_attr_3_, duty_ext_attr_4_, duty_ext_attr_5_, duty_ext_attr_6_, duty_ext_attr_7_, duty_ext_attr_8_, order_, duty_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', 'c0da7bb7a5c24ed5887d79de4d20b937', 'SYS', '系统', '1', null, null, null, null, null, null, null, null, null, null, 1, '1', to_timestamp('07-04-2022 11:51:20.791000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:51:20.791000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+commit;
+
+insert into OM_ORG (orgn_set_id_, org_id_, parent_org_id_, org_code_, org_name_, org_abbr_name_, org_type_, org_category_, memo_, org_tag_, org_ext_attr_1_, org_ext_attr_2_, org_ext_attr_3_, org_ext_attr_4_, org_ext_attr_5_, org_ext_attr_6_, org_ext_attr_7_, org_ext_attr_8_, order_, org_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', '35c600cf16384562bf756183cefcc10b', null, 'SYSTEM', '系统', null, '99', '1', null, null, null, null, null, null, null, null, null, null, 0, '1', to_timestamp('07-04-2022 11:53:59.142000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:53:59.142000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+commit;
+
+insert into OM_EMP (orgn_set_id_, emp_id_, org_id_, emp_code_, emp_name_, password_, password_reset_req_, party_, emp_level_, gender_, birth_date_, tel_, email_, in_date_, out_date_, emp_category_, memo_, emp_tag_, emp_ext_attr_1_, emp_ext_attr_2_, emp_ext_attr_3_, emp_ext_attr_4_, emp_ext_attr_5_, emp_ext_attr_6_, emp_ext_attr_7_, emp_ext_attr_8_, order_, emp_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', 'e984ef803d2a4767a68c57fd968233dc', '35c600cf16384562bf756183cefcc10b', 'DEMO', 'DEMO', 'cfcd208495d565ef66e7dff9f98764da', '0', null, null, null, null, null, null, null, null, '1', null, null, null, null, null, null, null, null, null, null, 1, '1', to_timestamp('07-04-2022 11:59:46.267000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:59:46.267000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+insert into OM_EMP (orgn_set_id_, emp_id_, org_id_, emp_code_, emp_name_, password_, password_reset_req_, party_, emp_level_, gender_, birth_date_, tel_, email_, in_date_, out_date_, emp_category_, memo_, emp_tag_, emp_ext_attr_1_, emp_ext_attr_2_, emp_ext_attr_3_, emp_ext_attr_4_, emp_ext_attr_5_, emp_ext_attr_6_, emp_ext_attr_7_, emp_ext_attr_8_, order_, emp_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', 'ffd6576349e4426b8d79df9f180fdf99', '35c600cf16384562bf756183cefcc10b', 'SYSADMIN', '系统管理员', 'cfcd208495d565ef66e7dff9f98764da', '0', null, null, '1', null, null, null, null, null, '1', null, null, null, null, null, null, null, null, null, null, 0, '1', to_timestamp('09-03-2022 19:34:48.046000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('10-06-2022 14:05:07.774000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+commit;
+
+insert into OM_POSI (orgn_set_id_, posi_id_, org_id_, duty_id_, posi_code_, posi_name_, org_leader_type_, posi_category_, memo_, posi_tag_, posi_ext_attr_1_, posi_ext_attr_2_, posi_ext_attr_3_, posi_ext_attr_4_, posi_ext_attr_5_, posi_ext_attr_6_, posi_ext_attr_7_, posi_ext_attr_8_, order_, posi_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', '15c414e0d248443ea64073d2edca0dae', '35c600cf16384562bf756183cefcc10b', null, 'SYS', '系统', null, '1', null, null, null, null, null, null, null, null, null, null, 1, '1', to_timestamp('07-04-2022 11:59:20.840000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:59:20.840000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+insert into OM_POSI (orgn_set_id_, posi_id_, org_id_, duty_id_, posi_code_, posi_name_, org_leader_type_, posi_category_, memo_, posi_tag_, posi_ext_attr_1_, posi_ext_attr_2_, posi_ext_attr_3_, posi_ext_attr_4_, posi_ext_attr_5_, posi_ext_attr_6_, posi_ext_attr_7_, posi_ext_attr_8_, order_, posi_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', 'f1cb62f8d77449959d35779361f0ce1d', '35c600cf16384562bf756183cefcc10b', '87ba89fae2154cf38aa7a0ece2cff4ee', 'SYSADMIN', '系统管理员', null, '1', null, null, null, null, null, null, null, null, null, null, 0, '1', to_timestamp('07-04-2022 11:56:13.534000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:56:13.534000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+commit;
+
+insert into OM_POSI_EMP (orgn_set_id_, posi_emp_id_, posi_id_, emp_id_, main_, posi_emp_category_, memo_, posi_emp_tag_, posi_emp_ext_attr_1_, posi_emp_ext_attr_2_, posi_emp_ext_attr_3_, posi_emp_ext_attr_4_, posi_emp_ext_attr_5_, posi_emp_ext_attr_6_, posi_emp_ext_attr_7_, posi_emp_ext_attr_8_, order_, posi_emp_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', 'fce3a7fa3a4140b6b3a2a1a38b077a7a', 'f1cb62f8d77449959d35779361f0ce1d', 'ffd6576349e4426b8d79df9f180fdf99', '1', null, null, null, null, null, null, null, null, null, null, null, null, '1', to_timestamp('07-04-2022 11:57:25.641000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('07-04-2022 11:57:25.641000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'bc5ff1fdfea645d8b277f60091340084', '系统管理员');
+insert into OM_POSI_EMP (orgn_set_id_, posi_emp_id_, posi_id_, emp_id_, main_, posi_emp_category_, memo_, posi_emp_tag_, posi_emp_ext_attr_1_, posi_emp_ext_attr_2_, posi_emp_ext_attr_3_, posi_emp_ext_attr_4_, posi_emp_ext_attr_5_, posi_emp_ext_attr_6_, posi_emp_ext_attr_7_, posi_emp_ext_attr_8_, order_, posi_emp_status_, creation_date_, update_date_, operator_id_, operator_name_)
+values ('75a4c87e7cdc4999b6f090344335a5fc', '94e44e4f2f5146eca13a47673d3466b0', '15c414e0d248443ea64073d2edca0dae', 'e984ef803d2a4767a68c57fd968233dc', '0', null, null, null, null, null, null, null, null, null, null, null, null, '1', to_timestamp('25-07-2023 23:01:53.220000', 'dd-mm-yyyy hh24:mi:ss.ff'), to_timestamp('25-07-2023 23:01:53.220000', 'dd-mm-yyyy hh24:mi:ss.ff'), 'ffd6576349e4426b8d79df9f180fdf99', '系统管理员');
+commit;
