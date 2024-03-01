@@ -270,7 +270,7 @@ public class OmEmpRelationServiceImpl implements OmEmpRelationService {
             paramMap.put("UPPER_EMP_CODE_LIST", UPPER_EMP_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(UPPER_EMP_NAME_)) {
-            sql += " and UPPER_EMP_NAME_like concat('%',:UPPER_EMP_NAME_,'%')";
+            sql += " and UPPER_EMP_NAME_ like concat('%',:UPPER_EMP_NAME_,'%')";
             paramMap.put("UPPER_EMP_NAME_", UPPER_EMP_NAME_);
         }
         if (UPPER_EMP_NAME_LIST != null && UPPER_EMP_NAME_LIST.size() > 0) {
@@ -397,7 +397,7 @@ public class OmEmpRelationServiceImpl implements OmEmpRelationService {
             paramMap.put("UPPER_ORG_CODE_LIST", UPPER_ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(UPPER_ORG_NAME_)) {
-            sql += " and UPPER_ORG_NAME_like concat('%',:UPPER_ORG_NAME_,'%')";
+            sql += " and UPPER_ORG_NAME_ like concat('%',:UPPER_ORG_NAME_,'%')";
             paramMap.put("UPPER_ORG_NAME_", UPPER_ORG_NAME_);
         }
         if (UPPER_ORG_NAME_LIST != null && UPPER_ORG_NAME_LIST.size() > 0) {
@@ -532,7 +532,7 @@ public class OmEmpRelationServiceImpl implements OmEmpRelationService {
             paramMap.put("LOWER_EMP_CODE_LIST", LOWER_EMP_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(LOWER_EMP_NAME_)) {
-            sql += " and LOWER_EMP_NAME_like concat('%',:LOWER_EMP_NAME_,'%')";
+            sql += " and LOWER_EMP_NAME_ like concat('%',:LOWER_EMP_NAME_,'%')";
             paramMap.put("LOWER_EMP_NAME_", LOWER_EMP_NAME_);
         }
         if (LOWER_EMP_NAME_LIST != null && LOWER_EMP_NAME_LIST.size() > 0) {
@@ -659,7 +659,7 @@ public class OmEmpRelationServiceImpl implements OmEmpRelationService {
             paramMap.put("LOWER_ORG_CODE_LIST", LOWER_ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(LOWER_ORG_NAME_)) {
-            sql += " and LOWER_ORG_NAME_like concat('%',:LOWER_ORG_NAME_,'%')";
+            sql += " and LOWER_ORG_NAME_ like concat('%',:LOWER_ORG_NAME_,'%')";
             paramMap.put("LOWER_ORG_NAME_", LOWER_ORG_NAME_);
         }
         if (LOWER_ORG_NAME_LIST != null && LOWER_ORG_NAME_LIST.size() > 0) {
@@ -855,7 +855,7 @@ public class OmEmpRelationServiceImpl implements OmEmpRelationService {
         EMP_RELATION_TAG_ = StringUtils.join(omTagService.splitTag(EMP_RELATION_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, EMP_RELATION_ID_, "EMP_RELATION", EMP_RELATION_TAG_);
 
-        String sql = "insert into OM_EMP_RELATION (ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_CATEGORY_, MEMO_, EMP_RELATION_TAG_, EMP_RELATION_EXT_ATTR_1_, EMP_RELATION_EXT_ATTR_2_, EMP_RELATION_EXT_ATTR_3_, EMP_RELATION_EXT_ATTR_4_, EMP_RELATION_EXT_ATTR_5_, EMP_RELATION_EXT_ATTR_6_, EMP_RELATION_EXT_ATTR_7_, EMP_RELATION_EXT_ATTR_8_, ORDER_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
+        String sql = "insert into OM_EMP_RELATION (ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_CATEGORY_, MEMO_, EMP_RELATION_TAG_, EMP_RELATION_EXT_ATTR_1_, EMP_RELATION_EXT_ATTR_2_, EMP_RELATION_EXT_ATTR_3_, EMP_RELATION_EXT_ATTR_4_, EMP_RELATION_EXT_ATTR_5_, EMP_RELATION_EXT_ATTR_6_, EMP_RELATION_EXT_ATTR_7_, EMP_RELATION_EXT_ATTR_8_, ORDER_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, EMP_RELATION_ID_, UPPER_EMP_ID_, LOWER_EMP_ID_, EMP_RELATION_, EMP_RELATION_CATEGORY_, MEMO_, EMP_RELATION_TAG_, EMP_RELATION_EXT_ATTR_1_, EMP_RELATION_EXT_ATTR_2_, EMP_RELATION_EXT_ATTR_3_, EMP_RELATION_EXT_ATTR_4_, EMP_RELATION_EXT_ATTR_5_, EMP_RELATION_EXT_ATTR_6_, EMP_RELATION_EXT_ATTR_7_, EMP_RELATION_EXT_ATTR_8_, ORDER_, EMP_RELATION_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
     }
 
@@ -868,7 +868,7 @@ public class OmEmpRelationServiceImpl implements OmEmpRelationService {
         EMP_RELATION_TAG_ = StringUtils.join(omTagService.splitTag(EMP_RELATION_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, EMP_RELATION_ID_, "EMP_RELATION", EMP_RELATION_TAG_);
 
-        String sql = "update OM_EMP_RELATION set EMP_RELATION_ = NULLIF(?, ''), EMP_RELATION_CATEGORY_ = NULLIF(?, ''), MEMO_ = NULLIF(?, ''), EMP_RELATION_TAG_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_1_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_2_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_3_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_4_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_5_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_6_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_7_ = NULLIF(?, ''), EMP_RELATION_EXT_ATTR_8_ = NULLIF(?, ''), ORDER_ = NULLIF(?, ''), UPDATE_DATE_ = NULLIF(?, ''), OPERATOR_ID_ = NULLIF(?, ''), OPERATOR_NAME_ = NULLIF(?, '') where ORGN_SET_ID_ = ? and EMP_RELATION_ID_ = ?";
+        String sql = "update OM_EMP_RELATION set EMP_RELATION_ = ?, EMP_RELATION_CATEGORY_ = ?, MEMO_ = ?, EMP_RELATION_TAG_ = ?, EMP_RELATION_EXT_ATTR_1_ = ?, EMP_RELATION_EXT_ATTR_2_ = ?, EMP_RELATION_EXT_ATTR_3_ = ?, EMP_RELATION_EXT_ATTR_4_ = ?, EMP_RELATION_EXT_ATTR_5_ = ?, EMP_RELATION_EXT_ATTR_6_ = ?, EMP_RELATION_EXT_ATTR_7_ = ?, EMP_RELATION_EXT_ATTR_8_ = ?, ORDER_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_RELATION_ID_ = ?";
         return omJdbcTemplate.update(sql, EMP_RELATION_, EMP_RELATION_CATEGORY_, MEMO_, EMP_RELATION_TAG_, EMP_RELATION_EXT_ATTR_1_, EMP_RELATION_EXT_ATTR_2_, EMP_RELATION_EXT_ATTR_3_, EMP_RELATION_EXT_ATTR_4_, EMP_RELATION_EXT_ATTR_5_, EMP_RELATION_EXT_ATTR_6_, EMP_RELATION_EXT_ATTR_7_, EMP_RELATION_EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, EMP_RELATION_ID_);
     }
 

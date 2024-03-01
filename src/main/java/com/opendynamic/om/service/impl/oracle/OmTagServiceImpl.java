@@ -205,7 +205,7 @@ public class OmTagServiceImpl implements OmTagService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        String sql = "delete from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_ID_ = ?";
+        String sql = "delete from OM_TAG where ORGN_SET_ID_ = ? and OBJ_ID_ = ?";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, OBJ_ID_);
     }
 

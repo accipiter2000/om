@@ -196,7 +196,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             paramMap.put("EMP_CODE_LIST", EMP_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(EMP_NAME_)) {
-            sql += " and EMP_NAME_like concat('%',:EMP_NAME_,'%')";
+            sql += " and EMP_NAME_ like concat('%',:EMP_NAME_,'%')";
             paramMap.put("EMP_NAME_", EMP_NAME_);
         }
         if (EMP_NAME_LIST != null && EMP_NAME_LIST.size() > 0) {
@@ -323,7 +323,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(ORG_NAME_)) {
-            sql += " and ORG_NAME_like concat('%',:ORG_NAME_,'%')";
+            sql += " and ORG_NAME_ like concat('%',:ORG_NAME_,'%')";
             paramMap.put("ORG_NAME_", ORG_NAME_);
         }
         if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
@@ -519,7 +519,7 @@ public class OmEmpServiceImpl implements OmEmpService {
         EMP_TAG_ = StringUtils.join(omTagService.splitTag(EMP_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, EMP_ID_, "EMP", EMP_TAG_);
 
-        String sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
+        String sql = "insert into OM_EMP (ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, EMP_ID_, ORG_ID_, EMP_CODE_, EMP_NAME_, PASSWORD_, PASSWORD_RESET_REQ_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, EMP_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
     }
 
@@ -532,7 +532,7 @@ public class OmEmpServiceImpl implements OmEmpService {
         EMP_TAG_ = StringUtils.join(omTagService.splitTag(EMP_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, EMP_ID_, "EMP", EMP_TAG_);
 
-        String sql = "update OM_EMP set EMP_CODE_ = NULLIF(?, ''), EMP_NAME_ = NULLIF(?, ''), PARTY_ = NULLIF(?, ''), EMP_LEVEL_ = NULLIF(?, ''), GENDER_ = NULLIF(?, ''), BIRTH_DATE_ = NULLIF(?, ''), TEL_ = NULLIF(?, ''), EMAIL_ = NULLIF(?, ''), IN_DATE_ = NULLIF(?, ''), OUT_DATE_ = NULLIF(?, ''), EMP_CATEGORY_ = NULLIF(?, ''), MEMO_ = NULLIF(?, ''), EMP_TAG_ = NULLIF(?, ''), EMP_EXT_ATTR_1_ = NULLIF(?, ''), EMP_EXT_ATTR_2_ = NULLIF(?, ''), EMP_EXT_ATTR_3_ = NULLIF(?, ''), EMP_EXT_ATTR_4_ = NULLIF(?, ''), EMP_EXT_ATTR_5_ = NULLIF(?, ''), EMP_EXT_ATTR_6_ = NULLIF(?, ''), EMP_EXT_ATTR_7_ = NULLIF(?, ''), EMP_EXT_ATTR_8_ = NULLIF(?, ''), ORDER_ = NULLIF(?, ''), UPDATE_DATE_ = NULLIF(?, ''), OPERATOR_ID_ = NULLIF(?, ''), OPERATOR_NAME_ = NULLIF(?, '') where ORGN_SET_ID_ = ? and EMP_ID_ = ?";
+        String sql = "update OM_EMP set EMP_CODE_ = ?, EMP_NAME_ = ?, PARTY_ = ?, EMP_LEVEL_ = ?, GENDER_ = ?, BIRTH_DATE_ = ?, TEL_ = ?, EMAIL_ = ?, IN_DATE_ = ?, OUT_DATE_ = ?, EMP_CATEGORY_ = ?, MEMO_ = ?, EMP_TAG_ = ?, EMP_EXT_ATTR_1_ = ?, EMP_EXT_ATTR_2_ = ?, EMP_EXT_ATTR_3_ = ?, EMP_EXT_ATTR_4_ = ?, EMP_EXT_ATTR_5_ = ?, EMP_EXT_ATTR_6_ = ?, EMP_EXT_ATTR_7_ = ?, EMP_EXT_ATTR_8_ = ?, ORDER_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and EMP_ID_ = ?";
         return omJdbcTemplate.update(sql, EMP_CODE_, EMP_NAME_, PARTY_, EMP_LEVEL_, GENDER_, BIRTH_DATE_, TEL_, EMAIL_, IN_DATE_, OUT_DATE_, EMP_CATEGORY_, MEMO_, EMP_TAG_, EMP_EXT_ATTR_1_, EMP_EXT_ATTR_2_, EMP_EXT_ATTR_3_, EMP_EXT_ATTR_4_, EMP_EXT_ATTR_5_, EMP_EXT_ATTR_6_, EMP_EXT_ATTR_7_, EMP_EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, EMP_ID_);
     }
 

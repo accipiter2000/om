@@ -159,7 +159,7 @@ public class OmTagServiceImpl implements OmTagService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        String sql = "insert into OM_TAG (ORGN_SET_ID_, TAG_ID_, OBJ_ID_, OBJ_TYPE_, TAG_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
+        String sql = "insert into OM_TAG (ORGN_SET_ID_, TAG_ID_, OBJ_ID_, OBJ_TYPE_, TAG_) values (?, ?, ?, ?, ?)";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, TAG_ID_, OBJ_ID_, OBJ_TYPE_, TAG_);
     }
 
@@ -169,7 +169,7 @@ public class OmTagServiceImpl implements OmTagService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        String sql = "update OM_TAG set OBJ_ID_ = NULLIF(?, ''), OBJ_TYPE_ = NULLIF(?, ''), TAG_ = NULLIF(?, '') where ORGN_SET_ID_ = :ORGN_SET_ID_ and TAG_ID_ = ?";
+        String sql = "update OM_TAG set OBJ_ID_ = ?, OBJ_TYPE_ = ?, TAG_ = ? where ORGN_SET_ID_ = :ORGN_SET_ID_ and TAG_ID_ = ?";
         return omJdbcTemplate.update(sql, OBJ_ID_, OBJ_TYPE_, TAG_, ORGN_SET_ID_, TAG_ID_);
     }
 
@@ -203,7 +203,7 @@ public class OmTagServiceImpl implements OmTagService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        String sql = "delete from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_ID_ = ?";
+        String sql = "delete from OM_TAG where ORGN_SET_ID_ = ? and OBJ_ID_ = ?";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, OBJ_ID_);
     }
 

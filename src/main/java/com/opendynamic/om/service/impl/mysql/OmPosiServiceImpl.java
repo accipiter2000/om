@@ -178,7 +178,7 @@ public class OmPosiServiceImpl implements OmPosiService {
             paramMap.put("POSI_CODE_LIST", POSI_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(POSI_NAME_)) {
-            sql += " and POSI_NAME_like concat('%',:POSI_NAME_,'%')";
+            sql += " and POSI_NAME_ like concat('%',:POSI_NAME_,'%')";
             paramMap.put("POSI_NAME_", POSI_NAME_);
         }
         if (POSI_NAME_LIST != null && POSI_NAME_LIST.size() > 0) {
@@ -305,7 +305,7 @@ public class OmPosiServiceImpl implements OmPosiService {
             paramMap.put("DUTY_CODE_LIST", DUTY_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(DUTY_NAME_)) {
-            sql += " and DUTY_NAME_like concat('%',:DUTY_NAME_,'%')";
+            sql += " and DUTY_NAME_ like concat('%',:DUTY_NAME_,'%')";
             paramMap.put("DUTY_NAME_", DUTY_NAME_);
         }
         if (DUTY_NAME_LIST != null && DUTY_NAME_LIST.size() > 0) {
@@ -432,7 +432,7 @@ public class OmPosiServiceImpl implements OmPosiService {
             paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(ORG_NAME_)) {
-            sql += " and ORG_NAME_like concat('%',:ORG_NAME_,'%')";
+            sql += " and ORG_NAME_ like concat('%',:ORG_NAME_,'%')";
             paramMap.put("ORG_NAME_", ORG_NAME_);
         }
         if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
@@ -628,7 +628,7 @@ public class OmPosiServiceImpl implements OmPosiService {
         POSI_TAG_ = StringUtils.join(omTagService.splitTag(POSI_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, POSI_ID_, "POSI", POSI_TAG_);
 
-        String sql = "insert into OM_POSI (ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, ORG_LEADER_TYPE_, POSI_CATEGORY_, MEMO_, POSI_TAG_, POSI_EXT_ATTR_1_, POSI_EXT_ATTR_2_, POSI_EXT_ATTR_3_, POSI_EXT_ATTR_4_, POSI_EXT_ATTR_5_, POSI_EXT_ATTR_6_, POSI_EXT_ATTR_7_, POSI_EXT_ATTR_8_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
+        String sql = "insert into OM_POSI (ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, ORG_LEADER_TYPE_, POSI_CATEGORY_, MEMO_, POSI_TAG_, POSI_EXT_ATTR_1_, POSI_EXT_ATTR_2_, POSI_EXT_ATTR_3_, POSI_EXT_ATTR_4_, POSI_EXT_ATTR_5_, POSI_EXT_ATTR_6_, POSI_EXT_ATTR_7_, POSI_EXT_ATTR_8_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, POSI_ID_, ORG_ID_, DUTY_ID_, POSI_CODE_, POSI_NAME_, ORG_LEADER_TYPE_, POSI_CATEGORY_, MEMO_, POSI_TAG_, POSI_EXT_ATTR_1_, POSI_EXT_ATTR_2_, POSI_EXT_ATTR_3_, POSI_EXT_ATTR_4_, POSI_EXT_ATTR_5_, POSI_EXT_ATTR_6_, POSI_EXT_ATTR_7_, POSI_EXT_ATTR_8_, ORDER_, POSI_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
     }
 
@@ -641,7 +641,7 @@ public class OmPosiServiceImpl implements OmPosiService {
         POSI_TAG_ = StringUtils.join(omTagService.splitTag(POSI_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, POSI_ID_, "POSI", POSI_TAG_);
 
-        String sql = "update OM_POSI set DUTY_ID_ = NULLIF(?, ''), POSI_CODE_ = NULLIF(?, ''), POSI_NAME_ = NULLIF(?, ''), ORG_LEADER_TYPE_ = NULLIF(?, ''), POSI_CATEGORY_ = NULLIF(?, ''), MEMO_ = NULLIF(?, ''), POSI_TAG_ = NULLIF(?, ''), POSI_EXT_ATTR_1_ = NULLIF(?, ''), POSI_EXT_ATTR_2_ = NULLIF(?, ''), POSI_EXT_ATTR_3_ = NULLIF(?, ''), POSI_EXT_ATTR_4_ = NULLIF(?, ''), POSI_EXT_ATTR_5_ = NULLIF(?, ''), POSI_EXT_ATTR_6_ = NULLIF(?, ''), POSI_EXT_ATTR_7_ = NULLIF(?, ''), POSI_EXT_ATTR_8_ = NULLIF(?, ''), ORDER_ = NULLIF(?, ''), UPDATE_DATE_ = NULLIF(?, ''), OPERATOR_ID_ = NULLIF(?, ''), OPERATOR_NAME_ = NULLIF(?, '') where ORGN_SET_ID_ = ? and POSI_ID_ = ?";
+        String sql = "update OM_POSI set DUTY_ID_ = ?, POSI_CODE_ = ?, POSI_NAME_ = ?, ORG_LEADER_TYPE_ = ?, POSI_CATEGORY_ = ?, MEMO_ = ?, POSI_TAG_ = ?, POSI_EXT_ATTR_1_ = ?, POSI_EXT_ATTR_2_ = ?, POSI_EXT_ATTR_3_ = ?, POSI_EXT_ATTR_4_ = ?, POSI_EXT_ATTR_5_ = ?, POSI_EXT_ATTR_6_ = ?, POSI_EXT_ATTR_7_ = ?, POSI_EXT_ATTR_8_ = ?, ORDER_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and POSI_ID_ = ?";
         return omJdbcTemplate.update(sql, DUTY_ID_, POSI_CODE_, POSI_NAME_, ORG_LEADER_TYPE_, POSI_CATEGORY_, MEMO_, POSI_TAG_, POSI_EXT_ATTR_1_, POSI_EXT_ATTR_2_, POSI_EXT_ATTR_3_, POSI_EXT_ATTR_4_, POSI_EXT_ATTR_5_, POSI_EXT_ATTR_6_, POSI_EXT_ATTR_7_, POSI_EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, POSI_ID_);
     }
 

@@ -176,7 +176,7 @@ public class OmOrgServiceImpl implements OmOrgService {
             paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(ORG_NAME_)) {
-            sql += " and ORG_NAME_like concat('%',:ORG_NAME_,'%')";
+            sql += " and ORG_NAME_ like concat('%',:ORG_NAME_,'%')";
             paramMap.put("ORG_NAME_", ORG_NAME_);
         }
         if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
@@ -316,7 +316,7 @@ public class OmOrgServiceImpl implements OmOrgService {
             ORGN_SET_ID_ = (String) orgnSet.get("ORGN_SET_ID_");
         }
 
-        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_) where 1 = 1";
+        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_) T where 1 = 1";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
         paramMap.put("ORG_ID_", ORG_ID_);
@@ -334,7 +334,7 @@ public class OmOrgServiceImpl implements OmOrgService {
             paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(ORG_NAME_)) {
-            sql += " and ORG_NAME_like concat('%',:ORG_NAME_,'%')";
+            sql += " and ORG_NAME_ like concat('%',:ORG_NAME_,'%')";
             paramMap.put("ORG_NAME_", ORG_NAME_);
         }
         if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
@@ -480,7 +480,7 @@ public class OmOrgServiceImpl implements OmOrgService {
             ORGN_SET_ID_ = (String) orgnSet.get("ORGN_SET_ID_");
         }
 
-        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_) where 1 = 1";
+        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_) T where 1 = 1";
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
         paramMap.put("ORG_ID_", ORG_ID_);
@@ -498,7 +498,7 @@ public class OmOrgServiceImpl implements OmOrgService {
             paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
         }
         if (StringUtils.isNotEmpty(ORG_NAME_)) {
-            sql += " and ORG_NAME_like concat('%',:ORG_NAME_,'%')";
+            sql += " and ORG_NAME_ like concat('%',:ORG_NAME_,'%')";
             paramMap.put("ORG_NAME_", ORG_NAME_);
         }
         if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
@@ -700,7 +700,7 @@ public class OmOrgServiceImpl implements OmOrgService {
         ORG_TAG_ = StringUtils.join(omTagService.splitTag(ORG_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, ORG_ID_, "ORG", ORG_TAG_);
 
-        String sql = "insert into OM_ORG (ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, ORG_CATEGORY_, MEMO_, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_2_, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))";
+        String sql = "insert into OM_ORG (ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, ORG_CATEGORY_, MEMO_, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_2_, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return omJdbcTemplate.update(sql, ORGN_SET_ID_, ORG_ID_, PARENT_ORG_ID_, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, ORG_CATEGORY_, MEMO_, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_2_, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_8_, ORDER_, ORG_STATUS_, CREATION_DATE_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_);
     }
 
@@ -713,7 +713,7 @@ public class OmOrgServiceImpl implements OmOrgService {
         ORG_TAG_ = StringUtils.join(omTagService.splitTag(ORG_TAG_), ",");
         omTagService.updateTagByObjId(ORGN_SET_ID_, ORG_ID_, "ORG", ORG_TAG_);
 
-        String sql = "update OM_ORG set ORG_CODE_ = NULLIF(?, ''), ORG_NAME_ = NULLIF(?, ''), ORG_ABBR_NAME_ = NULLIF(?, ''), ORG_TYPE_ = NULLIF(?, ''), ORG_CATEGORY_ = NULLIF(?, ''), MEMO_ = NULLIF(?, ''), ORG_TAG_ = NULLIF(?, ''), ORG_EXT_ATTR_1_ = NULLIF(?, ''), ORG_EXT_ATTR_2_ = NULLIF(?, ''), ORG_EXT_ATTR_3_ = NULLIF(?, ''), ORG_EXT_ATTR_4_ = NULLIF(?, ''), ORG_EXT_ATTR_5_ = NULLIF(?, ''), ORG_EXT_ATTR_6_ = NULLIF(?, ''), ORG_EXT_ATTR_7_ = NULLIF(?, ''), ORG_EXT_ATTR_8_ = NULLIF(?, ''), ORDER_ = NULLIF(?, ''), UPDATE_DATE_ = NULLIF(?, ''), OPERATOR_ID_ = NULLIF(?, ''), OPERATOR_NAME_ = NULLIF(?, '') where ORGN_SET_ID_ = ? and ORG_ID_ = ?";
+        String sql = "update OM_ORG set ORG_CODE_ = ?, ORG_NAME_ = ?, ORG_ABBR_NAME_ = ?, ORG_TYPE_ = ?, ORG_CATEGORY_ = ?, MEMO_ = ?, ORG_TAG_ = ?, ORG_EXT_ATTR_1_ = ?, ORG_EXT_ATTR_2_ = ?, ORG_EXT_ATTR_3_ = ?, ORG_EXT_ATTR_4_ = ?, ORG_EXT_ATTR_5_ = ?, ORG_EXT_ATTR_6_ = ?, ORG_EXT_ATTR_7_ = ?, ORG_EXT_ATTR_8_ = ?, ORDER_ = ?, UPDATE_DATE_ = ?, OPERATOR_ID_ = ?, OPERATOR_NAME_ = ? where ORGN_SET_ID_ = ? and ORG_ID_ = ?";
         return omJdbcTemplate.update(sql, ORG_CODE_, ORG_NAME_, ORG_ABBR_NAME_, ORG_TYPE_, ORG_CATEGORY_, MEMO_, ORG_TAG_, ORG_EXT_ATTR_1_, ORG_EXT_ATTR_2_, ORG_EXT_ATTR_3_, ORG_EXT_ATTR_4_, ORG_EXT_ATTR_5_, ORG_EXT_ATTR_6_, ORG_EXT_ATTR_7_, ORG_EXT_ATTR_8_, ORDER_, UPDATE_DATE_, OPERATOR_ID_, OPERATOR_NAME_, ORGN_SET_ID_, ORG_ID_);
     }
 
