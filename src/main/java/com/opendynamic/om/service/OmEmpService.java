@@ -28,38 +28,6 @@ public interface OmEmpService {
 
     /**
      * 通用查询，返回对象列表。
-     *
-     * @param ORGN_SET_ID_
-     *        组织架构套ID
-     * @param ORGN_SET_CODE_
-     *        组织架构套编码
-     * @param EMP_ID_
-     *        人员ID
-     * @param ORG_ID_
-     *        机构ID
-     * @param EMP_CODE_
-     *        人员编码
-     * @param EMP_NAME_
-     *        人员名称
-     * @param EMP_CATEGORY_LIST
-     *        分类
-     * @param EMP_TAG_
-     *        人员标签
-     * @param EMP_STATUS_LIST
-     *        人员状态
-     * @param tagUnion
-     *        所有标签匹配还是任意标签匹配，默认为true(所有标签匹配)
-     * @param withinOrgId
-     *        递归在该机构的下级机构中查询
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @param OPERATOR_ID_
-     *        操作人员ID
-     * @param OPERATOR_NAME_
-     *        操作人员名称
-     * @return
      */
     public List<Map<String, Object>> selectEmp(String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_ID_, List<String> EMP_ID_LIST, String EMP_CODE_, List<String> EMP_CODE_LIST, String EMP_NAME_, List<String> EMP_NAME_LIST, String EMP_CATEGORY_, List<String> EMP_CATEGORY_LIST, String EMP_TAG_, String EMP_EXT_ATTR_1_, List<String> EMP_EXT_ATTR_1_LIST, String EMP_EXT_ATTR_2_, List<String> EMP_EXT_ATTR_2_LIST, String EMP_EXT_ATTR_3_, List<String> EMP_EXT_ATTR_3_LIST, String EMP_EXT_ATTR_4_, List<String> EMP_EXT_ATTR_4_LIST, String EMP_EXT_ATTR_5_, List<String> EMP_EXT_ATTR_5_LIST, String EMP_EXT_ATTR_6_, List<String> EMP_EXT_ATTR_6_LIST, String EMP_EXT_ATTR_7_, List<String> EMP_EXT_ATTR_7_LIST, String EMP_EXT_ATTR_8_, List<String> EMP_EXT_ATTR_8_LIST, String EMP_STATUS_,
             List<String> EMP_STATUS_LIST, String ORG_ID_, List<String> ORG_ID_LIST, String PARENT_ORG_ID_, List<String> PARENT_ORG_ID_LIST, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_, List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_,

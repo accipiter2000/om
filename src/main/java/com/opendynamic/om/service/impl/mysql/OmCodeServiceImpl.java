@@ -63,7 +63,7 @@ public class OmCodeServiceImpl implements OmCodeService {
 
     private OdSqlCriteria buildSqlCriteriaCode(boolean count, String CODE_ID_, String PARENT_CODE_ID_, List<String> CATEGORY_LIST, String CODE_, String NAME_, String EXT_ATTR_1_, String EXT_ATTR_2_, String EXT_ATTR_3_, String EXT_ATTR_4_, String EXT_ATTR_5_, String EXT_ATTR_6_, Boolean rootOnly) {// 组装查询SQL语句
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_CODE where 1 = 1";
@@ -80,7 +80,7 @@ public class OmCodeServiceImpl implements OmCodeService {
             sql += " and PARENT_CODE_ID_ = :PARENT_CODE_ID_";
             paramMap.put("PARENT_CODE_ID_", PARENT_CODE_ID_);
         }
-        if (CATEGORY_LIST != null && CATEGORY_LIST.size() > 0) {
+        if (CATEGORY_LIST != null && !CATEGORY_LIST.isEmpty()) {
             sql += " and CATEGORY_ in (:CATEGORY_LIST)";
             paramMap.put("CATEGORY_LIST", CATEGORY_LIST);
         }
@@ -135,10 +135,10 @@ public class OmCodeServiceImpl implements OmCodeService {
         }
 
         String sql = "select * from OMV_CODE where 1 = 1";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("CODE_ID_", CODE_ID_);
 
-        if (CATEGORY_LIST != null && CATEGORY_LIST.size() > 0) {
+        if (CATEGORY_LIST != null && !CATEGORY_LIST.isEmpty()) {
             sql += " and CATEGORY_ in (:CATEGORY_LIST)";
             paramMap.put("CATEGORY_LIST", CATEGORY_LIST);
         }
@@ -196,10 +196,10 @@ public class OmCodeServiceImpl implements OmCodeService {
         }
 
         String sql = "select * from OMV_CODE where 1 = 1";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("CODE_ID_", CODE_ID_);
 
-        if (CATEGORY_LIST != null && CATEGORY_LIST.size() > 0) {
+        if (CATEGORY_LIST != null && !CATEGORY_LIST.isEmpty()) {
             sql += " and CATEGORY_ in (:CATEGORY_LIST)";
             paramMap.put("CATEGORY_LIST", CATEGORY_LIST);
         }
@@ -258,12 +258,12 @@ public class OmCodeServiceImpl implements OmCodeService {
 
     @Override
     public List<Map<String, Object>> selectCodeByIdList(List<String> CODE_ID_LIST) {
-        if (CODE_ID_LIST == null || CODE_ID_LIST.size() == 0) {
+        if (CODE_ID_LIST == null || CODE_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(CODE_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_CODE where CODE_ID_ in (:CODE_ID_LIST)");
         paramMap.put("CODE_ID_LIST", CODE_ID_LIST);
@@ -296,7 +296,7 @@ public class OmCodeServiceImpl implements OmCodeService {
 
     @Override
     public int updateCodeOrder(final List<String> CODE_ID_LIST, final List<Integer> ORDER_LIST) {
-        if (CODE_ID_LIST == null || CODE_ID_LIST.size() == 0) {
+        if (CODE_ID_LIST == null || CODE_ID_LIST.isEmpty()) {
             return 0;
         }
         if (CODE_ID_LIST.size() != ORDER_LIST.size()) {

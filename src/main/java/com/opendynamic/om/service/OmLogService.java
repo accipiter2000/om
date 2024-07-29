@@ -18,40 +18,6 @@ public interface OmLogService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param LOG_ID_
-     *        日志ID
-     * @param CATEGORY_
-     *        分类
-     * @param IP_
-     *        IP
-     * @param ACTION_
-     *        调用控制层接口
-     * @param BUSINESS_KEY_
-     *        业务主键
-     * @param ERROR_LIST
-     *        错误
-     * @param ORG_ID_
-     *        机构ID
-     * @param ORG_NAME_
-     *        机构名称
-     * @param POSI_ID_
-     *        岗位ID
-     * @param POSI_NAME_
-     *        岗位名称
-     * @param EMP_ID_
-     *        人员ID
-     * @param EMP_NAME_
-     *        人员名称
-     * @param FROM_CREATION_DATE_
-     *        起始创建日期
-     * @param TO_CREATION_DATE_
-     *        截止创建日期
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @return
      */
     public List<Map<String, Object>> selectLog(String LOG_ID_, String CATEGORY_, String IP_, String ACTION_, String BUSINESS_KEY_, List<String> ERROR_LIST, String ORG_ID_, String ORG_NAME_, String POSI_ID_, String POSI_NAME_, String EMP_ID_, String EMP_NAME_, Date FROM_CREATION_DATE_, Date TO_CREATION_DATE_, Integer page, Integer limit);
 

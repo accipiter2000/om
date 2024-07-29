@@ -23,42 +23,6 @@ public interface OmOrgService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param ORGN_SET_ID_
-     *        组织架构套ID
-     * @param ORGN_SET_CODE_
-     *        组织架构套编码
-     * @param ORG_ID_
-     *        机构ID
-     * @param PARENT_ORG_ID_
-     *        上级机构ID
-     * @param ORG_CODE_
-     *        机构编码
-     * @param ORG_NAME_
-     *        机构名称
-     * @param ORG_TYPE_LIST
-     *        机构类型
-     * @param ORG_CATEGORY_LIST
-     *        分类
-     * @param ORG_TAG_
-     *        机构标签
-     * @param ORG_STATUS_LIST
-     *        机构状态
-     * @param tagUnion
-     *        所有标签匹配还是任意标签匹配，默认为true(所有标签匹配)
-     * @param withinOrgId
-     *        递归在该机构的下级机构中查询
-     * @param orgRootOnly
-     *        仅查询根，默认为false
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @param OPERATOR_ID_
-     *        操作人员ID
-     * @param OPERATOR_NAME_
-     *        操作人员名称
-     * @return
      */
     public List<Map<String, Object>> selectOrg(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORG_ID_, List<String> ORG_ID_LIST, String PARENT_ORG_ID_, List<String> PARENT_ORG_ID_LIST, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_,
             List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_, List<String> ORG_EXT_ATTR_8_LIST, String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_);
@@ -70,31 +34,13 @@ public interface OmOrgService {
             String ORG_EXT_ATTR_8_, List<String> ORG_EXT_ATTR_8_LIST, String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
-     * 通用父对象查询，返回父对象列表。
-     * 
-     * @param tagUnion
-     *        所有标签匹配还是任意标签匹配，默认为true(所有标签匹配)
-     * @param recursive
-     *        是否递归，默认为false。
-     * @param includeSelf
-     *        是否包含自己，默认为false。
-     * @param withinOrgId
-     *        递归在该机构的下级机构中查询
+     * 通用上级对象查询，返回上级对象列表。
      */
     public List<Map<String, Object>> selectParentOrg(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORG_ID_, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_, List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_, List<String> ORG_EXT_ATTR_8_LIST,
             String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
-     * 通用子对象查询，返回子对象列表。
-     * 
-     * @param tagUnion
-     *        所有标签匹配还是任意标签匹配，默认为true(所有标签匹配)
-     * @param recursive
-     *        是否递归，默认为false。
-     * @param includeSelf
-     *        是否包含自己，默认为false。
-     * @param withinOrgId
-     *        递归在该机构的下级机构中查询
+     * 通用下级对象查询，返回下级对象列表。
      */
     public List<Map<String, Object>> selectChildOrg(String ORGN_SET_ID_, String ORGN_SET_CODE_, String ORG_ID_, String ORG_CODE_, List<String> ORG_CODE_LIST, String ORG_NAME_, List<String> ORG_NAME_LIST, String ORG_TYPE_, List<String> ORG_TYPE_LIST, String ORG_CATEGORY_, List<String> ORG_CATEGORY_LIST, String ORG_TAG_, String ORG_EXT_ATTR_1_, List<String> ORG_EXT_ATTR_1_LIST, String ORG_EXT_ATTR_2_, List<String> ORG_EXT_ATTR_2_LIST, String ORG_EXT_ATTR_3_, List<String> ORG_EXT_ATTR_3_LIST, String ORG_EXT_ATTR_4_, List<String> ORG_EXT_ATTR_4_LIST, String ORG_EXT_ATTR_5_, List<String> ORG_EXT_ATTR_5_LIST, String ORG_EXT_ATTR_6_, List<String> ORG_EXT_ATTR_6_LIST, String ORG_EXT_ATTR_7_, List<String> ORG_EXT_ATTR_7_LIST, String ORG_EXT_ATTR_8_, List<String> ORG_EXT_ATTR_8_LIST,
             String ORG_STATUS_, List<String> ORG_STATUS_LIST, Boolean orgTagUnion, String withinOrgId, Boolean orgRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_);

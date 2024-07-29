@@ -18,32 +18,6 @@ public interface OmEmpRelationService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param ORGN_SET_ID_
-     *        组织架构套ID
-     * @param ORGN_SET_CODE_
-     *        组织架构套编码
-     * @param EMP_RELATION_ID_
-     *        人员关系ID
-     * @param UPPER_EMP_ID_
-     *        上级人员ID
-     * @param LOWER_EMP_ID_
-     *        下级人员ID
-     * @param EMP_RELATION_LIST
-     *        人员关系
-     * @param EMP_RELATION_TAG_
-     *        人员关系标签
-     * @param EMP_RELATION_STATUS_LIST
-     *        人员关系状态
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @param OPERATOR_ID_
-     *        操作人员ID
-     * @param OPERATOR_NAME_
-     *        操作人员名称
-     * @return
      */
     public List<Map<String, Object>> selectEmpRelation(String ORGN_SET_ID_, String ORGN_SET_CODE_, String EMP_RELATION_ID_, List<String> EMP_RELATION_ID_LIST, String EMP_RELATION_, List<String> EMP_RELATION_LIST, String EMP_RELATION_CATEGORY_, List<String> EMP_RELATION_CATEGORY_LIST, String EMP_RELATION_TAG_, String EMP_RELATION_EXT_ATTR_1_, List<String> EMP_RELATION_EXT_ATTR_1_LIST, String EMP_RELATION_EXT_ATTR_2_, List<String> EMP_RELATION_EXT_ATTR_2_LIST, String EMP_RELATION_EXT_ATTR_3_, List<String> EMP_RELATION_EXT_ATTR_3_LIST, String EMP_RELATION_EXT_ATTR_4_, List<String> EMP_RELATION_EXT_ATTR_4_LIST, String EMP_RELATION_EXT_ATTR_5_, List<String> EMP_RELATION_EXT_ATTR_5_LIST, String EMP_RELATION_EXT_ATTR_6_, List<String> EMP_RELATION_EXT_ATTR_6_LIST, String EMP_RELATION_EXT_ATTR_7_,
             List<String> EMP_RELATION_EXT_ATTR_7_LIST, String EMP_RELATION_EXT_ATTR_8_, List<String> EMP_RELATION_EXT_ATTR_8_LIST, String EMP_RELATION_STATUS_, List<String> EMP_RELATION_STATUS_LIST, String UPPER_EMP_ID_, List<String> UPPER_EMP_ID_LIST, String UPPER_EMP_CODE_, List<String> UPPER_EMP_CODE_LIST, String UPPER_EMP_NAME_, List<String> UPPER_EMP_NAME_LIST, String UPPER_EMP_CATEGORY_, List<String> UPPER_EMP_CATEGORY_LIST, String UPPER_EMP_TAG_, String UPPER_EMP_EXT_ATTR_1_, List<String> UPPER_EMP_EXT_ATTR_1_LIST, String UPPER_EMP_EXT_ATTR_2_, List<String> UPPER_EMP_EXT_ATTR_2_LIST, String UPPER_EMP_EXT_ATTR_3_, List<String> UPPER_EMP_EXT_ATTR_3_LIST, String UPPER_EMP_EXT_ATTR_4_, List<String> UPPER_EMP_EXT_ATTR_4_LIST, String UPPER_EMP_EXT_ATTR_5_,

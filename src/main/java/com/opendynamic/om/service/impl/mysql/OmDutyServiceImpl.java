@@ -42,7 +42,7 @@ public class OmDutyServiceImpl implements OmDutyService {
         }
 
         String sql = "select * from OMV_DUTY where DUTY_ID_ = :DUTY_ID_";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("DUTY_ID_", DUTY_ID_);
 
         if (StringUtils.isNotEmpty(ORGN_SET_ID_)) {
@@ -74,7 +74,7 @@ public class OmDutyServiceImpl implements OmDutyService {
         }
 
         String sql = "select * from OMV_DUTY where DUTY_CODE_ = :DUTY_CODE_";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("DUTY_CODE_", DUTY_CODE_);
 
         if (StringUtils.isNotEmpty(ORGN_SET_ID_)) {
@@ -134,7 +134,7 @@ public class OmDutyServiceImpl implements OmDutyService {
         }
 
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_DUTY where 1 = 1";
@@ -155,7 +155,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_ID_ = :DUTY_ID_";
             paramMap.put("DUTY_ID_", DUTY_ID_);
         }
-        if (DUTY_ID_LIST != null && DUTY_ID_LIST.size() > 0) {
+        if (DUTY_ID_LIST != null && !DUTY_ID_LIST.isEmpty()) {
             sql += " and DUTY_ID_ in (:DUTY_ID_LIST)";
             paramMap.put("DUTY_ID_LIST", DUTY_ID_LIST);
         }
@@ -163,7 +163,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_CODE_ = :DUTY_CODE_";
             paramMap.put("DUTY_CODE_", DUTY_CODE_);
         }
-        if (DUTY_CODE_LIST != null && DUTY_CODE_LIST.size() > 0) {
+        if (DUTY_CODE_LIST != null && !DUTY_CODE_LIST.isEmpty()) {
             sql += " and DUTY_CODE_ in (:DUTY_CODE_LIST)";
             paramMap.put("DUTY_CODE_LIST", DUTY_CODE_LIST);
         }
@@ -171,7 +171,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_NAME_ like concat('%',:DUTY_NAME_,'%')";
             paramMap.put("DUTY_NAME_", DUTY_NAME_);
         }
-        if (DUTY_NAME_LIST != null && DUTY_NAME_LIST.size() > 0) {
+        if (DUTY_NAME_LIST != null && !DUTY_NAME_LIST.isEmpty()) {
             sql += " and DUTY_NAME_ in (:DUTY_NAME_LIST)";
             paramMap.put("DUTY_NAME_LIST", DUTY_NAME_LIST);
         }
@@ -179,13 +179,13 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_CATEGORY_ = :DUTY_CATEGORY_";
             paramMap.put("DUTY_CATEGORY_", DUTY_CATEGORY_);
         }
-        if (DUTY_CATEGORY_LIST != null && DUTY_CATEGORY_LIST.size() > 0) {
+        if (DUTY_CATEGORY_LIST != null && !DUTY_CATEGORY_LIST.isEmpty()) {
             sql += " and DUTY_CATEGORY_ in (:DUTY_CATEGORY_LIST)";
             paramMap.put("DUTY_CATEGORY_LIST", DUTY_CATEGORY_LIST);
         }
         if (StringUtils.isNotEmpty(DUTY_TAG_)) {
             List<String> tagList = omTagService.splitTag(DUTY_TAG_);
-            if (tagList.size() > 0) {
+            if (!tagList.isEmpty()) {
                 if (dutyTagUnion != null && dutyTagUnion.equals(false)) {
                     sql += " and DUTY_ID_ in (select DUTY_ID_ from (select OBJ_ID_ as DUTY_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'DUTY' and TAG_ in (:DUTY_TAG_LIST)) T group by DUTY_ID_ having count(*) >= 1)";
                     paramMap.put("DUTY_TAG_LIST", tagList);
@@ -201,7 +201,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_1_ = :DUTY_EXT_ATTR_1_";
             paramMap.put("DUTY_EXT_ATTR_1_", DUTY_EXT_ATTR_1_);
         }
-        if (DUTY_EXT_ATTR_1_LIST != null && DUTY_EXT_ATTR_1_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_1_LIST != null && !DUTY_EXT_ATTR_1_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_1_ in (:DUTY_EXT_ATTR_1_LIST)";
             paramMap.put("DUTY_EXT_ATTR_1_LIST", DUTY_EXT_ATTR_1_LIST);
         }
@@ -209,7 +209,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_2_ = :DUTY_EXT_ATTR_2_";
             paramMap.put("DUTY_EXT_ATTR_2_", DUTY_EXT_ATTR_2_);
         }
-        if (DUTY_EXT_ATTR_2_LIST != null && DUTY_EXT_ATTR_2_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_2_LIST != null && !DUTY_EXT_ATTR_2_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_2_ in (:DUTY_EXT_ATTR_2_LIST)";
             paramMap.put("DUTY_EXT_ATTR_2_LIST", DUTY_EXT_ATTR_2_LIST);
         }
@@ -217,7 +217,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_3_ = :DUTY_EXT_ATTR_3_";
             paramMap.put("DUTY_EXT_ATTR_3_", DUTY_EXT_ATTR_3_);
         }
-        if (DUTY_EXT_ATTR_3_LIST != null && DUTY_EXT_ATTR_3_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_3_LIST != null && !DUTY_EXT_ATTR_3_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_3_ in (:DUTY_EXT_ATTR_3_LIST)";
             paramMap.put("DUTY_EXT_ATTR_3_LIST", DUTY_EXT_ATTR_3_LIST);
         }
@@ -225,7 +225,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_4_ = :DUTY_EXT_ATTR_4_";
             paramMap.put("DUTY_EXT_ATTR_4_", DUTY_EXT_ATTR_4_);
         }
-        if (DUTY_EXT_ATTR_4_LIST != null && DUTY_EXT_ATTR_4_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_4_LIST != null && !DUTY_EXT_ATTR_4_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_4_ in (:DUTY_EXT_ATTR_4_LIST)";
             paramMap.put("DUTY_EXT_ATTR_4_LIST", DUTY_EXT_ATTR_4_LIST);
         }
@@ -233,7 +233,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_5_ = :DUTY_EXT_ATTR_5_";
             paramMap.put("DUTY_EXT_ATTR_5_", DUTY_EXT_ATTR_5_);
         }
-        if (DUTY_EXT_ATTR_5_LIST != null && DUTY_EXT_ATTR_5_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_5_LIST != null && !DUTY_EXT_ATTR_5_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_5_ in (:DUTY_EXT_ATTR_5_LIST)";
             paramMap.put("DUTY_EXT_ATTR_5_LIST", DUTY_EXT_ATTR_5_LIST);
         }
@@ -241,7 +241,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_6_ = :DUTY_EXT_ATTR_6_";
             paramMap.put("DUTY_EXT_ATTR_6_", DUTY_EXT_ATTR_6_);
         }
-        if (DUTY_EXT_ATTR_6_LIST != null && DUTY_EXT_ATTR_6_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_6_LIST != null && !DUTY_EXT_ATTR_6_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_6_ in (:DUTY_EXT_ATTR_6_LIST)";
             paramMap.put("DUTY_EXT_ATTR_6_LIST", DUTY_EXT_ATTR_6_LIST);
         }
@@ -249,7 +249,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_7_ = :DUTY_EXT_ATTR_7_";
             paramMap.put("DUTY_EXT_ATTR_7_", DUTY_EXT_ATTR_7_);
         }
-        if (DUTY_EXT_ATTR_7_LIST != null && DUTY_EXT_ATTR_7_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_7_LIST != null && !DUTY_EXT_ATTR_7_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_7_ in (:DUTY_EXT_ATTR_7_LIST)";
             paramMap.put("DUTY_EXT_ATTR_7_LIST", DUTY_EXT_ATTR_7_LIST);
         }
@@ -257,7 +257,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_EXT_ATTR_8_ = :DUTY_EXT_ATTR_8_";
             paramMap.put("DUTY_EXT_ATTR_8_", DUTY_EXT_ATTR_8_);
         }
-        if (DUTY_EXT_ATTR_8_LIST != null && DUTY_EXT_ATTR_8_LIST.size() > 0) {
+        if (DUTY_EXT_ATTR_8_LIST != null && !DUTY_EXT_ATTR_8_LIST.isEmpty()) {
             sql += " and DUTY_EXT_ATTR_8_ in (:DUTY_EXT_ATTR_8_LIST)";
             paramMap.put("DUTY_EXT_ATTR_8_LIST", DUTY_EXT_ATTR_8_LIST);
         }
@@ -265,7 +265,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             sql += " and DUTY_STATUS_ = :DUTY_STATUS_";
             paramMap.put("DUTY_STATUS_", DUTY_STATUS_);
         }
-        if (DUTY_STATUS_LIST != null && DUTY_STATUS_LIST.size() > 0) {
+        if (DUTY_STATUS_LIST != null && !DUTY_STATUS_LIST.isEmpty()) {
             sql += " and DUTY_STATUS_ in (:DUTY_STATUS_LIST)";
             paramMap.put("DUTY_STATUS_LIST", DUTY_STATUS_LIST);
         }
@@ -283,12 +283,12 @@ public class OmDutyServiceImpl implements OmDutyService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (DUTY_ID_LIST == null || DUTY_ID_LIST.size() == 0) {
+        if (DUTY_ID_LIST == null || DUTY_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(DUTY_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_DUTY where ORGN_SET_ID_ = :ORGN_SET_ID_ and DUTY_ID_ in (:DUTY_ID_LIST)");
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -314,12 +314,12 @@ public class OmDutyServiceImpl implements OmDutyService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (DUTY_ID_LIST == null || DUTY_ID_LIST.size() == 0) {
+        if (DUTY_ID_LIST == null || DUTY_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(DUTY_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OM_DUTY where ORGN_SET_ID_ = :ORGN_SET_ID_ and DUTY_ID_ in (:DUTY_ID_LIST)");
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -371,7 +371,7 @@ public class OmDutyServiceImpl implements OmDutyService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (DUTY_ID_LIST == null || DUTY_ID_LIST.size() == 0) {
+        if (DUTY_ID_LIST == null || DUTY_ID_LIST.isEmpty()) {
             return 0;
         }
         if (DUTY_ID_LIST.size() != ORDER_LIST.size()) {

@@ -23,34 +23,6 @@ public interface OmDutyService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param ORGN_SET_ID_
-     *        组织架构套ID
-     * @param ORGN_SET_CODE_
-     *        组织架构套编码
-     * @param DUTY_ID_
-     *        职务ID
-     * @param DUTY_CODE_
-     *        职务编码
-     * @param DUTY_NAME_
-     *        职务名称
-     * @param DUTY_CATEGORY_LIST
-     *        分类
-     * @param DUTY_TAG_
-     *        职务标签
-     * @param DUTY_STATUS_LIST
-     *        职务状态
-     * @param tagUnion
-     *        所有标签匹配还是任意标签匹配，默认为true(所有标签匹配)
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @param OPERATOR_ID_
-     *        操作人员ID
-     * @param OPERATOR_NAME_
-     *        操作人员名称
-     * @return
      */
     public List<Map<String, Object>> selectDuty(String ORGN_SET_ID_, String ORGN_SET_CODE_, String DUTY_ID_, List<String> DUTY_ID_LIST, String DUTY_CODE_, List<String> DUTY_CODE_LIST, String DUTY_NAME_, List<String> DUTY_NAME_LIST, String DUTY_CATEGORY_, List<String> DUTY_CATEGORY_LIST, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, List<String> DUTY_EXT_ATTR_1_LIST, String DUTY_EXT_ATTR_2_, List<String> DUTY_EXT_ATTR_2_LIST, String DUTY_EXT_ATTR_3_, List<String> DUTY_EXT_ATTR_3_LIST, String DUTY_EXT_ATTR_4_, List<String> DUTY_EXT_ATTR_4_LIST, String DUTY_EXT_ATTR_5_, List<String> DUTY_EXT_ATTR_5_LIST, String DUTY_EXT_ATTR_6_, List<String> DUTY_EXT_ATTR_6_LIST, String DUTY_EXT_ATTR_7_, List<String> DUTY_EXT_ATTR_7_LIST, String DUTY_EXT_ATTR_8_, List<String> DUTY_EXT_ATTR_8_LIST,
             String DUTY_STATUS_, List<String> DUTY_STATUS_LIST, Boolean dutyTagUnion, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_);

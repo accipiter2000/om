@@ -66,7 +66,7 @@ public class OmMainServerServiceImpl implements OmMainServerService {
 
     private OdSqlCriteria buildSqlCriteriaMainServer(boolean count, String MAIN_SERVER_ID_, String MAIN_SERVER_NAME_, List<String> MAIN_SERVER_STATUS_LIST) {// 组装查询SQL语句
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_MAIN_SERVER where 1 = 1";
@@ -83,7 +83,7 @@ public class OmMainServerServiceImpl implements OmMainServerService {
             sql += " and MAIN_SERVER_NAME_ like '%' || :MAIN_SERVER_NAME_ || '%'";
             paramMap.put("MAIN_SERVER_NAME_", MAIN_SERVER_NAME_);
         }
-        if (MAIN_SERVER_STATUS_LIST != null && MAIN_SERVER_STATUS_LIST.size() > 0) {
+        if (MAIN_SERVER_STATUS_LIST != null && !MAIN_SERVER_STATUS_LIST.isEmpty()) {
             sql += " and MAIN_SERVER_STATUS_ in (:MAIN_SERVER_STATUS_LIST)";
             paramMap.put("MAIN_SERVER_STATUS_LIST", MAIN_SERVER_STATUS_LIST);
         }
@@ -97,12 +97,12 @@ public class OmMainServerServiceImpl implements OmMainServerService {
 
     @Override
     public List<Map<String, Object>> selectMainServerByIdList(List<String> MAIN_SERVER_ID_LIST) {
-        if (MAIN_SERVER_ID_LIST == null || MAIN_SERVER_ID_LIST.size() == 0) {
+        if (MAIN_SERVER_ID_LIST == null || MAIN_SERVER_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(MAIN_SERVER_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_MAIN_SERVER where MAIN_SERVER_ID_ in (:MAIN_SERVER_ID_LIST)");
         paramMap.put("MAIN_SERVER_ID_LIST", MAIN_SERVER_ID_LIST);
@@ -135,7 +135,7 @@ public class OmMainServerServiceImpl implements OmMainServerService {
 
     @Override
     public int updateMainServerOrder(final List<String> MAIN_SERVER_ID_LIST, final List<Integer> ORDER_LIST, final Date UPDATE_DATE_, final String OPERATOR_ID_, final String OPERATOR_NAME_) {
-        if (MAIN_SERVER_ID_LIST == null || MAIN_SERVER_ID_LIST.size() == 0) {
+        if (MAIN_SERVER_ID_LIST == null || MAIN_SERVER_ID_LIST.isEmpty()) {
             return 0;
         }
         if (MAIN_SERVER_ID_LIST.size() != ORDER_LIST.size()) {

@@ -23,42 +23,6 @@ public interface OmPosiService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param ORGN_SET_ID_
-     *        组织架构套ID
-     * @param ORGN_SET_CODE_
-     *        组织架构套编码
-     * @param POSI_ID_
-     *        岗位ID
-     * @param ORG_ID_
-     *        机构ID
-     * @param DUTY_ID_
-     *        职务ID
-     * @param POSI_CODE_
-     *        岗位编码
-     * @param POSI_NAME_
-     *        岗位名称
-     * @param ORG_LEADER_TYPE_LIST
-     *        职级
-     * @param POSI_CATEGORY_LIST
-     *        分类
-     * @param POSI_TAG_
-     *        岗位标签
-     * @param POSI_STATUS_LIST
-     *        岗位状态
-     * @param tagUnion
-     *        所有标签匹配还是任意标签匹配，默认为true(所有标签匹配)
-     * @param withinOrgId
-     *        递归在该机构的下级机构中查询
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @param OPERATOR_ID_
-     *        操作人员ID
-     * @param OPERATOR_NAME_
-     *        操作人员名称
-     * @return
      */
     public List<Map<String, Object>> selectPosi(String ORGN_SET_ID_, String ORGN_SET_CODE_, String POSI_ID_, List<String> POSI_ID_LIST, String POSI_CODE_, List<String> POSI_CODE_LIST, String POSI_NAME_, List<String> POSI_NAME_LIST, String ORG_LEADER_TYPE_, List<String> ORG_LEADER_TYPE_LIST, String POSI_CATEGORY_, List<String> POSI_CATEGORY_LIST, String POSI_TAG_, String POSI_EXT_ATTR_1_, List<String> POSI_EXT_ATTR_1_LIST, String POSI_EXT_ATTR_2_, List<String> POSI_EXT_ATTR_2_LIST, String POSI_EXT_ATTR_3_, List<String> POSI_EXT_ATTR_3_LIST, String POSI_EXT_ATTR_4_, List<String> POSI_EXT_ATTR_4_LIST, String POSI_EXT_ATTR_5_, List<String> POSI_EXT_ATTR_5_LIST, String POSI_EXT_ATTR_6_, List<String> POSI_EXT_ATTR_6_LIST, String POSI_EXT_ATTR_7_, List<String> POSI_EXT_ATTR_7_LIST,
             String POSI_EXT_ATTR_8_, List<String> POSI_EXT_ATTR_8_LIST, String POSI_STATUS_, List<String> POSI_STATUS_LIST, String DUTY_ID_, List<String> DUTY_ID_LIST, String DUTY_CODE_, List<String> DUTY_CODE_LIST, String DUTY_NAME_, List<String> DUTY_NAME_LIST, String DUTY_CATEGORY_, List<String> DUTY_CATEGORY_LIST, String DUTY_TAG_, String DUTY_EXT_ATTR_1_, List<String> DUTY_EXT_ATTR_1_LIST, String DUTY_EXT_ATTR_2_, List<String> DUTY_EXT_ATTR_2_LIST, String DUTY_EXT_ATTR_3_, List<String> DUTY_EXT_ATTR_3_LIST, String DUTY_EXT_ATTR_4_, List<String> DUTY_EXT_ATTR_4_LIST, String DUTY_EXT_ATTR_5_, List<String> DUTY_EXT_ATTR_5_LIST, String DUTY_EXT_ATTR_6_, List<String> DUTY_EXT_ATTR_6_LIST, String DUTY_EXT_ATTR_7_, List<String> DUTY_EXT_ATTR_7_LIST, String DUTY_EXT_ATTR_8_,

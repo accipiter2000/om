@@ -63,7 +63,7 @@ public class OmLogServiceImpl implements OmLogService {
 
     private OdSqlCriteria buildSqlCriteriaLog(boolean count, String LOG_ID_, String CATEGORY_, String IP_, String ACTION_, String BUSINESS_KEY_, List<String> ERROR_LIST, String ORG_ID_, String ORG_NAME_, String POSI_ID_, String POSI_NAME_, String EMP_ID_, String EMP_NAME_, Date FROM_CREATION_DATE_, Date TO_CREATION_DATE_) {// 组装查询SQL语句
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_LOG where 1 = 1";
@@ -92,7 +92,7 @@ public class OmLogServiceImpl implements OmLogService {
             sql += " and BUSINESS_KEY_ = :BUSINESS_KEY_";
             paramMap.put("BUSINESS_KEY_", BUSINESS_KEY_);
         }
-        if (ERROR_LIST != null && ERROR_LIST.size() > 0) {
+        if (ERROR_LIST != null && !ERROR_LIST.isEmpty()) {
             sql += " and ERROR_ in (:ERROR_LIST)";
             paramMap.put("ERROR_LIST", ERROR_LIST);
         }
@@ -138,12 +138,12 @@ public class OmLogServiceImpl implements OmLogService {
 
     @Override
     public List<Map<String, Object>> selectLogByIdList(List<String> LOG_ID_LIST) {
-        if (LOG_ID_LIST == null || LOG_ID_LIST.size() == 0) {
+        if (LOG_ID_LIST == null || LOG_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(LOG_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_LOG where LOG_ID_ in (:LOG_ID_LIST)");
         paramMap.put("LOG_ID_LIST", LOG_ID_LIST);

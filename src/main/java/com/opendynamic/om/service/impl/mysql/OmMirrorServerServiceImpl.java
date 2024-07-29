@@ -64,7 +64,7 @@ public class OmMirrorServerServiceImpl implements OmMirrorServerService {
 
     private OdSqlCriteria buildSqlCriteriaMirrorServer(boolean count, String MIRROR_SERVER_ID_, String MIRROR_SERVER_NAME_, List<String> MIRROR_SERVER_STATUS_LIST) {// 组装查询SQL语句
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_MIRROR_SERVER where 1 = 1";
@@ -81,7 +81,7 @@ public class OmMirrorServerServiceImpl implements OmMirrorServerService {
             sql += " and MIRROR_SERVER_NAME_ like concat('%',:MIRROR_SERVER_NAME_,'%')";
             paramMap.put("MIRROR_SERVER_NAME_", MIRROR_SERVER_NAME_);
         }
-        if (MIRROR_SERVER_STATUS_LIST != null && MIRROR_SERVER_STATUS_LIST.size() > 0) {
+        if (MIRROR_SERVER_STATUS_LIST != null && !MIRROR_SERVER_STATUS_LIST.isEmpty()) {
             sql += " and MIRROR_SERVER_STATUS_ in (:MIRROR_SERVER_STATUS_LIST)";
             paramMap.put("MIRROR_SERVER_STATUS_LIST", MIRROR_SERVER_STATUS_LIST);
         }
@@ -95,12 +95,12 @@ public class OmMirrorServerServiceImpl implements OmMirrorServerService {
 
     @Override
     public List<Map<String, Object>> selectMirrorServerByIdList(List<String> MIRROR_SERVER_ID_LIST) {
-        if (MIRROR_SERVER_ID_LIST == null || MIRROR_SERVER_ID_LIST.size() == 0) {
+        if (MIRROR_SERVER_ID_LIST == null || MIRROR_SERVER_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(MIRROR_SERVER_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_MIRROR_SERVER where MIRROR_SERVER_ID_ in (:MIRROR_SERVER_ID_LIST)");
         paramMap.put("MIRROR_SERVER_ID_LIST", MIRROR_SERVER_ID_LIST);
@@ -133,7 +133,7 @@ public class OmMirrorServerServiceImpl implements OmMirrorServerService {
 
     @Override
     public int updateMirrorServerOrder(final List<String> MIRROR_SERVER_ID_LIST, final List<Integer> ORDER_LIST, final Date UPDATE_DATE_, final String OPERATOR_ID_, final String OPERATOR_NAME_) {
-        if (MIRROR_SERVER_ID_LIST == null || MIRROR_SERVER_ID_LIST.size() == 0) {
+        if (MIRROR_SERVER_ID_LIST == null || MIRROR_SERVER_ID_LIST.isEmpty()) {
             return 0;
         }
         if (MIRROR_SERVER_ID_LIST.size() != ORDER_LIST.size()) {

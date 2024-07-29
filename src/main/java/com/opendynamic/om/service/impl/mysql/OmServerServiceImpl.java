@@ -88,11 +88,11 @@ public class OmServerServiceImpl implements OmServerService {
 
             sql = "select * from OM_ORGN_SET where ORGN_SET_ID_ = ?";
             List<Map<String, Object>> orgnSetList = mirrorServerJdbcTemplate.queryForList(sql, ORGN_SET_ID_);
-            if (orgnSetList.size() == 0) {// 如果没有ORGN_SET，新增一个。并计算其PARENT_ORGN_SET_ID_
+            if (orgnSetList.isEmpty()) {// 如果没有ORGN_SET，新增一个。并计算其PARENT_ORGN_SET_ID_
                 String PARENT_ORGN_SET_ID_ = null;
                 Map<String, Object> orgnSet = omOrgnSetService.loadOrgnSet(ORGN_SET_ID_, OPERATOR_ID_, OPERATOR_NAME_);
                 if (orgnSet.get("PARENT_ORGN_SET_ID_") != null) {
-                    if (mirrorServerJdbcTemplate.queryForList(sql, orgnSet.get("PARENT_ORGN_SET_ID_")).size() > 0) {
+                    if (!mirrorServerJdbcTemplate.queryForList(sql, orgnSet.get("PARENT_ORGN_SET_ID_")).isEmpty()) {
                         PARENT_ORGN_SET_ID_ = (String) orgnSet.get("PARENT_ORGN_SET_ID_");
                     }
                 }
@@ -662,7 +662,7 @@ public class OmServerServiceImpl implements OmServerService {
             }
             deleteTagSql = deleteTagSql.substring(0, deleteTagSql.length() - 4);
             deleteTagSql += ")";
-            if (OBJ_ID_LIST.size() > 0) {
+            if (!OBJ_ID_LIST.isEmpty()) {
                 namedParameterMirrorServerJdbcTemplate.update(deleteTagSql, deleteTagParamMap);
             }
 
@@ -1105,7 +1105,7 @@ public class OmServerServiceImpl implements OmServerService {
             mirrorServerJdbcTemplate.batchUpdate(sql, batch);
 
             // 删除
-            if (DELETE_EMP_RELATION_ID_LIST != null && DELETE_EMP_RELATION_ID_LIST.size() > 0) {
+            if (DELETE_EMP_RELATION_ID_LIST != null && !DELETE_EMP_RELATION_ID_LIST.isEmpty()) {
                 sql = "delete from OM_EMP_RELATION where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1125,7 +1125,7 @@ public class OmServerServiceImpl implements OmServerService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_POSI_EMP_ID_LIST != null && DELETE_POSI_EMP_ID_LIST.size() > 0) {
+            if (DELETE_POSI_EMP_ID_LIST != null && !DELETE_POSI_EMP_ID_LIST.isEmpty()) {
                 sql = "delete from OM_POSI_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1145,7 +1145,7 @@ public class OmServerServiceImpl implements OmServerService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_EMP_ID_LIST != null && DELETE_EMP_ID_LIST.size() > 0) {
+            if (DELETE_EMP_ID_LIST != null && !DELETE_EMP_ID_LIST.isEmpty()) {
                 sql = "delete from OM_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1165,7 +1165,7 @@ public class OmServerServiceImpl implements OmServerService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_POSI_ID_LIST != null && DELETE_POSI_ID_LIST.size() > 0) {
+            if (DELETE_POSI_ID_LIST != null && !DELETE_POSI_ID_LIST.isEmpty()) {
                 sql = "delete from OM_POSI where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1185,7 +1185,7 @@ public class OmServerServiceImpl implements OmServerService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_DUTY_ID_LIST != null && DELETE_DUTY_ID_LIST.size() > 0) {
+            if (DELETE_DUTY_ID_LIST != null && !DELETE_DUTY_ID_LIST.isEmpty()) {
                 sql = "delete from OM_DUTY where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1206,7 +1206,7 @@ public class OmServerServiceImpl implements OmServerService {
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
 
             }
-            if (DELETE_ORG_ID_LIST != null && DELETE_ORG_ID_LIST.size() > 0) {
+            if (DELETE_ORG_ID_LIST != null && !DELETE_ORG_ID_LIST.isEmpty()) {
                 sql = "delete from OM_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1282,7 +1282,7 @@ public class OmServerServiceImpl implements OmServerService {
             }
             selectTagSql = selectTagSql.substring(0, selectTagSql.length() - 4);
             selectTagSql += ")";
-            if (OBJ_ID_LIST.size() > 0) {
+            if (!OBJ_ID_LIST.isEmpty()) {
                 final List<Map<String, Object>> tagList = new NamedParameterJdbcTemplate(omJdbcTemplate).queryForList(selectTagSql, selectTagParamMap);
                 sql = "insert into OM_TAG (ORGN_SET_ID_, TAG_ID_, OBJ_ID_, OBJ_TYPE_, TAG_) values (?, ?, ?, ?, ?)";
                 batch = new BatchPreparedStatementSetter() {
@@ -1316,7 +1316,7 @@ public class OmServerServiceImpl implements OmServerService {
 
     @Override
     public List<Map<String, Object>> selectMirrorServerOrgnSet(String MIRROR_SERVER_ID_, String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaMirrorServerOrgnSet(false, MIRROR_SERVER_ID_, ORGN_SET_ID_, PARENT_ORGN_SET_ID_, ORGN_SET_CODE_, ORGN_SET_NAME_, ORGN_SET_STATUS_LIST, rootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaMirrorServerOrgnSet(false, ORGN_SET_ID_, PARENT_ORGN_SET_ID_, ORGN_SET_CODE_, ORGN_SET_NAME_, ORGN_SET_STATUS_LIST, rootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -1331,7 +1331,7 @@ public class OmServerServiceImpl implements OmServerService {
 
     @Override
     public int countMirrorServerOrgnSet(String MIRROR_SERVER_ID_, String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {
-        OdSqlCriteria odSqlCriteria = buildSqlCriteriaMirrorServerOrgnSet(true, MIRROR_SERVER_ID_, ORGN_SET_ID_, PARENT_ORGN_SET_ID_, ORGN_SET_CODE_, ORGN_SET_NAME_, ORGN_SET_STATUS_LIST, rootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
+        OdSqlCriteria odSqlCriteria = buildSqlCriteriaMirrorServerOrgnSet(true, ORGN_SET_ID_, PARENT_ORGN_SET_ID_, ORGN_SET_CODE_, ORGN_SET_NAME_, ORGN_SET_STATUS_LIST, rootOnly, OPERATOR_ID_, OPERATOR_NAME_);// 根据查询条件组装总数查询SQL语句
         String sql = odSqlCriteria.getSql();
         Map<String, Object> paramMap = odSqlCriteria.getParamMap();
 
@@ -1339,9 +1339,9 @@ public class OmServerServiceImpl implements OmServerService {
         return namedParameterJdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
-    private OdSqlCriteria buildSqlCriteriaMirrorServerOrgnSet(boolean count, String MIRROR_SERVER_ID_, String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
+    private OdSqlCriteria buildSqlCriteriaMirrorServerOrgnSet(boolean count, String ORGN_SET_ID_, String PARENT_ORGN_SET_ID_, String ORGN_SET_CODE_, String ORGN_SET_NAME_, List<String> ORGN_SET_STATUS_LIST, Boolean rootOnly, String OPERATOR_ID_, String OPERATOR_NAME_) {// 组装查询SQL语句
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_ORGN_SET where 1 = 1";
@@ -1366,7 +1366,7 @@ public class OmServerServiceImpl implements OmServerService {
             sql += " and ORGN_SET_NAME_ like '%' || :ORGN_SET_NAME_ || '%'";
             paramMap.put("ORGN_SET_NAME_", ORGN_SET_NAME_);
         }
-        if (ORGN_SET_STATUS_LIST != null && ORGN_SET_STATUS_LIST.size() > 0) {
+        if (ORGN_SET_STATUS_LIST != null && !ORGN_SET_STATUS_LIST.isEmpty()) {
             sql += " and ORGN_SET_STATUS_ in (:ORGN_SET_STATUS_LIST)";
             paramMap.put("ORGN_SET_STATUS_LIST", ORGN_SET_STATUS_LIST);
         }

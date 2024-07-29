@@ -25,28 +25,6 @@ public interface OmOrgnSetService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param ORGN_SET_ID_
-     *        组织架构套ID
-     * @param PARENT_ORGN_SET_ID_
-     *        上级组织架构套ID
-     * @param ORGN_SET_CODE_
-     *        组织架构套编码
-     * @param ORGN_SET_NAME_
-     *        组织架构套名称
-     * @param ORGN_SET_STATUS_LIST
-     *        组织架构套状态
-     * @param orgnSetRootOnly
-     *        仅查询根，默认为false
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @param OPERATOR_ID_
-     *        操作人员ID
-     * @param OPERATOR_NAME_
-     *        操作人员名称
-     * @return
      */
     public List<Map<String, Object>> selectOrgnSet(String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Integer page, Integer limit, String OPERATOR_ID_, String OPERATOR_NAME_);
 
@@ -56,7 +34,7 @@ public interface OmOrgnSetService {
     public int countOrgnSet(String ORGN_SET_ID_, List<String> ORGN_SET_ID_LIST, String PARENT_ORGN_SET_ID_, List<String> PARENT_ORGN_SET_ID_LIST, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
-     * 通用父对象查询，返回父对象列表。
+     * 通用上级对象查询，返回上级对象列表。
      * 
      * @param recursive
      *        是否递归，默认为false。
@@ -66,7 +44,7 @@ public interface OmOrgnSetService {
     public List<Map<String, Object>> selectParentOrgnSet(String ORGN_SET_ID_, String ORGN_SET_CODE_, List<String> ORGN_SET_CODE_LIST, String ORGN_SET_NAME_, List<String> ORGN_SET_NAME_LIST, String ORGN_SET_STATUS_, List<String> ORGN_SET_STATUS_LIST, Boolean orgnSetRootOnly, Boolean recursive, Boolean includeSelf, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
-     * 通用子对象查询，返回子对象列表。
+     * 通用下级对象查询，返回下级对象列表。
      * 
      * @param recursive
      *        是否递归，默认为false。
@@ -122,54 +100,16 @@ public interface OmOrgnSetService {
 
     /**
      * 从镜像服务器复制主服务器的组织架构套，镜像服务器的原有相关数据被删除。
-     * 
-     * @param BASE_ORGN_SET_ID_
-     * @param ORGN_SET_ID_
-     * @param UPDATE_DATE_
-     * @param OPERATOR_ID_
-     * @param OPERATOR_NAME_
-     * @return
      */
     public int copyOrgnSet(String BASE_ORGN_SET_ID_, String ORGN_SET_ID_, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
      * 从镜像服务器比较与主服务器组织架构套的差异。
-     * 
-     * @param BASE_ORGN_SET_ID_
-     * @param ORGN_SET_ID_
-     * @param OPERATOR_ID_
-     * @param OPERATOR_NAME_
-     * @return
      */
     public OrgnChange compareOrgnSet(String BASE_ORGN_SET_ID_, String ORGN_SET_ID_, String OPERATOR_ID_, String OPERATOR_NAME_);
 
     /**
      * 从镜像服务器更新指定的主服务器的组织架构套数据。
-     * 
-     * @param BASE_ORGN_SET_ID_
-     * @param ORGN_SET_ID_
-     * @param INSERT_ORG_ID_LIST
-     * @param UPDATE_ORG_ID_LIST
-     * @param DELETE_ORG_ID_LIST
-     * @param INSERT_DUTY_ID_LIST
-     * @param UPDATE_DUTY_ID_LIST
-     * @param DELETE_DUTY_ID_LIST
-     * @param INSERT_POSI_ID_LIST
-     * @param UPDATE_POSI_ID_LIST
-     * @param DELETE_POSI_ID_LIST
-     * @param INSERT_EMP_ID_LIST
-     * @param UPDATE_EMP_ID_LIST
-     * @param DELETE_EMP_ID_LIST
-     * @param INSERT_POSI_EMP_ID_LIST
-     * @param UPDATE_POSI_EMP_ID_LIST
-     * @param DELETE_POSI_EMP_ID_LIST
-     * @param INSERT_EMP_RELATION_ID_LIST
-     * @param UPDATE_EMP_RELATION_ID_LIST
-     * @param DELETE_EMP_RELATION_ID_LIST
-     * @param UPDATE_DATE_
-     * @param OPERATOR_ID_
-     * @param OPERATOR_NAME_
-     * @return
      */
     public int replaceOrgnSet(String BASE_ORGN_SET_ID_, String ORGN_SET_ID_, List<String> INSERT_ORG_ID_LIST, List<String> UPDATE_ORG_ID_LIST, List<String> DELETE_ORG_ID_LIST, List<String> INSERT_DUTY_ID_LIST, List<String> UPDATE_DUTY_ID_LIST, List<String> DELETE_DUTY_ID_LIST, List<String> INSERT_POSI_ID_LIST, List<String> UPDATE_POSI_ID_LIST, List<String> DELETE_POSI_ID_LIST, List<String> INSERT_EMP_ID_LIST, List<String> UPDATE_EMP_ID_LIST, List<String> DELETE_EMP_ID_LIST, List<String> INSERT_POSI_EMP_ID_LIST, List<String> UPDATE_POSI_EMP_ID_LIST, List<String> DELETE_POSI_EMP_ID_LIST, List<String> INSERT_EMP_RELATION_ID_LIST, List<String> UPDATE_EMP_RELATION_ID_LIST, List<String> DELETE_EMP_RELATION_ID_LIST, Date UPDATE_DATE_, String OPERATOR_ID_, String OPERATOR_NAME_);
 }

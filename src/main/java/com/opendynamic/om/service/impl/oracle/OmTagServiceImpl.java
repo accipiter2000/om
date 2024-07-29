@@ -33,7 +33,7 @@ public class OmTagServiceImpl implements OmTagService {
         }
 
         String sql = "select * from OMV_TAG where TAG_ID_ = :TAG_ID_";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("TAG_ID_", TAG_ID_);
 
         if (StringUtils.isNotEmpty(ORGN_SET_ID_)) {
@@ -87,7 +87,7 @@ public class OmTagServiceImpl implements OmTagService {
         }
 
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_TAG where 1 = 1";
@@ -130,12 +130,12 @@ public class OmTagServiceImpl implements OmTagService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (TAG_ID_LIST == null || TAG_ID_LIST.size() == 0) {
+        if (TAG_ID_LIST == null || TAG_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(TAG_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and TAG_ID_ in (:TAG_ID_LIST)");
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -214,10 +214,10 @@ public class OmTagServiceImpl implements OmTagService {
         List<String> tagList = new ArrayList<>();
 
         if (StringUtils.isNotEmpty(TAG_)) {
-            String[] tags = TAG_.split(",|，| |　");
-            for (int i = 0; i < tags.length; i++) {
-                if (StringUtils.isNotEmpty(tags[i])) {
-                    tagList.add(tags[i]);
+            String[] tags = TAG_.split("[,， 　]");
+            for (String tag : tags) {
+                if (StringUtils.isNotEmpty(tag)) {
+                    tagList.add(tag);
                 }
             }
         }

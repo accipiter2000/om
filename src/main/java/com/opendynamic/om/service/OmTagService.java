@@ -17,20 +17,6 @@ public interface OmTagService {
 
     /**
      * 通用查询，返回对象列表。
-     * 
-     * @param TAG_ID_
-     *        标签ID
-     * @param OBJ_ID_
-     *        对象ID
-     * @param OBJ_TYPE_
-     *        对象类型
-     * @param TAG_
-     *        标签
-     * @param page
-     *        页面 默认为1
-     * @param limit
-     *        每页数据数量 默认为-1(全部)
-     * @return
      */
     public List<Map<String, Object>> selectTag(String ORGN_SET_ID_, String ORGN_SET_CODE_, String TAG_ID_, String OBJ_ID_, String OBJ_TYPE_, String TAG_, Integer page, Integer limit);
 

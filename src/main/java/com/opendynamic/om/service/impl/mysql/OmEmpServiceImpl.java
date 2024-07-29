@@ -42,7 +42,7 @@ public class OmEmpServiceImpl implements OmEmpService {
         }
 
         String sql = "select * from OMV_EMP where EMP_ID_ = :EMP_ID_";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("EMP_ID_", EMP_ID_);
 
         if (StringUtils.isNotEmpty(ORGN_SET_ID_)) {
@@ -74,7 +74,7 @@ public class OmEmpServiceImpl implements OmEmpService {
         }
 
         String sql = "select * from OMV_EMP where EMP_CODE_ = :EMP_CODE_";
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("EMP_CODE_", EMP_CODE_);
 
         if (StringUtils.isNotEmpty(ORGN_SET_ID_)) {
@@ -162,7 +162,7 @@ public class OmEmpServiceImpl implements OmEmpService {
         }
 
         String sql;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         if (count) {
             sql = "select count(*) from OMV_EMP where 1 = 1";
@@ -183,7 +183,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_ID_ = :EMP_ID_";
             paramMap.put("EMP_ID_", EMP_ID_);
         }
-        if (EMP_ID_LIST != null && EMP_ID_LIST.size() > 0) {
+        if (EMP_ID_LIST != null && !EMP_ID_LIST.isEmpty()) {
             sql += " and EMP_ID_ in (:EMP_ID_LIST)";
             paramMap.put("EMP_ID_LIST", EMP_ID_LIST);
         }
@@ -191,7 +191,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_CODE_ = :EMP_CODE_";
             paramMap.put("EMP_CODE_", EMP_CODE_);
         }
-        if (EMP_CODE_LIST != null && EMP_CODE_LIST.size() > 0) {
+        if (EMP_CODE_LIST != null && !EMP_CODE_LIST.isEmpty()) {
             sql += " and EMP_CODE_ in (:EMP_CODE_LIST)";
             paramMap.put("EMP_CODE_LIST", EMP_CODE_LIST);
         }
@@ -199,7 +199,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_NAME_ like concat('%',:EMP_NAME_,'%')";
             paramMap.put("EMP_NAME_", EMP_NAME_);
         }
-        if (EMP_NAME_LIST != null && EMP_NAME_LIST.size() > 0) {
+        if (EMP_NAME_LIST != null && !EMP_NAME_LIST.isEmpty()) {
             sql += " and EMP_NAME_ in (:EMP_NAME_LIST)";
             paramMap.put("EMP_NAME_LIST", EMP_NAME_LIST);
         }
@@ -207,13 +207,13 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_CATEGORY_ = :EMP_CATEGORY_";
             paramMap.put("EMP_CATEGORY_", EMP_CATEGORY_);
         }
-        if (EMP_CATEGORY_LIST != null && EMP_CATEGORY_LIST.size() > 0) {
+        if (EMP_CATEGORY_LIST != null && !EMP_CATEGORY_LIST.isEmpty()) {
             sql += " and EMP_CATEGORY_ in (:EMP_CATEGORY_LIST)";
             paramMap.put("EMP_CATEGORY_LIST", EMP_CATEGORY_LIST);
         }
         if (StringUtils.isNotEmpty(EMP_TAG_)) {
             List<String> tagList = omTagService.splitTag(EMP_TAG_);
-            if (tagList.size() > 0) {
+            if (!tagList.isEmpty()) {
                 if (empTagUnion != null && empTagUnion.equals(false)) {
                     sql += " and EMP_ID_ in (select EMP_ID_ from (select OBJ_ID_ as EMP_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'EMP' and TAG_ in (:EMP_TAG_LIST)) T group by EMP_ID_ having count(*) >= 1)";
                     paramMap.put("EMP_TAG_LIST", tagList);
@@ -229,7 +229,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_1_ = :EMP_EXT_ATTR_1_";
             paramMap.put("EMP_EXT_ATTR_1_", EMP_EXT_ATTR_1_);
         }
-        if (EMP_EXT_ATTR_1_LIST != null && EMP_EXT_ATTR_1_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_1_LIST != null && !EMP_EXT_ATTR_1_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_1_ in (:EMP_EXT_ATTR_1_LIST)";
             paramMap.put("EMP_EXT_ATTR_1_LIST", EMP_EXT_ATTR_1_LIST);
         }
@@ -237,7 +237,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_2_ = :EMP_EXT_ATTR_2_";
             paramMap.put("EMP_EXT_ATTR_2_", EMP_EXT_ATTR_2_);
         }
-        if (EMP_EXT_ATTR_2_LIST != null && EMP_EXT_ATTR_2_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_2_LIST != null && !EMP_EXT_ATTR_2_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_2_ in (:EMP_EXT_ATTR_2_LIST)";
             paramMap.put("EMP_EXT_ATTR_2_LIST", EMP_EXT_ATTR_2_LIST);
         }
@@ -245,7 +245,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_3_ = :EMP_EXT_ATTR_3_";
             paramMap.put("EMP_EXT_ATTR_3_", EMP_EXT_ATTR_3_);
         }
-        if (EMP_EXT_ATTR_3_LIST != null && EMP_EXT_ATTR_3_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_3_LIST != null && !EMP_EXT_ATTR_3_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_3_ in (:EMP_EXT_ATTR_3_LIST)";
             paramMap.put("EMP_EXT_ATTR_3_LIST", EMP_EXT_ATTR_3_LIST);
         }
@@ -253,7 +253,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_4_ = :EMP_EXT_ATTR_4_";
             paramMap.put("EMP_EXT_ATTR_4_", EMP_EXT_ATTR_4_);
         }
-        if (EMP_EXT_ATTR_4_LIST != null && EMP_EXT_ATTR_4_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_4_LIST != null && !EMP_EXT_ATTR_4_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_4_ in (:EMP_EXT_ATTR_4_LIST)";
             paramMap.put("EMP_EXT_ATTR_4_LIST", EMP_EXT_ATTR_4_LIST);
         }
@@ -261,7 +261,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_5_ = :EMP_EXT_ATTR_5_";
             paramMap.put("EMP_EXT_ATTR_5_", EMP_EXT_ATTR_5_);
         }
-        if (EMP_EXT_ATTR_5_LIST != null && EMP_EXT_ATTR_5_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_5_LIST != null && !EMP_EXT_ATTR_5_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_5_ in (:EMP_EXT_ATTR_5_LIST)";
             paramMap.put("EMP_EXT_ATTR_5_LIST", EMP_EXT_ATTR_5_LIST);
         }
@@ -269,7 +269,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_6_ = :EMP_EXT_ATTR_6_";
             paramMap.put("EMP_EXT_ATTR_6_", EMP_EXT_ATTR_6_);
         }
-        if (EMP_EXT_ATTR_6_LIST != null && EMP_EXT_ATTR_6_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_6_LIST != null && !EMP_EXT_ATTR_6_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_6_ in (:EMP_EXT_ATTR_6_LIST)";
             paramMap.put("EMP_EXT_ATTR_6_LIST", EMP_EXT_ATTR_6_LIST);
         }
@@ -277,7 +277,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_7_ = :EMP_EXT_ATTR_7_";
             paramMap.put("EMP_EXT_ATTR_7_", EMP_EXT_ATTR_7_);
         }
-        if (EMP_EXT_ATTR_7_LIST != null && EMP_EXT_ATTR_7_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_7_LIST != null && !EMP_EXT_ATTR_7_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_7_ in (:EMP_EXT_ATTR_7_LIST)";
             paramMap.put("EMP_EXT_ATTR_7_LIST", EMP_EXT_ATTR_7_LIST);
         }
@@ -285,7 +285,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_EXT_ATTR_8_ = :EMP_EXT_ATTR_8_";
             paramMap.put("EMP_EXT_ATTR_8_", EMP_EXT_ATTR_8_);
         }
-        if (EMP_EXT_ATTR_8_LIST != null && EMP_EXT_ATTR_8_LIST.size() > 0) {
+        if (EMP_EXT_ATTR_8_LIST != null && !EMP_EXT_ATTR_8_LIST.isEmpty()) {
             sql += " and EMP_EXT_ATTR_8_ in (:EMP_EXT_ATTR_8_LIST)";
             paramMap.put("EMP_EXT_ATTR_8_LIST", EMP_EXT_ATTR_8_LIST);
         }
@@ -293,7 +293,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and EMP_STATUS_ = :EMP_STATUS_";
             paramMap.put("EMP_STATUS_", EMP_STATUS_);
         }
-        if (EMP_STATUS_LIST != null && EMP_STATUS_LIST.size() > 0) {
+        if (EMP_STATUS_LIST != null && !EMP_STATUS_LIST.isEmpty()) {
             sql += " and EMP_STATUS_ in (:EMP_STATUS_LIST)";
             paramMap.put("EMP_STATUS_LIST", EMP_STATUS_LIST);
         }
@@ -302,7 +302,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_ID_ = :ORG_ID_";
             paramMap.put("ORG_ID_", ORG_ID_);
         }
-        if (ORG_ID_LIST != null && ORG_ID_LIST.size() > 0) {
+        if (ORG_ID_LIST != null && !ORG_ID_LIST.isEmpty()) {
             sql += " and ORG_ID_ in (:ORG_ID_LIST)";
             paramMap.put("ORG_ID_LIST", ORG_ID_LIST);
         }
@@ -310,7 +310,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and PARENT_ORG_ID_ = :PARENT_ORG_ID_";
             paramMap.put("PARENT_ORG_ID_", PARENT_ORG_ID_);
         }
-        if (PARENT_ORG_ID_LIST != null && PARENT_ORG_ID_LIST.size() > 0) {
+        if (PARENT_ORG_ID_LIST != null && !PARENT_ORG_ID_LIST.isEmpty()) {
             sql += " and PARENT_ORG_ID_ in (:PARENT_ORG_ID_LIST)";
             paramMap.put("PARENT_ORG_ID_LIST", PARENT_ORG_ID_LIST);
         }
@@ -318,7 +318,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_CODE_ = :ORG_CODE_";
             paramMap.put("ORG_CODE_", ORG_CODE_);
         }
-        if (ORG_CODE_LIST != null && ORG_CODE_LIST.size() > 0) {
+        if (ORG_CODE_LIST != null && !ORG_CODE_LIST.isEmpty()) {
             sql += " and ORG_CODE_ in (:ORG_CODE_LIST)";
             paramMap.put("ORG_CODE_LIST", ORG_CODE_LIST);
         }
@@ -326,7 +326,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_NAME_ like concat('%',:ORG_NAME_,'%')";
             paramMap.put("ORG_NAME_", ORG_NAME_);
         }
-        if (ORG_NAME_LIST != null && ORG_NAME_LIST.size() > 0) {
+        if (ORG_NAME_LIST != null && !ORG_NAME_LIST.isEmpty()) {
             sql += " and ORG_NAME_ in (:ORG_NAME_LIST)";
             paramMap.put("ORG_NAME_LIST", ORG_NAME_LIST);
         }
@@ -334,7 +334,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_TYPE_ = :ORG_TYPE_";
             paramMap.put("ORG_TYPE_", ORG_TYPE_);
         }
-        if (ORG_TYPE_LIST != null && ORG_TYPE_LIST.size() > 0) {
+        if (ORG_TYPE_LIST != null && !ORG_TYPE_LIST.isEmpty()) {
             sql += " and ORG_TYPE_ in (:ORG_TYPE_LIST)";
             paramMap.put("ORG_TYPE_LIST", ORG_TYPE_LIST);
         }
@@ -342,13 +342,13 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_CATEGORY_ = :ORG_CATEGORY_";
             paramMap.put("ORG_CATEGORY_", ORG_CATEGORY_);
         }
-        if (ORG_CATEGORY_LIST != null && ORG_CATEGORY_LIST.size() > 0) {
+        if (ORG_CATEGORY_LIST != null && !ORG_CATEGORY_LIST.isEmpty()) {
             sql += " and ORG_CATEGORY_ in (:ORG_CATEGORY_LIST)";
             paramMap.put("ORG_CATEGORY_LIST", ORG_CATEGORY_LIST);
         }
         if (StringUtils.isNotEmpty(ORG_TAG_)) {
             List<String> tagList = omTagService.splitTag(ORG_TAG_);
-            if (tagList.size() > 0) {
+            if (!tagList.isEmpty()) {
                 if (orgTagUnion != null && orgTagUnion.equals(false)) {
                     sql += " and ORG_ID_ in (select ORG_ID_ from (select OBJ_ID_ as ORG_ID_ from OM_TAG where ORGN_SET_ID_ = :ORGN_SET_ID_ and OBJ_TYPE_ = 'ORG' and TAG_ in (:ORG_TAG_LIST)) T group by ORG_ID_ having count(*) >= 1)";
                     paramMap.put("ORG_TAG_LIST", tagList);
@@ -364,7 +364,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_1_ = :ORG_EXT_ATTR_1_";
             paramMap.put("ORG_EXT_ATTR_1_", ORG_EXT_ATTR_1_);
         }
-        if (ORG_EXT_ATTR_1_LIST != null && ORG_EXT_ATTR_1_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_1_LIST != null && !ORG_EXT_ATTR_1_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_1_ in (:ORG_EXT_ATTR_1_LIST)";
             paramMap.put("ORG_EXT_ATTR_1_LIST", ORG_EXT_ATTR_1_LIST);
         }
@@ -372,7 +372,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_2_ = :ORG_EXT_ATTR_2_";
             paramMap.put("ORG_EXT_ATTR_2_", ORG_EXT_ATTR_2_);
         }
-        if (ORG_EXT_ATTR_2_LIST != null && ORG_EXT_ATTR_2_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_2_LIST != null && !ORG_EXT_ATTR_2_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_2_ in (:ORG_EXT_ATTR_2_LIST)";
             paramMap.put("ORG_EXT_ATTR_2_LIST", ORG_EXT_ATTR_2_LIST);
         }
@@ -380,7 +380,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_3_ = :ORG_EXT_ATTR_3_";
             paramMap.put("ORG_EXT_ATTR_3_", ORG_EXT_ATTR_3_);
         }
-        if (ORG_EXT_ATTR_3_LIST != null && ORG_EXT_ATTR_3_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_3_LIST != null && !ORG_EXT_ATTR_3_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_3_ in (:ORG_EXT_ATTR_3_LIST)";
             paramMap.put("ORG_EXT_ATTR_3_LIST", ORG_EXT_ATTR_3_LIST);
         }
@@ -388,7 +388,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_4_ = :ORG_EXT_ATTR_4_";
             paramMap.put("ORG_EXT_ATTR_4_", ORG_EXT_ATTR_4_);
         }
-        if (ORG_EXT_ATTR_4_LIST != null && ORG_EXT_ATTR_4_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_4_LIST != null && !ORG_EXT_ATTR_4_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_4_ in (:ORG_EXT_ATTR_4_LIST)";
             paramMap.put("ORG_EXT_ATTR_4_LIST", ORG_EXT_ATTR_4_LIST);
         }
@@ -396,7 +396,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_5_ = :ORG_EXT_ATTR_5_";
             paramMap.put("ORG_EXT_ATTR_5_", ORG_EXT_ATTR_5_);
         }
-        if (ORG_EXT_ATTR_5_LIST != null && ORG_EXT_ATTR_5_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_5_LIST != null && !ORG_EXT_ATTR_5_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_5_ in (:ORG_EXT_ATTR_5_LIST)";
             paramMap.put("ORG_EXT_ATTR_5_LIST", ORG_EXT_ATTR_5_LIST);
         }
@@ -404,7 +404,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_6_ = :ORG_EXT_ATTR_6_";
             paramMap.put("ORG_EXT_ATTR_6_", ORG_EXT_ATTR_6_);
         }
-        if (ORG_EXT_ATTR_6_LIST != null && ORG_EXT_ATTR_6_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_6_LIST != null && !ORG_EXT_ATTR_6_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_6_ in (:ORG_EXT_ATTR_6_LIST)";
             paramMap.put("ORG_EXT_ATTR_6_LIST", ORG_EXT_ATTR_6_LIST);
         }
@@ -412,7 +412,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_7_ = :ORG_EXT_ATTR_7_";
             paramMap.put("ORG_EXT_ATTR_7_", ORG_EXT_ATTR_7_);
         }
-        if (ORG_EXT_ATTR_7_LIST != null && ORG_EXT_ATTR_7_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_7_LIST != null && !ORG_EXT_ATTR_7_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_7_ in (:ORG_EXT_ATTR_7_LIST)";
             paramMap.put("ORG_EXT_ATTR_7_LIST", ORG_EXT_ATTR_7_LIST);
         }
@@ -420,7 +420,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_EXT_ATTR_8_ = :ORG_EXT_ATTR_8_";
             paramMap.put("ORG_EXT_ATTR_8_", ORG_EXT_ATTR_8_);
         }
-        if (ORG_EXT_ATTR_8_LIST != null && ORG_EXT_ATTR_8_LIST.size() > 0) {
+        if (ORG_EXT_ATTR_8_LIST != null && !ORG_EXT_ATTR_8_LIST.isEmpty()) {
             sql += " and ORG_EXT_ATTR_8_ in (:ORG_EXT_ATTR_8_LIST)";
             paramMap.put("ORG_EXT_ATTR_8_LIST", ORG_EXT_ATTR_8_LIST);
         }
@@ -428,7 +428,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             sql += " and ORG_STATUS_ = :ORG_STATUS_";
             paramMap.put("ORG_STATUS_", ORG_STATUS_);
         }
-        if (ORG_STATUS_LIST != null && ORG_STATUS_LIST.size() > 0) {
+        if (ORG_STATUS_LIST != null && !ORG_STATUS_LIST.isEmpty()) {
             sql += " and ORG_STATUS_ in (:ORG_STATUS_LIST)";
             paramMap.put("ORG_STATUS_LIST", ORG_STATUS_LIST);
         }
@@ -454,12 +454,12 @@ public class OmEmpServiceImpl implements OmEmpService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (EMP_ID_LIST == null || EMP_ID_LIST.size() == 0) {
+        if (EMP_ID_LIST == null || EMP_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(EMP_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OMV_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and EMP_ID_ in (:EMP_ID_LIST)");
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -485,12 +485,12 @@ public class OmEmpServiceImpl implements OmEmpService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (EMP_ID_LIST == null || EMP_ID_LIST.size() == 0) {
+        if (EMP_ID_LIST == null || EMP_ID_LIST.isEmpty()) {
             return new ArrayList<>();
         }
 
         StringBuilder sql = new StringBuilder(EMP_ID_LIST.size() * 50 + 200);
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         sql.append("select * from OM_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and EMP_ID_ in (:EMP_ID_LIST)");
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -562,7 +562,7 @@ public class OmEmpServiceImpl implements OmEmpService {
             throw new RuntimeException("errors.orgnSetRequired");
         }
 
-        if (EMP_ID_LIST == null || EMP_ID_LIST.size() == 0) {
+        if (EMP_ID_LIST == null || EMP_ID_LIST.isEmpty()) {
             return 0;
         }
         if (EMP_ID_LIST.size() != ORDER_LIST.size()) {

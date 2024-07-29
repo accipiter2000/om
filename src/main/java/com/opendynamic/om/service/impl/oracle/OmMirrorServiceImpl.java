@@ -3,7 +3,7 @@ package com.opendynamic.om.service.impl.oracle;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -642,12 +642,12 @@ public class OmMirrorServiceImpl implements OmMirrorService {
             }
             deleteTagSql = deleteTagSql.substring(0, deleteTagSql.length() - 4);
             deleteTagSql += ")";
-            if (OBJ_ID_LIST.size() > 0) {
+            if (!OBJ_ID_LIST.isEmpty()) {
                 namedParameterMirrorServerJdbcTemplate.update(deleteTagSql, deleteTagParamMap);
             }
 
             // 新增
-            if (INSERT_ORG_ID_LIST != null && INSERT_ORG_ID_LIST.size() > 0) {
+            if (INSERT_ORG_ID_LIST != null && !INSERT_ORG_ID_LIST.isEmpty()) {
                 sql = "select * from OM_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_ and ORG_ID_ in (:INSERT_ORG_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -689,7 +689,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (INSERT_DUTY_ID_LIST != null && INSERT_DUTY_ID_LIST.size() > 0) {
+            if (INSERT_DUTY_ID_LIST != null && !INSERT_DUTY_ID_LIST.isEmpty()) {
                 sql = "select * from OM_DUTY where ORGN_SET_ID_ = :ORGN_SET_ID_ and DUTY_ID_ in (:INSERT_DUTY_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -728,7 +728,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (INSERT_POSI_ID_LIST != null && INSERT_POSI_ID_LIST.size() > 0) {
+            if (INSERT_POSI_ID_LIST != null && !INSERT_POSI_ID_LIST.isEmpty()) {
                 sql = "select * from OM_POSI where ORGN_SET_ID_ = :ORGN_SET_ID_ and POSI_ID_ in (:INSERT_POSI_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -770,7 +770,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (INSERT_EMP_ID_LIST != null && INSERT_EMP_ID_LIST.size() > 0) {
+            if (INSERT_EMP_ID_LIST != null && !INSERT_EMP_ID_LIST.isEmpty()) {
                 sql = "select * from OM_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and EMP_ID_ in (:INSERT_EMP_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -820,7 +820,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (INSERT_POSI_EMP_ID_LIST != null && INSERT_POSI_EMP_ID_LIST.size() > 0) {
+            if (INSERT_POSI_EMP_ID_LIST != null && !INSERT_POSI_EMP_ID_LIST.isEmpty()) {
                 sql = "select * from OM_POSI_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and POSI_EMP_ID_ in (:INSERT_POSI_EMP_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -860,7 +860,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (INSERT_EMP_RELATION_ID_LIST != null && INSERT_EMP_RELATION_ID_LIST.size() > 0) {
+            if (INSERT_EMP_RELATION_ID_LIST != null && !INSERT_EMP_RELATION_ID_LIST.isEmpty()) {
                 sql = "select * from OM_EMP_RELATION where ORGN_SET_ID_ = :ORGN_SET_ID_ and EMP_RELATION_ID_ in (:INSERT_EMP_RELATION_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -902,7 +902,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
             }
 
             // 修改
-            if (UPDATE_ORG_ID_LIST != null && UPDATE_ORG_ID_LIST.size() > 0) {
+            if (UPDATE_ORG_ID_LIST != null && !UPDATE_ORG_ID_LIST.isEmpty()) {
                 sql = "select * from OM_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_ and ORG_ID_ in (:UPDATE_ORG_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -944,7 +944,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (UPDATE_DUTY_ID_LIST != null && UPDATE_DUTY_ID_LIST.size() > 0) {
+            if (UPDATE_DUTY_ID_LIST != null && !UPDATE_DUTY_ID_LIST.isEmpty()) {
                 sql = "select * from OM_DUTY where ORGN_SET_ID_ = :ORGN_SET_ID_ and DUTY_ID_ in (:UPDATE_DUTY_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -983,7 +983,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (UPDATE_POSI_ID_LIST != null && UPDATE_POSI_ID_LIST.size() > 0) {
+            if (UPDATE_POSI_ID_LIST != null && !UPDATE_POSI_ID_LIST.isEmpty()) {
                 sql = "select * from OM_POSI where ORGN_SET_ID_ = :ORGN_SET_ID_ and POSI_ID_ in (:UPDATE_POSI_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1025,7 +1025,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (UPDATE_EMP_ID_LIST != null && UPDATE_EMP_ID_LIST.size() > 0) {
+            if (UPDATE_EMP_ID_LIST != null && !UPDATE_EMP_ID_LIST.isEmpty()) {
                 sql = "select * from OM_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and EMP_ID_ in (:UPDATE_EMP_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1075,7 +1075,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (UPDATE_POSI_EMP_ID_LIST != null && UPDATE_POSI_EMP_ID_LIST.size() > 0) {
+            if (UPDATE_POSI_EMP_ID_LIST != null && !UPDATE_POSI_EMP_ID_LIST.isEmpty()) {
                 sql = "select * from OM_POSI_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and POSI_EMP_ID_ in (:UPDATE_POSI_EMP_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1115,7 +1115,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 };
                 omJdbcTemplate.batchUpdate(sql, batch);
             }
-            if (UPDATE_EMP_RELATION_ID_LIST != null && UPDATE_EMP_RELATION_ID_LIST.size() > 0) {
+            if (UPDATE_EMP_RELATION_ID_LIST != null && !UPDATE_EMP_RELATION_ID_LIST.isEmpty()) {
                 sql = "select * from OM_EMP_RELATION where ORGN_SET_ID_ = :ORGN_SET_ID_ and EMP_RELATION_ID_ in (:UPDATE_EMP_RELATION_ID_LIST)";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1157,7 +1157,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
             }
 
             // 删除
-            if (DELETE_EMP_RELATION_ID_LIST != null && DELETE_EMP_RELATION_ID_LIST.size() > 0) {
+            if (DELETE_EMP_RELATION_ID_LIST != null && !DELETE_EMP_RELATION_ID_LIST.isEmpty()) {
                 sql = "delete from OM_EMP_RELATION where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1177,7 +1177,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_POSI_EMP_ID_LIST != null && DELETE_POSI_EMP_ID_LIST.size() > 0) {
+            if (DELETE_POSI_EMP_ID_LIST != null && !DELETE_POSI_EMP_ID_LIST.isEmpty()) {
                 sql = "delete from OM_POSI_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1197,7 +1197,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_EMP_ID_LIST != null && DELETE_EMP_ID_LIST.size() > 0) {
+            if (DELETE_EMP_ID_LIST != null && !DELETE_EMP_ID_LIST.isEmpty()) {
                 sql = "delete from OM_EMP where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1217,7 +1217,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_POSI_ID_LIST != null && DELETE_POSI_ID_LIST.size() > 0) {
+            if (DELETE_POSI_ID_LIST != null && !DELETE_POSI_ID_LIST.isEmpty()) {
                 sql = "delete from OM_POSI where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1237,7 +1237,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 sql += ")";
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
             }
-            if (DELETE_DUTY_ID_LIST != null && DELETE_DUTY_ID_LIST.size() > 0) {
+            if (DELETE_DUTY_ID_LIST != null && !DELETE_DUTY_ID_LIST.isEmpty()) {
                 sql = "delete from OM_DUTY where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1258,7 +1258,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
                 namedParameterMirrorServerJdbcTemplate.update(sql, paramMap);
 
             }
-            if (DELETE_ORG_ID_LIST != null && DELETE_ORG_ID_LIST.size() > 0) {
+            if (DELETE_ORG_ID_LIST != null && !DELETE_ORG_ID_LIST.isEmpty()) {
                 sql = "delete from OM_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_ and (";
                 paramMap.clear();
                 paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
@@ -1334,7 +1334,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
             }
             selectTagSql = selectTagSql.substring(0, selectTagSql.length() - 4);
             selectTagSql += ")";
-            if (OBJ_ID_LIST.size() > 0) {
+            if (!OBJ_ID_LIST.isEmpty()) {
                 final List<Map<String, Object>> tagList = namedParameterMainServerJdbcTemplate.queryForList(selectTagSql, selectTagParamMap);
                 sql = "insert into OM_TAG (ORGN_SET_ID_, TAG_ID_, OBJ_ID_, OBJ_TYPE_, TAG_) values (?, ?, ?, ?, ?)";
                 batch = new BatchPreparedStatementSetter() {
@@ -1367,7 +1367,7 @@ public class OmMirrorServiceImpl implements OmMirrorService {
     }
 
     private DataSource getMainServerDataSource() {
-        List<Map<String, Object>> mainServerList = omMainServerService.selectMainServer(null, null, Arrays.asList("1"), 1, -1);
+        List<Map<String, Object>> mainServerList = omMainServerService.selectMainServer(null, null, Collections.singletonList("1"), 1, -1);
         if (mainServerList.size() == 1) {
             BasicDataSource dataSource = new BasicDataSource();
             dataSource.setDriverClassName((String) mainServerList.get(0).get("DRIVER_CLASS_NAME_"));
