@@ -151,7 +151,7 @@ comment on column OM_DUTY.duty_code_
 comment on column OM_DUTY.duty_name_
   is '职务名称';
 comment on column OM_DUTY.duty_category_
-  is '分类';
+  is '职务分类';
 comment on column OM_DUTY.memo_
   is '备注';
 comment on column OM_DUTY.duty_tag_
@@ -241,7 +241,7 @@ comment on column OM_ORG.org_abbr_name_
 comment on column OM_ORG.org_type_
   is '机构类型';
 comment on column OM_ORG.org_category_
-  is '分类';
+  is '机构分类';
 comment on column OM_ORG.memo_
   is '备注';
 comment on column OM_ORG.org_tag_
@@ -359,7 +359,7 @@ comment on column OM_EMP.in_date_
 comment on column OM_EMP.out_date_
   is '离职日期';
 comment on column OM_EMP.emp_category_
-  is '分类';
+  is '人员分类';
 comment on column OM_EMP.memo_
   is '备注';
 comment on column OM_EMP.emp_tag_
@@ -447,7 +447,7 @@ comment on column OM_EMP_RELATION.lower_emp_id_
 comment on column OM_EMP_RELATION.emp_relation_
   is '人员关系';
 comment on column OM_EMP_RELATION.emp_relation_category_
-  is '分类';
+  is '人员关系分类';
 comment on column OM_EMP_RELATION.memo_
   is '备注';
 comment on column OM_EMP_RELATION.emp_relation_tag_
@@ -721,7 +721,7 @@ comment on column OM_POSI.posi_name_
 comment on column OM_POSI.org_leader_type_
   is '机构领导类型';
 comment on column OM_POSI.posi_category_
-  is '分类';
+  is '岗位分类';
 comment on column OM_POSI.memo_
   is '备注';
 comment on column OM_POSI.posi_tag_
@@ -813,7 +813,7 @@ comment on column OM_POSI_EMP.emp_id_
 comment on column OM_POSI_EMP.main_
   is '主岗位';
 comment on column OM_POSI_EMP.posi_emp_category_
-  is '分类';
+  is '岗位人员分类';
 comment on column OM_POSI_EMP.memo_
   is '备注';
 comment on column OM_POSI_EMP.posi_emp_tag_
