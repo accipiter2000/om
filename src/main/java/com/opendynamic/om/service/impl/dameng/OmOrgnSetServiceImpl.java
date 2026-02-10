@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -31,16 +32,22 @@ import com.opendynamic.om.vo.OrgnChange;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class OmOrgnSetServiceImpl implements OmOrgnSetService {
+    @Lazy
     @Autowired
     private OmDutyService omDutyService;
+    @Lazy
     @Autowired
     private OmOrgService omOrgService;
+    @Lazy
     @Autowired
     private OmPosiService omPosiService;
+    @Lazy
     @Autowired
     private OmEmpService omEmpService;
+    @Lazy
     @Autowired
     private OmPosiEmpService omPosiEmpService;
+    @Lazy
     @Autowired
     private OmEmpRelationService omEmpRelationService;
     @Autowired

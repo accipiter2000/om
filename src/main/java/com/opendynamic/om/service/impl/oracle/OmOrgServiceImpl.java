@@ -484,7 +484,15 @@ public class OmOrgServiceImpl implements OmOrgService {
             ORGN_SET_ID_ = (String) orgnSet.get("ORGN_SET_ID_");
         }
 
-        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_) O where 1 = 1";
+        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_";
+        if (recursive == null || recursive.equals(false)) {
+            sql += " and (PARENT_ORG_ID_ = :ORG_ID_ or ORG_ID_ = :ORG_ID_)";
+        }
+        else {
+            sql += " connect by prior ORG_ID_ = PARENT_ORG_ID_ start with ORG_ID_ = :ORG_ID_";
+        }
+        sql += ") O where 1 = 1";
+
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
         paramMap.put("ORG_ID_", ORG_ID_);
@@ -622,12 +630,6 @@ public class OmOrgServiceImpl implements OmOrgService {
         }
         if (includeSelf == null || includeSelf.equals(false)) {
             sql += " and ORG_ID_ != :ORG_ID_";
-        }
-        if (recursive == null || recursive.equals(false)) {
-            sql += " and (PARENT_ORG_ID_ = :ORG_ID_ or ORG_ID_ = :ORG_ID_)";
-        }
-        else {
-            sql += " connect by prior ORG_ID_ = PARENT_ORG_ID_ start with ORG_ID_ = :ORG_ID_";
         }
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(omJdbcTemplate);

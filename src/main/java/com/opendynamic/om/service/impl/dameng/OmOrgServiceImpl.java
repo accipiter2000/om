@@ -484,10 +484,24 @@ public class OmOrgServiceImpl implements OmOrgService {
             ORGN_SET_ID_ = (String) orgnSet.get("ORGN_SET_ID_");
         }
 
-        String sql = "select * from (select * from OMV_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_) O where 1 = 1";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("ORGN_SET_ID_", ORGN_SET_ID_);
         paramMap.put("ORG_ID_", ORG_ID_);
+
+        String sql = "select * from (select * from OMV_ORG ORG where ORGN_SET_ID_ = :ORGN_SET_ID_";
+        if (recursive == null || recursive.equals(false)) {
+            sql += " and (PARENT_ORG_ID_ = :ORG_ID_ or ORG_ID_ = :ORG_ID_)";
+        }
+        else {
+            // Step 1: 插入数据到临时表
+            String recursiveSql = "insert into OM_ORG_RECURSIVE_TMP (ORG_ID_, PARENT_ORG_ID_) select ORG_ID_, PARENT_ORG_ID_ from OM_ORG where ORGN_SET_ID_ = :ORGN_SET_ID_ start with ORG_ID_ = :ORG_ID_ connect by prior ORG_ID_ = PARENT_ORG_ID_";
+            NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(omJdbcTemplate);
+            jdbcTemplate.update(recursiveSql, paramMap);
+
+            // Step 2: 查询数据并结合临时表过滤
+            sql += " and exists (select 1 from OM_ORG_RECURSIVE_TMP T where T.ORG_ID_ = ORG.ORG_ID_)";
+        }
+        sql += ") O where 1 = 1";
 
         if (StringUtils.isNotEmpty(ORGN_SET_CODE_)) {
             sql += " and ORGN_SET_CODE_ = :ORGN_SET_CODE_";
@@ -623,15 +637,13 @@ public class OmOrgServiceImpl implements OmOrgService {
         if (includeSelf == null || includeSelf.equals(false)) {
             sql += " and ORG_ID_ != :ORG_ID_";
         }
-        if (recursive == null || recursive.equals(false)) {
-            sql += " and (PARENT_ORG_ID_ = :ORG_ID_ or ORG_ID_ = :ORG_ID_)";
-        }
-        else {
-            sql += " connect by prior ORG_ID_ = PARENT_ORG_ID_ start with ORG_ID_ = :ORG_ID_";
-        }
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(omJdbcTemplate);
-        return namedParameterJdbcTemplate.queryForList(sql, paramMap);
+        List<Map<String, Object>> result = namedParameterJdbcTemplate.queryForList(sql, paramMap);
+
+        omJdbcTemplate.update("delete from OM_ORG_RECURSIVE_TMP");
+
+        return result;
     }
 
     @Override
